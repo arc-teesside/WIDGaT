@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>Widget Authoring Toolkit</title>
+		
+		<link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+		<link rel="stylesheet" type="text/css" href="resources/style.css">
+
+		<script type="text/javascript" src="extjs/ext-all-debug.js"></script>
+		<script type="text/javascript" src="extjs/src/ux/miframe/multidom.js"></script>
+		<script type="text/javascript" src="extjs/src/ux/miframe/ManagedIframe.js"></script>
+		<script type="text/javascript" src="extjs/src/ux/DataView/Draggable.js"></script>
+		
+		<script type="text/javascript" src="app.js"></script>
+		
+		<script type="text/javascript">
+        window.dFlag = 0;
+        document.onmouseup = function(e) {
+			if(window.dFlag === 0) {
+				//click event
+			}
+			else if(window.dFlag === 1) {
+				//drag event
+			}
+			//Find a way to deselect the record!
+			//Ext.each(Ext.ComponentManager.get('compo-list').down('compoDataView'),function(view) { console.log(view.getSelectedNodes()); });
+			var vv = Ext.ComponentManager.get('compo-list');
+			
+			Ext.each(vv.items.items, function(i) {
+				
+				i.down('compoDataView').getSelectionModel().deselectAll();
+			});
+			
+			//Ext.each(Ext.ComponentManager.get('compo-list').down('compoDataView'),function(view) { console.log(view.getSelectedNodes()); });
+			/*var vt = Ext.ComponentManager.get('template-list');
+			Ext.each(vv.items.items, function(i) {
+				
+				i.down('templateDataView').getSelectionModel().deselectAll();
+			});*/
+			 //marche need to get index of selected record
+			
+			//console.log(Ext.ComponentManager.get('compo-list').down('compoDataView').getSelectedNodes());
+			//console.log("Event mouseup from top.document:", e);
+			var elem = new Ext.Element(e.fromElement);
+			//console.log(elem);
+			//check if selected element is not an empty array
+			//if selected element add to widget and deselect if not do nothing check for top drag
+		}
+		
+		document.onclick = function(e) {
+			//console.log(Ext.ComponentManager.get('compo-list').down('compoDataView').getSelectedNodes());
+			//console.log("Event click from top.document:", e);
+		}
+		
+		document.onmousedown = function(e) {
+			//console.log(Ext.ComponentManager.get('compo-list').down('compoDataView').getSelectedNodes());
+			//console.log("Event mousedown from top.document:", e);
+			window.dFlag = 0;
+		}
+		
+		document.onmousemove = function(e) {
+			window.dFlag = 1;
+			//console.log(Ext.ComponentManager.get('compo-list').down('compoDataView').getSelectedNodes());
+			//console.log("Event mousemove from top.document:", e);
+		}
+		
+        </script>
+	</head>
+	<body>
+		<noscript>
+            <div id="test_javascript">
+                <table style="vertical-align:middle;margin:auto;text-align:inherit;">
+                    <tr>
+                        <td colspan="5">
+                            <table style="margin:auto;font-size:2em;">
+                                <tr>
+                                    <td><img src="resources/images/logo.png" alt="Accessibility Research Center Logo" /></td>
+                                    <td><h1>Accessibility Research Centre</h1></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><b>W</b>idget <b>D</b>esign <b>A</b>uthoring <b>T</b>oolkit &ndash; <b>WIDGaT</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><br />If you see this page it means your internet browser does not support JavaScript or it has been disabled.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">You can follow the instructions below to activate JavaScript on your respective web browser.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Once you are done with the activation, you can click <a href="index.html">here</a> to access WIDGaT<br /><br /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:20%"><img src="resources/images/logo_ie.jpg" alt="Internet Explorer Logo" /><br />Internet Explorer</td>
+                        <td style="width:20%"><img src="resources/images/logo_firefox.png" alt="Firefox Logo" /><br />Firefox</td>
+                        <td style="width:20%"><img src="resources/images/logo_netscape.jpg" alt="Netscape Logo" /><br />Netscape</td>
+                        <td style="width:20%"><img src="resources/images/logo_safari.png" alt="Safari Logo" /><br />Safari</td>
+                        <td style="width:20%"><img src="resources/images/logo_opera.png" alt="Opera Logo" /><br />Opera</td>
+                    </tr>
+                    <tr style="text-align:left;vertical-align:top;">
+                        <td>
+                            <ol>
+                                <li>Go in the <b>Tools</b> menu from the main menu bar and select <b>Internet Options</b>.</li>
+                                <li>Change for the <b>Security</b> tab.</li>
+                                <li>Make sure the <b>Internet</b> icon is selected then click on the <b>Custom level</b> button.</li>
+                                <li>Locate the <b>Scripting</b> options near the bottom of the list.</li>
+                                <li>Here you need to <b>Enable</b> the <b>Allow Scripting</b> option</li>
+                                <li>Click the <b>OK</b> then the <b>Yes</b> one on the upcoming confirmation box.</li>
+                                <li>Hit <b>OK</b> to close the <b>Internet Options</b> window.</li>
+                                <li>Finally, hit the <b>Refresh button</b> of your browser or click on the link above</li>
+                            </ol>                        </td>
+                        <td>
+                            <ol>
+                                <li>Go in the <b>Tools</b> menu from the main menu bar and select <b>Options</b>.</li>
+                                <li>Change for the <b>Content</b> tab.</li>
+                                <li>Now, check the <b>Enable JavaScript</b> tickbox under the <b>Web Content</b> category.</li>
+                                <li>Hit <b>OK</b> to close the <b>Options</b> window.</li>
+                                <li>Finally, hit the <b>Refresh button</b> of your browser or click on the link above</li>
+                            </ol>                        </td>
+                        <td>
+                            <ol>
+                                <li>Go in the <b>Edit</b> menu from the main menu bar and select <b>Preferences</b>.</li>
+                                <li>In the <b>Category</b> list, click on <b>Advanced</b>.</li>
+                                <li>Click the <b>Javascript for Navigator</b> option, and then click <b>OK</b>.</li>
+                                <li>Close the window to save your settings</li>
+                                <li>Finally, hit the <b>Refresh button</b> of your browser or click on the link above</li>
+                            </ol>                        </td>
+                        <td>
+                            <ol>
+                                <li>Go in the <b>Edit</b> menu from the main menu bar and select <b>Preferences</b>.</li>
+                                <li>Change for the <b>Security</b> tab.</li>
+                                <li>Now, check the <b>Enable JavaScript</b> tickbox</li>
+                                <li>Close the window to save your settings</li>
+                                <li>Finally, hit the <b>Refresh button</b> of your browser or click on the link above</li>
+                            </ol>                        </td>
+                        <td>
+                            <ol>
+                                <li>Go in the <b>Tools</b> menu from the main menu bar and select <b>Preferences</b>.</li>
+                                <li>Change for the <b>Advanced</b> tab.</li>
+                                <li>Find the <b>Content</b> item in the list on the left-side of the window and select it.</li>
+                                <li>Now, check the <b>Enable JavaScript</b> tickbox</li>
+                                <li>Hit <b>OK</b> to save your changes and close the window.</li>
+                                <li>Finally, hit the <b>Refresh button</b> of your browser or click on the link above</li>
+                            </ol>                        </td>
+                    </tr>
+                </table>
+            </div>
+        </noscript>
+	</body>
+</html>

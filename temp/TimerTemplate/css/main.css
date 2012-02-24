@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/* main CSS */
+
+* {
+	margin:0;
+	padding:0;
+	font-family:Arial;
+	text-align:center;
+}
+
+#ph1 {
+	width: 200px;
+	margin:auto;
+}
+
+#ph2 {
+	margin:auto;
+	margin-top:10px;
+	width: 300px;
+}
+
+#ph3 {
+	margin:auto;
+	margin-top:10px;
+}
+
+p {
+	text-align: center; 
+	padding: 4px 0 0 0;
+}
+
+.highlight {
+	color:red;
+}
+
+.phHover {
+	background-color: blue;
+	border: 5px solid red;
+}
+
+/* components added here */
+
+
+
+/* analogClock CSS Document */
+
+#analogClock1-clock {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 7px 0 0 0;
+	background: url(http://arc.tees.ac.uk/WIDGaT/components/clock/analogClock/clockface.jpg);
+	list-style: none;
+}
+
+#analogClock1-sec, #analogClock1-min, #analogClock1-hour {
+	position: absolute;
+	width: 10px;
+	height: 200px;
+	top: 0px;
+	left: 95px;
+}
+
+#analogClock1-sec {
+	background: url(http://arc.tees.ac.uk/WIDGaT/components/clock/analogClock/sechand.png);
+	z-index: 3;
+}
+
+#analogClock1-min {
+	background: url(http://arc.tees.ac.uk/WIDGaT/components/clock/analogClock/minhand.png);
+	z-index: 2;
+}
+
+#analogClock1-hour {
+	background: url(http://arc.tees.ac.uk/WIDGaT/components/clock/analogClock/hourhand.png);
+	z-index: 1;
+}
+
+p {
+	text-align: center; 
+	padding: 4px 0 0 0;
+}
+
+
+
+/* sliderInput CSS Document */
+
+#sliderInput1-slider {
+	width: 250px;
+}

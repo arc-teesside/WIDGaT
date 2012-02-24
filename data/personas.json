@@ -1,0 +1,10 @@
+[{
+		short: "Chris: acquired brain injury, slight mobility problems, limited movement in his hands",
+		name: "Chris has an acquired brain injury and slight mobility problems that means he has limited movement in his hands. He uses a standard mouse and keyboard but uses the shortcut keys and prefers not to have to do too much typing. He manages quite well now at University but does have problems remembering his schedule and as he tires more easily than he used to, he likes to have afternoon nap before his  evening class."
+	}, {
+		short: "George, 21: Difficulty understanding instructions, memory problems, easily distracted.",
+		name: "George is 21 and lives in Middlesbrough. He has a learning difficulty which means he needs longer to understand instructions and has difficulty in remembering large amounts of information, although he can read reasonably well. He also is easily distracted and can get confused quite easily."
+	}, {
+		short: "Susanna, 21: English as a foreign  language, poor eyesight, difficulty seeing text on screen.",
+		name: "Susanna is 21 and is studying for a Degree Web Design at Teesside University. She is originally from the Czech Republic, but has lived in the UK for 5 years. She has very poor eyesight, and although she wears corrective lenses, sometimes she finds the text on the screen difficult to read."
+}]

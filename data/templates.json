@@ -1,0 +1,43 @@
+[{
+		id: "1",
+		name: "Countdown",
+		category: "Timer",
+		icon: "resources/images/icons/countdownIcon.jpg",
+		keywords: 'timer,countdown,one click'
+	}, {
+		id: "2",
+		name: "Alarm",
+		category: "Timer",
+		icon: "resources/images/icons/alarmIcon.gif",
+		keywords: 'timer,alarm'
+	}, {
+		id: "3",
+		name: "Text Timer",
+		category: "Timer",
+		icon: "resources/images/icons/textTimerIcon.jpg",
+		keywords: 'text,timer,countdown'
+	}, {
+		id: "4",
+		name: "Scheduler",
+		category: "Timer",
+		icon: "resources/images/icons/schedulerIcon.png",
+		keywords: 'scheduler,calendar'
+	}, {
+		id: "5",
+		name: "Post-It",
+		category: "To-Do",
+		icon: "resources/images/icons/postItIcon.jpg",
+		keywords: 'todo,list,postit'
+	}, {
+		id: "6",
+		name: "Task list",
+		category: "To-Do",
+		icon: "resources/images/icons/taskListIcon.png",
+		keywords: 'task,list'
+	}, {
+		id: "7",
+		name: "Sequencer",
+		category: "To-Do",
+		icon: "resources/images/icons/sequencerIcon.png",
+		keywords: 'sequence,list,task'
+}]

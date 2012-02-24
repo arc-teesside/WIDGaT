@@ -1,0 +1,25 @@
+[{
+		short: "analog",
+		name: "White Clock"
+	}, {
+		short: "analogGreen",
+		name: "Green Clock"
+	}, {
+		short: "analogRed",
+		name: "Red Clock"
+	}, {
+		short: "roman",
+		name: "Roman numerals"
+	}, {
+		short: "square",
+		name: "Square Clock"
+	}, {
+		short: "squareYellow",
+		name: "Yellow square"
+	}, {
+		short: "squareBlue",
+		name: "Blue Square"
+	}, {
+		short: "stopwatch",
+		name: "Stopwatch"
+}]

@@ -1,0 +1,226 @@
+* {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#compo-list .x-panel-body{
+    background: white;
+    font: 11px Arial, Helvetica, sans-serif;
+}
+#compo-list .thumb{
+    background: #ffffff;
+    padding: 3px;
+    padding-bottom: 0;
+}
+
+.x-quirks #compo-list .thumb {
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#compo-list .thumb img{
+    height: 48px;
+    width: 48px;
+}
+#compo-list .thumb-wrap{
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 5px;
+}
+#compo-list .thumb-wrap span {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    /*width: 70px; // for ie to ensure that the text is centered*/
+}
+
+#compo-list .x-item-over{
+    border:1px solid #dddddd;
+    background: #efefef url(images/over.gif) repeat-x left top;
+    padding: 4px;
+}
+
+#compo-list .x-item-selected{
+    background: #eff5fb url(images/selected.gif) no-repeat right bottom;
+    border:1px solid #99bbe8;
+    padding: 4px;
+}
+#compo-list .x-item-selected .thumb{
+    background:transparent;
+}
+
+#compo-list .loading-indicator {
+    font-size:11px;
+    background-image:url('../extjs/resources/themes/images/default/grid/loading.gif');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left:20px;
+    margin:10px;
+}
+
+#template-list .x-panel-body{
+    background: white;
+    font: 11px Arial, Helvetica, sans-serif;
+}
+#template-list .thumb{
+    background: #ffffff;
+    padding: 3px;
+    padding-bottom: 0;
+}
+
+.x-quirks #template-list .thumb {
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#template-list .thumb img{
+    height: 48px;
+    width: 48px;
+}
+#template-list .thumb-wrap{
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 5px;
+}
+#template-list .thumb-wrap span {
+    
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    /*width: 70px; // for ie to ensure that the text is centered*/
+}
+
+#template-list .x-item-over{
+    border:1px solid #dddddd;
+    background: #efefef url(images/over.gif) repeat-x left top;
+    padding: 4px;
+}
+
+#template-list .x-item-selected{
+    background: #eff5fb url(images/selected.gif) no-repeat right bottom;
+    border:1px solid #99bbe8;
+    padding: 4px;
+}
+#template-list .x-item-selected .thumb{
+    background:transparent;
+}
+
+#template-list .loading-indicator {
+    font-size:11px;
+    background-image:url('../extjs/resources/themes/images/default/grid/loading.gif');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left:20px;
+    margin:10px;
+}
+
+.x-view-selector {
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    border:1px dotted;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter:alpha(opacity=50);
+    zoom:1;
+    background-color:#c3daf9;
+    border-color:#3399bb;
+}.ext-strict .ext-ie .x-tree .x-panel-bwrap{
+    position:relative;
+    overflow:hidden;
+}
+
+
+.button-tile .button-tile-overlay {
+background:url(images/gettile-overlay.png) no-repeat;
+position:absolute;
+width:31px;
+height:31px;
+z-index:1;
+cursor:pointer;
+_behavior:url(iepngfix.htc);
+}
+
+.button-tile .button-tile-overlay:hover {
+background:url(images/gettile-overlay.png) 0 -33px no-repeat;
+}
+
+.button-tile img {
+width:31px;
+height:31px;
+-ms-interpolation-mode:bicubic;
+}
+
+
+#test_javascript 
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	background-color:white;
+	z-index:2;
+	text-align:center;
+	overflow:auto;
+}
+
+#test_javascript table tr td ol
+{
+	display:block;
+	list-style-type:decimal;
+	margin: 1.12em 0;
+	 margin-left: 40px;
+}
+
+#test_javascript table tr td ol li
+{
+	margin:auto;
+	padding:auto;
+	list-style-type: decimal;
+	display:list-item;
+}
+
+#test_javascript h1
+{
+margin-bottom: 21px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 21px;
+}
+
+#welcome_logo 
+{
+	text-align:right;
+	margin-right:10px;
+	font-size:15px;
+	line-height:19px;
+}
+
+.highPriority > td{
+	background-color:#FFB9B9 !important;
+}
+
+.mediumPriority > td{
+	background-color:#FFE19B !important;
+}
+
+.lowPriority > td{
+	background-color:#91FF96 !important;
+}
+
+.displayNone {
+	display:none;
+}
+
+.x-tool-bin{background-position:0 -360px}
+.x-tool-bin:hover{background-position:-15px -360px}
+
+.x-tool-preview{background-position:0 -375px}
+.x-tool-preview:hover{background-position:-15px -375px}
+
+.clearBoth {
+	clear:both;
+}

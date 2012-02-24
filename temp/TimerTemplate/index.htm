@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Timer widget</title>
+        <!-- template and component stylesheet libraries @[_styles]-->
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+		<!-- main stylesheet -->
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+		
+		<!-- template and component javascript libraries @[_scripts]-->
+        
+		<script type="text/javascript" src="../../extjs/ext-all-debug.js"></script>
+        
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/analog.js"></script>
+		<script type="text/javascript" src="js/slider.js"></script>
+        <!-- main Javascript file -->
+        <script type="text/javascript" src="js/main.js"></script>
+		<!-- <script src="aloha/lib/aloha.js" data-aloha-plugins="common/format"></script>
+		<link rel="stylesheet" href="aloha/css/aloha.css" type="text/css">
+		<script type="text/javascript">
+			Aloha.ready( function() {
+				 
+				// Make #content editable once Aloha is loaded and ready.
+				Aloha.jQuery('.editable').aloha();
+				 
+			});
+		</script> -->
+	</head>
+	
+    <body onload="init()">
+		<h1 class="editable">Timer widget</h1><br>
+		<div id="ph1" class="placeholder">
+			<div id="analogClock1" class="analogClock component">
+				<ul id="analogClock1-clock">
+					<li id="analogClock1-sec"></li>
+					<li id="analogClock1-min"></li>
+				</ul>
+			</div>
+            <div id="analogClock2" class="analogClock component">
+				<ul id="analogClock2-clock">
+					<li id="analogClock2-sec"></li>
+					<li id="analogClock2-min"></li>
+				</ul>
+			</div>
+		</div>
+		<div id="ph2" class="placeholder">
+			<div id="sliderInput1" class="sliderInput component">
+				<table>
+					<tr>
+						<td>
+							<div id="sliderInput1-slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="http://arc.tees.ac.uk/WIDGaTweb/ws/Widget/Output/k11bm-e3652512/index.html#" style="left: 6.779661016949152%; "></a></div>
+						</td>
+						<td>
+							<div id="sliderInput1-displayNb" class="ui-widget-content ui-corner-all">5mins</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="ph3" class="placeholder editable">
+			<div id="buttonInput1" class="buttonInput component">
+				<input type="button" id="buttonInput1-button" value="Start Timer" onclick="analogClock1.startTime = sliderInput1.selectedValue;analogClock1.launchCountdown();">
+			</div>
+            <div id="buttonInput2" class="buttonInput component">
+				<input type="button" id="buttonInput2-button" value="Start Timer" >
+			</div>
+		</div>
+	</body>
+</html>
