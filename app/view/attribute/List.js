@@ -50,7 +50,14 @@ Ext.define('WIDGaT.view.attribute.List' ,{
     bind: function(cmp, attrStore) {
 		var me = this;
 		attrStore.removeAll();
-		
+		console.log('docked items', me.getDockedItems());
+		console.log('actionButton', me.getDockedComponent('actionButton'));
+		if(me.getDockedComponent('actionButton')) {
+			console.log('remove if exists');
+			me.removeDocked(me.getDockedComponent('actionButton'));
+			console.log('docked items after remove', me.getDockedItems());
+		}
+			
 		//attrStore.add({'name': 'ID', 'value': cmp.get('id')});
         
 		/*attrStore.on({
@@ -82,6 +89,22 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 		console.log(cmp.attributesStore.data.items);
 		attrStore.loadData(cmp.attributesStore.data.items, true);
         attrStore.filter('output', false);
+		
+		if(attrStore.find('type', 'action', 0, 0, 0) != -1) {
+			me.addDocked(Ext.create("WIDGaT.view.action.Button"));
+			/*console.log('FOUND');
+			me.down('#actionButton').setVisible(true);*/
+		} /*else {
+			console.log('NOT FOUND');
+			me.down('#actionButton').setVisible(false);
+		}*/
+		
+		attrStore.filterBy(function(record, ID) {
+			if(record.get("type").toLowerCase() == "action")
+				return false;
+			else
+				return true;
+		});
 		/*attrStore.each(function(attr) {
 			if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
 				//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.action.ComboBox')

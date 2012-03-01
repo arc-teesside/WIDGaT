@@ -18,7 +18,6 @@ Ext.define('WIDGaT.view.widget.SaveWindow' ,{
 		 	width: 500,
 			border: false,
 			layout:'fit',
-			closeAction: 'hide',
 			items: Ext.create('WIDGaT.view.widget.Save'),
 			bbar: [
 				'->', // greedy spacer so that the buttons are aligned to each side

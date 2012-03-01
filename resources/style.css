@@ -221,6 +221,31 @@ margin-top: 21px;
 .x-tool-preview{background-position:0 -375px}
 .x-tool-preview:hover{background-position:-15px -375px}
 
+
+.x-form-file-wrap1 .x-form-text{
+	color:#777
+}
+
+.x-form-file-wrap1 .x-form-file-btn1{overflow:hidden;float:left}
+
+.x-form-file-wrap1 .x-form-file-input1{
+	/*position:absolute;
+	top:-4px;
+	right:-2px;*/
+	height:30px;
+	/*filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	opacity:0;*/
+	font-size:100px
+}
+
+.x-form-more-trigger {
+	background-image:url('images/more-trigger.gif')
+}
+
+.x-form-plus-trigger {
+	background-image:url('images/plus-trigger.gif')
+}
+
 .clearBoth {
 	clear:both;
 }

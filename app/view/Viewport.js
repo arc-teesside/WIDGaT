@@ -126,7 +126,7 @@ Ext.define('WIDGaT.view.Viewport', {
 					region: 'east',
 					margins:'5 5 5 0',
 					split: true,
-					width: 200,
+					width: 300,
 					layout: {
 						type: 'vbox',
 						align: 'stretch'

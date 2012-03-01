@@ -18,7 +18,9 @@ Ext.define('WIDGaT.controller.Actions', {
 
 	refs: [
         {ref: 'attributeList', selector: 'attrlist'},
-        {ref: 'widgetView', selector: 'widgetview'}
+        {ref: 'widgetView', selector: 'widgetview'},
+        {ref: 'actionWindow', selector: 'actionwindow'},
+        {ref: 'actionTreePanel', selector: 'actiontreepanel'}
     ],
 	
     init: function() {
@@ -27,7 +29,17 @@ Ext.define('WIDGaT.controller.Actions', {
             'actioncombobox': {
                 select: me.onActionComboBoxSelect,
 				beforerender: me.onActionComboBoxBeforeRender
-            }
+            },
+			'#actionButton': {
+				click: me.onActionButtonClick
+			},
+			'actiontreepanel': {
+				beforeselect: me.onActionTreePanelBeforeSelect,
+				select: me.onActionTreePanelSelect
+			},
+			'#action-select': {
+				click: me.onActionSelectBtnClick
+			}
         });
     },
 	
@@ -108,5 +120,122 @@ Ext.define('WIDGaT.controller.Actions', {
 		});
 		
 		console.log('cbActions.onBeforeRender, cBox:', cBox);
+	},
+	
+	onActionTreePanelSelect: function(row, record, index, eOpts) {
+		//console.log('source:', row);
+		//console.log('record:', record);
+		this.getActionWindow().down('#action-select').setDisabled(false);
+	},
+	
+	onActionTreePanelBeforeSelect: function(row, record, index, eOpts) {
+		return (record.get('depth') != 1);
+	},
+	
+	onActionButtonClick: function(btn) {
+		var me = this;
+		
+		WIDGaT.actionStore.group('widgat.model.compo_id');
+		console.log(WIDGaT.actionStore.getGroups());
+		
+		var obRoot = new Object();
+		obRoot.expanded = true;
+		obRoot.children = new Array();
+		
+		
+		Ext.each(WIDGaT.actionStore.getGroups(), function(group) {
+				var obGrp = new Object();
+				obGrp.text = group.name;
+				obGrp.leaf = false;
+				obGrp.expanded = true;
+				obGrp.children = new Array();
+				Ext.each(group.children, function(child) {
+					var obChild = new Object();
+					obChild.leaf = true;
+					obChild.text = child.get('name');
+					obChild.shortName = child.get('shortName');
+					obGrp.children.push(obChild);
+				});
+				obRoot.children.push(obGrp);
+		});
+		
+		var treeStr = Ext.create('Ext.data.TreeStore', {  
+			root:  obRoot
+		});
+		Ext.create('WIDGaT.view.action.Window', {
+			items: [
+				Ext.create('WIDGaT.view.action.TreePanel', {
+					store: treeStr
+				})
+			]
+		}).show();
+	},
+	
+	onActionSelectBtnClick: function(btn) {
+		//console.log(this.getOutputTreePanel().getSelectionModel().getSelection());
+		
+		var me = this;
+		
+		var selectedNode = me.getActionTreePanel().getSelectionModel().getSelection()[0];
+		var parentId = selectedNode.parentNode.get('text');
+		
+		var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', WIDGaT.selectedCompo.get('id') + '.action')
+		console.log(parentId + '.' + selectedNode.raw.shortName);
+		if(relatedPipe) {
+			relatedPipe.set('to', parentId + '.' + selectedNode.raw.shortName);
+		} else {
+			relatedPipe = WIDGaT.activeWidget.pipes().findRecord('to', WIDGaT.selectedCompo.get('id') + '.action')
+			if(relatedPipe) {
+				relatedPipe.set('from', parentId + '.' + selectedNode.raw.shortName);
+			}
+		}
+		
+		if(relatedPipe) {
+			var jsVal = new Object();
+			jsVal.root = 'pipes['+ WIDGaT.activeWidget.pipes().indexOf(relatedPipe) +']';
+			jsVal.from = relatedPipe.get('from');
+			jsVal.to = relatedPipe.get('to');
+			
+			Ext.data.JsonP.request({
+				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+				params: {
+					'verb': 'modify',
+					'name': WIDGaT.activeWidget.get('id'),
+					'value': Ext.JSON.encode(jsVal)
+				},
+				success: function(response) {
+					console.log(response);
+					me.getActionWindow().close();
+					me.getWidgetView().setSrc();
+					
+				},
+				failure: function(response) {
+					console.error(response);	
+				}
+			});
+		} else {
+			relatedPipe = Ext.create('WIDGaT.model.Pipe');	
+			relatedPipe.set('to', WIDGaT.selectedCompo.get('id') + '.' + WIDGaT.editedRecord.get('shortName'));
+			relatedPipe.set('from', parentId + '.' + selectedNode.raw.shortName);
+			
+			Ext.data.JsonP.request({
+				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+				params: {
+					'verb': 'append-pipe',
+					'name': WIDGaT.activeWidget.get('id'),
+					'value': Ext.JSON.encode(relatedPipe.json4Serv())
+				},
+				success: function(response) {
+					console.log(response);
+					WIDGaT.activeWidget.pipes().add(relatedPipe);
+					me.getActionWindow().close();
+					me.getWidgetView().setSrc();
+					
+				},
+				failure: function(response) {
+					console.error(response);	
+				}
+			});
+		}
 	}
 })

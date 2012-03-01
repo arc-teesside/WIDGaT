@@ -453,7 +453,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				'value': Ext.JSON.encode(WIDGaT.newWidget.json4Serv())
 			},
 			success: function(response) {
-				me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
 				tmpStore.loadRawData(response);
 				WIDGaT.activeWidget = tmpStore.first();

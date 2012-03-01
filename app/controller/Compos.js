@@ -139,11 +139,13 @@ Ext.define('WIDGaT.controller.Compos', {
 			},
 			datachanged: function(store, records) {
 				console.log('attrStore.datachanged');
+				
 				store.each(function(attr) {
 					console.log('each attr',attr);
 					
-					if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
+					/*if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
 						console.log('registering customEditor for actions');
+						console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
 						
 						var existingP = null;
 						if( existingP = WIDGaT.activeWidget.pipes().findRecord('from', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
@@ -153,10 +155,10 @@ Ext.define('WIDGaT.controller.Compos', {
 						}
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
-							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ComboBox")'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.Button")'
 							+'}'
 						+'});');
-					}
+					}*/
 						
 					if(attr.get('input')) {
 						
@@ -171,7 +173,7 @@ Ext.define('WIDGaT.controller.Compos', {
 						
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
-							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ComboBox")'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.OutputField")'
 							+'}'
 						+'});');
 					}
