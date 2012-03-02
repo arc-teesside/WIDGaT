@@ -7,85 +7,101 @@ This work is licensed under a Creative Commons Attribution Non-Commercial ShareA
 Contact:  http://arc.tees.ac.uk/
 
 */
+ Ext.define('WIDGaT.view.attribute.OutputField', {
+  extend:'Ext.form.Picker',
+  alias:'widget.outputfield',
+  xtype:'combotree',
+  requires:["Ext.tree.Panel"],
+  matchFieldWidth:false,
+  value:'',
+  //triggerCls: Ext.baseCSSPrefix + 'form-plus-trigger',
+  //renderTo: Ext.getBody(),
+  createPicker: function(){
 
-Ext.define("WIDGaT.view.attribute.OutputField", {
-    extend: 'Ext.form.FieldContainer',
-    alias : 'widget.outputfield',
+    var me = this,
+    picker;
+      
+	WIDGaT.outputStore.group('widgat.model.compo_id');
+	//console.log(WIDGaT.outputStore.getGroups());
+	
+	var obRoot = new Object();
+	obRoot.expanded = true;
+	obRoot.children = new Array();
+	
+	
+	Ext.each(WIDGaT.outputStore.getGroups(), function(group) {
+			var obGrp = new Object();
+			obGrp.text = group.name;
+			obGrp.leaf = false;
+			obGrp.expanded = true;
+			obGrp.children = new Array();
+			Ext.each(group.children, function(child) {
+				var obChild = new Object();
+				obChild.leaf = true;
+				obChild.text = child.get('name');
+				obChild.shortName = child.get('shortName');
+				obGrp.children.push(obChild);
+			});
+			obRoot.children.push(obGrp);
+	});
+	
+    var treeConfig = Ext.apply({
+      pickerField: me,
+      root:  obRoot,         
+      width:me.bodyEl.getWidth(),
+      height:150,
+		rootVisible: false,
+		multiSelect: false,
+		floating: true,
+        hidden: true,
+      listeners:{
+        scope:me,
+        itemclick:me.onItemClick
+      }
+           
 
-	
-	initComponent: function() {
-		Ext.apply(this, {
-			layout: 'hbox',
-			items: [{
-				xtype: 'textfield',
-				id: 'outputTextField',
-				flex: 1
-			}, {
-				xtype: 'button',
-				id: 'outputButton',
-				text: '...',
-				handler: function() {
-					// Show a menu or selection dialog, then set the user's
-					// selected value with:
-					//alert('clicked');
-					//Ext.create('WIDGaT.view.action.Window');
-				}
-			}]
-		});
-		
-		this.addEvents(
-            'blur'
-        );
+    }, me.treeConfig);
 
-        this.callParent(arguments);
-    },
-	
-	onRender: function() {
-		console.log('outputfield rendered', this);
-		this.callParent(arguments);  
-	},
-	setValue: function(val) {
-		//alert(val);
-		this.down('textfield').setValue(val);
-	},
+    picker = me.picker = Ext.create('Ext.tree.Panel',treeConfig);
+	console.log(picker);
+    return picker;
+  },
 
-   getValue: function() {
-        // If the user has not changed the raw field value since a value was selected from the list,
-        // then return the structured value from the selection. If the raw field value is different
-        // than what would be displayed due to selection, return that raw value.
-        /*var me = this,
-            picker = me.picker,
-            rawValue = me.getRawValue(), //current value of text field
-            value = me.value; //stored value from last selection or setValue() call
 
-        if (me.getDisplayValue() !== rawValue) {
-            value = rawValue;
-            me.value = me.displayTplData = me.valueModels = null;
-            if (picker) {
-                me.ignoreSelection++;
-                picker.getSelectionModel().deselectAll();
-                me.ignoreSelection--;
-            }
-        }*/
-		
-        return this.down('textfield').getValue();
-    },
-	
-	onBlur: function() {
-		console.log('blurrr');
-		this.down('textfield').blur();
-	},
-	
-	reset: function() {
-	
-	},
-    
-    onDestroy: function(){
-		console.log('destroying outputfield');
-        this.callParent();    
-    },
-	
-	isValid: function() {
-		return true;
-	}
-});
+  onItemClick:function(view, record, item, index, e, eOpts){
+    this.setFieldValue(record.data.id, record.data.text);
+    this.fireEvent('select', this, record.data.text);
+    this.collapse();
+  },
+
+  setFieldValue: function(value, label) {
+    var me = this;
+    me.setValue(value);
+    me.setRawValue(label);
+  },
+
+  setValue:function(value){
+    var me = this,
+    inputEl = me.inputEl;
+
+    if (inputEl && me.emptyText && !Ext.isEmpty(value)) {
+      inputEl.removeCls(me.emptyCls);
+    }
+    me.value = value;
+    me.applyEmptyText();
+  },
+  setRawValue:function(value){
+    this.inputEl.dom.value = value==null?"":value;
+  },
+  getValue:function(){
+    return this.value;
+  },
+  getRawValue:function(){
+    return this.inputEl.dom.value;
+  },
+  setValueWithReload:function(parentId, nodeId, nodeText){
+   
+    this.setFieldValue(nodeId, nodeText);
+
+  }
+})
