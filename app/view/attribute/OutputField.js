@@ -31,29 +31,37 @@ Contact:  http://arc.tees.ac.uk/
 	
 	Ext.each(WIDGaT.outputStore.getGroups(), function(group) {
 			var obGrp = new Object();
-			obGrp.text = group.name;
+			obGrp.name = group.name;
 			obGrp.leaf = false;
 			obGrp.expanded = true;
 			obGrp.children = new Array();
 			Ext.each(group.children, function(child) {
 				var obChild = new Object();
 				obChild.leaf = true;
-				obChild.text = child.get('name');
+				obChild.name = child.get('name');
 				obChild.shortName = child.get('shortName');
 				obGrp.children.push(obChild);
 			});
 			obRoot.children.push(obGrp);
 	});
 	
+	var store = Ext.create('Ext.data.TreeStore', {
+		model: 'WIDGaT.model.Attribute',
+		root: obRoot
+	});
+	
+	console.log('getRootNode', store.getRootNode());
     var treeConfig = Ext.apply({
       pickerField: me,
-      root:  obRoot,         
+      store:  store,         
       width:me.bodyEl.getWidth(),
       height:150,
 		rootVisible: false,
 		multiSelect: false,
 		floating: true,
         hidden: true,
+		displayField: 'name',
+		valueField: 'shortName',
       listeners:{
         scope:me,
         itemclick:me.onItemClick
@@ -69,8 +77,9 @@ Contact:  http://arc.tees.ac.uk/
 
 
   onItemClick:function(view, record, item, index, e, eOpts){
-    this.setFieldValue(record.data.id, record.data.text);
-    this.fireEvent('select', this, record.data.text);
+	console.log('record', record);
+    this.setFieldValue(record.raw.shortName, record.raw.name);
+    this.fireEvent('select', this, record.raw.shortName);
     this.collapse();
   },
 
@@ -103,5 +112,10 @@ Contact:  http://arc.tees.ac.uk/
    
     this.setFieldValue(nodeId, nodeText);
 
-  }
+  },
+  
+  onCollapse: function() {
+        this.picker.destroy();
+		this.callParent(arguments);
+    },
 })

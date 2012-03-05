@@ -28,23 +28,6 @@ Ext.define('WIDGaT.controller.Compos', {
 
     init: function() {
     	var me = this;
-		Ext.apply(this, {
-			flex: 1,
-			border: false,
-			source: {}
-			
-				/*,
-			columns: [{
-						header: 'Name',
-						dataIndex: 'name',
-						flex: 1
-					}, {
-						header: 'Value',
-						dataIndex: 'value',
-						flex: 1
-					}]*/
-			//plugins: [Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 })]
-		});
 		
         me.control({
             /*'compolist': {

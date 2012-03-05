@@ -88,9 +88,14 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 		});*/
 		console.log(cmp.attributesStore.data.items);
 		attrStore.loadData(cmp.attributesStore.data.items, true);
-        attrStore.filter('output', false);
 		
-		if(attrStore.find('type', 'action', 0, 0, 0) != -1) {
+		console.log('attrStore after loadData:', attrStore);
+        
+		//attrStore.filter('output', false);
+		
+		console.log('attrStore after output filter:', attrStore);
+		console.log('attrStore.find', attrStore.find('type', 'action', 0, 0, 0));
+		if(cmp.attributesStore.find('type', 'action', 0, 0, 0) != -1) {
 			me.addDocked(Ext.create("WIDGaT.view.action.Button"));
 			/*console.log('FOUND');
 			me.down('#actionButton').setVisible(true);*/
@@ -99,12 +104,19 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 			me.down('#actionButton').setVisible(false);
 		}*/
 		
-		attrStore.filterBy(function(record, ID) {
-			if(record.get("type").toLowerCase() == "action")
+		/*attrStore.filterBy(function(record, ID) {
+			if(record.get("type").toLowerCase() == "action" || record.get('output'))
 				return false;
 			else
 				return true;
-		});
+		});*/
+		
+		attrStore.filter([
+			{property: "output", value: false},
+			{filterFn: function(item) { return item.get("type").toLowerCase() != "action"; }}
+		]);
+		
+		console.log('attrStore after action filter:', attrStore);
 		/*attrStore.each(function(attr) {
 			if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
 				//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.action.ComboBox')
@@ -128,7 +140,7 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 		});*/
 		//this.setSource(attrStore.data.items);
         this.bindStore(attrStore);
-		
+		console.log(this);
 		/*this.getStore().on({
 			datachanged: function(store) { console.log('after change', store);},
 			update: function(store) { console.log('update change', store)}
