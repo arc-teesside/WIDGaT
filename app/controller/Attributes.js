@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -61,11 +60,11 @@ Ext.define('WIDGaT.controller.Attributes', {
     },
 	
 	onOutputFieldBtnClick: function(cBox, eOpts) {
-		console.log('WIDGaT.controller.Attributes.onOutputFieldBtnClick');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Attributes.onOutputFieldBtnClick');
 		var me = this;
 		
 		WIDGaT.outputStore.group('widgat.model.compo_id');
-		console.log(WIDGaT.outputStore.getGroups());
+		if(WIDGaT.debug) console.log(WIDGaT.outputStore.getGroups());
 		
 		var obRoot = new Object();
 		obRoot.expanded = true;
@@ -102,12 +101,12 @@ Ext.define('WIDGaT.controller.Attributes', {
 	},
 	
 	onOutputComboBoxSelect: function(cBox, records) {
-		console.log('WIDGaT.controller.Actions.onOutputComboBoxSelect');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Actions.onOutputComboBoxSelect');
 		//update pipes on select here or when attribute store is updated in widget controller
-		console.log('records', records);
+		if(WIDGaT.debug) console.log('records', records);
 		var me = this;
 		var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', WIDGaT.selectedCompo.get('id') + '.' + WIDGaT.editedRecord.get('shortName'))
-		console.log(records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
+		if(WIDGaT.debug) console.log(records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
 		if(relatedPipe) {
 			relatedPipe.set('to', records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
 		} else {
@@ -131,7 +130,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 					'value': Ext.JSON.encode(jsVal)
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					//me.getWidgetView().setSrc();
 					
 				},
@@ -152,7 +151,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 					'value': Ext.JSON.encode(relatedPipe.json4Serv())
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					WIDGaT.activeWidget.pipes().add(relatedPipe);
 					Ext.getCmp('gdList').getView().refresh();
 					//me.getWidgetView().setSrc();
@@ -167,10 +166,10 @@ Ext.define('WIDGaT.controller.Attributes', {
 	},
 	
 	onOutputComboBoxBeforeRender: function(cBox, eOpts) {
-		console.log('WIDGaT.controller.attribute.onOutputComboBoxBeforeRender');
-		/*console.log('cbActions.onBeforeRender, store:', cBox.getStore());
-		console.log('cbActions.onBeforeRender, cBox:', cBox);
-		console.log('cbActions.onBeforeRender, eOpts:', eOpts);*/
+		if(WIDGaT.debug) console.log('WIDGaT.controller.attribute.onOutputComboBoxBeforeRender');
+		/*if(WIDGaT.debug) console.log('cbActions.onBeforeRender, store:', cBox.getStore());
+		if(WIDGaT.debug) console.log('cbActions.onBeforeRender, cBox:', cBox);
+		if(WIDGaT.debug) console.log('cbActions.onBeforeRender, eOpts:', eOpts);*/
 		
 		//check Pipes to select output if there
 		
@@ -180,12 +179,12 @@ Ext.define('WIDGaT.controller.Attributes', {
 	},
 	
 	onOutputWindowBeforeRender: function(cmp, eOpts) {
-		console.log('WIDGaT.controller.attribute.onOutputWindowBeforeRender');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.attribute.onOutputWindowBeforeRender');
 	},
 	
 	onOutputTreePanelSelect: function(row, record, index, eOpts) {
-		console.log('source:', row);
-		console.log('record:', record);
+		if(WIDGaT.debug) console.log('source:', row);
+		if(WIDGaT.debug) console.log('record:', record);
 		this.getOutputWindow().down('#attribute-select').setDisabled(false);
 	},
 	
@@ -194,7 +193,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 	},
 	
 	onAttributeSelectBtnClick: function(btn) {
-		console.log(this.getOutputTreePanel().getSelectionModel().getSelection());
+		if(WIDGaT.debug) console.log(this.getOutputTreePanel().getSelectionModel().getSelection());
 		
 		var me = this;
 		
@@ -202,7 +201,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 		var parentId = selectedNode.parentNode.get('text');
 		
 		var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', WIDGaT.selectedCompo.get('id') + '.' + WIDGaT.editedRecord.get('shortName'))
-		console.log(parentId + '.' + selectedNode.raw.shortName);
+		if(WIDGaT.debug) console.log(parentId + '.' + selectedNode.raw.shortName);
 		if(relatedPipe) {
 			relatedPipe.set('to', parentId + '.' + selectedNode.raw.shortName);
 		} else {
@@ -226,7 +225,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 					'value': Ext.JSON.encode(jsVal)
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					//me.getWidgetView().setSrc();
 					me.getOutputField().setValue(parentId + '.' + selectedNode.raw.shortName);
 					me.getOutputWindow().close();
@@ -249,7 +248,7 @@ Ext.define('WIDGaT.controller.Attributes', {
 					'value': Ext.JSON.encode(relatedPipe.json4Serv())
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					WIDGaT.activeWidget.pipes().add(relatedPipe);
 					Ext.getCmp('gdList').getView().refresh();
 					me.getOutputField().setValue(parentId + '.' + selectedNode.raw.shortName);
@@ -266,12 +265,12 @@ Ext.define('WIDGaT.controller.Attributes', {
 	},
 	
 	onPropertyChange: function(source, recordId, value, oldValue, eOpts) {
-		console.log('WIDGaT.controller.Attributes.onPropertyChange()');
-		console.log('source:', source);
-		console.log('recordId:', recordId);
-		console.log('value:', value);
-		console.log('oldValue:', oldValue);
-		console.log('eOpts:', eOpts);
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Attributes.onPropertyChange()');
+		if(WIDGaT.debug) console.log('source:', source);
+		if(WIDGaT.debug) console.log('recordId:', recordId);
+		if(WIDGaT.debug) console.log('value:', value);
+		if(WIDGaT.debug) console.log('oldValue:', oldValue);
+		if(WIDGaT.debug) console.log('eOpts:', eOpts);
 	},
 	
 	onBeforeSelect: function(rowModel, record, index) {

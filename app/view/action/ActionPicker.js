@@ -5,10 +5,10 @@ This work is licensed under a Creative Commons Attribution Non-Commercial ShareA
 
 Contact:  http://arc.tees.ac.uk/
 */
- Ext.define('WIDGaT.view.attribute.OutputField', {
+ Ext.define('WIDGaT.view.action.ActionPicker', {
   extend:'Ext.form.Picker',
-  alias:'widget.outputfield',
-  xtype:'combotree',
+  alias:'widget.actionpicker',
+  
   requires:["Ext.tree.Panel"],
   matchFieldWidth:false,
   value:'',
@@ -20,7 +20,7 @@ Contact:  http://arc.tees.ac.uk/
     var me = this,
     picker;
       
-	WIDGaT.outputStore.group('widgat.model.compo_id');
+	WIDGaT.actionStore.group('widgat.model.compo_id');
 	//if(WIDGaT.debug) console.log(WIDGaT.outputStore.getGroups());
 	
 	var obRoot = new Object();
@@ -28,7 +28,7 @@ Contact:  http://arc.tees.ac.uk/
 	obRoot.children = new Array();
 	
 	
-	Ext.each(WIDGaT.outputStore.getGroups(), function(group) {
+	Ext.each(WIDGaT.actionStore.getGroups(), function(group) {
 			var obGrp = new Object();
 			obGrp.name = group.name;
 			obGrp.leaf = false;
@@ -45,7 +45,7 @@ Contact:  http://arc.tees.ac.uk/
 	});
 	
 	var store = Ext.create('Ext.data.TreeStore', {
-		model: 'WIDGaT.model.Attribute',
+		model: 'WIDGaT.model.Action',
 		root: obRoot
 	});
 	

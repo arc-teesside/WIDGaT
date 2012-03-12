@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -44,11 +43,11 @@ Ext.define('WIDGaT.controller.Actions', {
     },
 	
 	onActionComboBoxSelect: function(cBox, records) {
-		console.log('WIDGaT.controller.Actions.onActionComboBoxSelect');
-		console.log('records', records);
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Actions.onActionComboBoxSelect');
+		if(WIDGaT.debug) console.log('records', records);
 		var me = this;
 		var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', WIDGaT.selectedCompo.get('id') + '.' + WIDGaT.editedRecord.get('shortName'))
-		console.log(records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
+		if(WIDGaT.debug) console.log(records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
 		if(relatedPipe) {
 			relatedPipe.set('to', records[0].get('widgat.model.compo_id') + '.' + records[0].get('shortName'));
 		} else {
@@ -72,7 +71,7 @@ Ext.define('WIDGaT.controller.Actions', {
 					'value': Ext.JSON.encode(jsVal)
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					me.getWidgetView().setSrc();
 					
 				},
@@ -93,7 +92,7 @@ Ext.define('WIDGaT.controller.Actions', {
 					'value': Ext.JSON.encode(relatedPipe.json4Serv())
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					WIDGaT.activeWidget.pipes().add(relatedPipe);
 					Ext.getCmp('gdList').getView().refresh();
 					//me.getWidgetView().setSrc();
@@ -110,7 +109,7 @@ Ext.define('WIDGaT.controller.Actions', {
 	},
 	
 	onActionComboBoxBeforeRender: function(cBox, eOpts) {
-		console.log('WIDGaT.controller.Actions.onActionComboBoxBeforeRender');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Actions.onActionComboBoxBeforeRender');
 
 		//check Pipes to select action if there
 		
@@ -119,12 +118,12 @@ Ext.define('WIDGaT.controller.Actions', {
 			//tpl: '<tpl for="."><div class="x-combo-list-item" >'+ cBox.getStore().first().get('widgat.model.compo_id') +'.{name}</div></tpl>'
 		});
 		
-		console.log('cbActions.onBeforeRender, cBox:', cBox);
+		if(WIDGaT.debug) console.log('cbActions.onBeforeRender, cBox:', cBox);
 	},
 	
 	onActionTreePanelSelect: function(row, record, index, eOpts) {
-		//console.log('source:', row);
-		//console.log('record:', record);
+		//if(WIDGaT.debug) console.log('source:', row);
+		//if(WIDGaT.debug) console.log('record:', record);
 		this.getActionWindow().down('#action-select').setDisabled(false);
 	},
 	
@@ -136,7 +135,7 @@ Ext.define('WIDGaT.controller.Actions', {
 		var me = this;
 		
 		WIDGaT.actionStore.group('widgat.model.compo_id');
-		console.log(WIDGaT.actionStore.getGroups());
+		if(WIDGaT.debug) console.log(WIDGaT.actionStore.getGroups());
 		
 		var obRoot = new Object();
 		obRoot.expanded = true;
@@ -172,7 +171,7 @@ Ext.define('WIDGaT.controller.Actions', {
 	},
 	
 	onActionSelectBtnClick: function(btn) {
-		//console.log(this.getOutputTreePanel().getSelectionModel().getSelection());
+		//if(WIDGaT.debug) console.log(this.getOutputTreePanel().getSelectionModel().getSelection());
 		
 		var me = this;
 		
@@ -180,7 +179,7 @@ Ext.define('WIDGaT.controller.Actions', {
 		var parentId = selectedNode.parentNode.get('text');
 		
 		var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', WIDGaT.selectedCompo.get('id') + '.action')
-		console.log(parentId + '.' + selectedNode.raw.shortName);
+		if(WIDGaT.debug) console.log(parentId + '.' + selectedNode.raw.shortName);
 		if(relatedPipe) {
 			relatedPipe.set('to', parentId + '.' + selectedNode.raw.shortName);
 		} else {
@@ -204,7 +203,7 @@ Ext.define('WIDGaT.controller.Actions', {
 					'value': Ext.JSON.encode(jsVal)
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					me.getActionWindow().close();
 					me.getWidgetView().setSrc();
 					
@@ -226,7 +225,7 @@ Ext.define('WIDGaT.controller.Actions', {
 					'value': Ext.JSON.encode(relatedPipe.json4Serv())
 				},
 				success: function(response) {
-					console.log(response);
+					if(WIDGaT.debug) console.log(response);
 					WIDGaT.activeWidget.pipes().add(relatedPipe);
 					me.getActionWindow().close();
 					me.getWidgetView().setSrc();

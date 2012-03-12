@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -14,12 +13,12 @@ Ext.define('WIDGaT.view.attribute.List' ,{
     
     initComponent: function() {
 		Ext.apply(this, {
+			region: 'center',
 			flex: 2,
-			border: false,
 			source: {},
 			listeners: {
 				'beforeselect': function (rowModel, record, index) {
-					console.log('beforeselect');
+					if(WIDGaT.debug) console.log('beforeselect');
 					return !(record.get('name') == 'ID');
 				}
 			},
@@ -29,121 +28,24 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 				disabled: true,
 				tooltip: 'Delete component'
 			}]
-			
-
-			
-				/*,
-			columns: [{
-						header: 'Name',
-						dataIndex: 'name',
-						flex: 1
-					}, {
-						header: 'Value',
-						dataIndex: 'value',
-						flex: 1
-					}]*/
-			//plugins: [Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 })]
 		});
 
         this.callParent(arguments);
     },
     bind: function(cmp, attrStore) {
 		var me = this;
+		
 		attrStore.removeAll();
-		console.log('docked items', me.getDockedItems());
-		console.log('actionButton', me.getDockedComponent('actionButton'));
-		if(me.getDockedComponent('actionButton')) {
-			console.log('remove if exists');
-			me.removeDocked(me.getDockedComponent('actionButton'));
-			console.log('docked items after remove', me.getDockedItems());
-		}
-			
-		//attrStore.add({'name': 'ID', 'value': cmp.get('id')});
-        
-		/*attrStore.on({
-			load: function(store, records) {
-				console.log('attrStore.onLoad');
-				store.each(function(attr) {
-					if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
-						//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.action.ComboBox')
-						console.log('attr.get()',attr.get('type'));
-						Ext.apply(me, {
-							customEditors: {
-								'Action': Ext.create('WIDGaT.view.action.ComboBox')
-							}
-						});
-					}
-						
-					if(attr.get('input')) {
-						//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.attribute.ComboBox')	
-						Ext.apply(me, {
-							customEditors: {
-								'input': Ext.create('WIDGaT.view.attribute.ComboBox')
-							}
-						});
-					}
-					
-				});
-			}
-		});*/
-		console.log(cmp.attributesStore.data.items);
+		
 		attrStore.loadData(cmp.attributesStore.data.items, true);
 		
-		console.log('attrStore after loadData:', attrStore);
+		if(WIDGaT.debug) console.log('attrStore after loadData:', attrStore);
         
-		//attrStore.filter('output', false);
+		attrStore.filter('output', false);
 		
-		console.log('attrStore after output filter:', attrStore);
-		console.log('attrStore.find', attrStore.find('type', 'action', 0, 0, 0));
-		if(cmp.attributesStore.find('type', 'action', 0, 0, 0) != -1) {
-			me.addDocked(Ext.create("WIDGaT.view.action.Button"));
-			/*console.log('FOUND');
-			me.down('#actionButton').setVisible(true);*/
-		} /*else {
-			console.log('NOT FOUND');
-			me.down('#actionButton').setVisible(false);
-		}*/
-		
-		/*attrStore.filterBy(function(record, ID) {
-			if(record.get("type").toLowerCase() == "action" || record.get('output'))
-				return false;
-			else
-				return true;
-		});*/
-		
-		attrStore.filter([
-			{property: "output", value: false},
-			{filterFn: function(item) { return item.get("type").toLowerCase() != "action"; }}
-		]);
-		
-		console.log('attrStore after action filter:', attrStore);
-		/*attrStore.each(function(attr) {
-			if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
-				//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.action.ComboBox')
-				console.log('attr.get()',attr.get('type'));
-				Ext.apply(me, {
-					customEditors: {
-						'Action': Ext.create('WIDGaT.view.action.ComboBox')
-					}
-				});
-			}
-				
-			if(attr.get('input')) {
-				//apply custom editor for attr.get('name') using Ext.create('WIDGaT.view.attribute.ComboBox')	
-				Ext.apply(me, {
-					customEditors: {
-						'input': Ext.create('WIDGaT.view.attribute.ComboBox')
-					}
-				});
-			}
-			
-		});*/
-		//this.setSource(attrStore.data.items);
+		if(WIDGaT.debug) console.log('attrStore after output filter:', attrStore);
+
         this.bindStore(attrStore);
-		console.log(this);
-		/*this.getStore().on({
-			datachanged: function(store) { console.log('after change', store);},
-			update: function(store) { console.log('update change', store)}
-		});*/
+
     }
 });

@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -16,6 +15,11 @@ Ext.define('WIDGaT.view.MenuBar', {
         
         Ext.apply(me, {
         	region: 'north',
+			style: {
+				borderLeft: 0,
+				borderTop: 0,
+				borderRight: 0
+			},
             items: [{
 					text: 'File',
 					menu: {

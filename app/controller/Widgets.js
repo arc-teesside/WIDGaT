@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -24,7 +23,8 @@ Ext.define('WIDGaT.controller.Widgets', {
         {ref: 'guidanceList', selector: 'guidancelist'},
         {ref: 'widgetView', selector: 'widgetview'},
 		{ref: 'widgetViewport', selector: 'widgatviewport'},
-		{ref: 'viewWindow', selector: 'viewwindow'}
+		{ref: 'viewWindow', selector: 'viewwindow'},
+		{ref: 'selectTplPanel', selector: 'selecttplpanel'}
     ],
 
     init: function() {
@@ -71,7 +71,7 @@ Ext.define('WIDGaT.controller.Widgets', {
     			click: me.onFinishButtonClick
     		},
 			'#toolRefresh': {
-				click: function() { me.getWidgetView().setSrc(); }	
+				click: me.onToolRefreshClick
 			},
 			'#toolBin': {
 				click: me.onToolBinClick	
@@ -84,13 +84,13 @@ Ext.define('WIDGaT.controller.Widgets', {
 			},
 			'savewindow': {
 				beforeclose: function() {
-					console.log('savewindow.beforeclose');
+					if(WIDGaT.debug) console.log('savewindow.beforeclose');
 					me.getWidgetView().setSrc();	
 				}
 			}
         });
         /*this.getWidgetsStore().load();
-        console.log(this.getWidgetsStore());*/
+        if(WIDGaT.debug) console.log(this.getWidgetsStore());*/
 		this.getWidgetsStore().on({
 			 load: me.onWidgetStoreLoad,
 			 scope: me
@@ -102,7 +102,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		var me = this;
 		if(reqStr.w) {
-			console.log('Loading widget id:', reqStr.w);
+			if(WIDGaT.debug) console.log('Loading widget id:', reqStr.w);
 			Ext.data.JsonP.request({
 				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 				params: {
@@ -110,14 +110,14 @@ Ext.define('WIDGaT.controller.Widgets', {
 					'name': reqStr.w
 				},
 				success: function(response) {
-					me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+					//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
 					var tmpStore = Ext.create('WIDGaT.store.Widgets');
 					tmpStore.loadRawData(response);
 					WIDGaT.activeWidget = tmpStore.first();
 					me.getWidgetsStore().loadRawData(response);
 					//WIDGaT.activeWidget = me.getWidgetsStore().first();
-					console.log("Widget successfuly loaded with id:", WIDGaT.activeWidget.internalId);
-					console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+					if(WIDGaT.debug) console.log("Widget successfuly loaded with id:", WIDGaT.activeWidget.internalId);
+					if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 					Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/</a>');
 					Ext.getCmp('welcomeWindow').close();
 					
@@ -136,19 +136,19 @@ Ext.define('WIDGaT.controller.Widgets', {
 						});
 					});
 					
-					console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 					me.activeTool();
 				},
 				failure: function(response) {
-					console.log('An error occured while creating widget. response:', response);		
+					if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
 				}
 			});
 		}
 	},
 	
     onNewButtonClick: function() {
-    	console.log("WIDGaT.controller.Widget.onNewButtonClick()");
+    	if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onNewButtonClick()");
 		
 		var me = this;
 		
@@ -171,13 +171,13 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
 	//File Menu preview button
     onPreviewButtonClick: function() {
-    	console.log("WIDGaT.controller.Widget.onPreviewButtonClick()");
+    	if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onPreviewButtonClick()");
 		window.open('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/','_blank','',true); //(url, target, options, history.replace)
     },
 	
 	//File Menu close button
     onCloseButtonClick: function() {
-    	console.log("WIDGaT.controller.Widget.onCloseButtonClick()");
+    	if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onCloseButtonClick()");
 		var me = this;
 		if(WIDGaT.activeWidget) {
 			Ext.MessageBox.confirm('Confirm',
@@ -195,7 +195,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
     //Widget Save Window
     onSaveButtonClick: function() {
-    	console.log("WIDGaT.controller.Widget.onSaveButtonClick()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onSaveButtonClick()");
 		
 		var winS = Ext.create('WIDGaT.view.widget.SaveWindow');
 		
@@ -207,7 +207,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
     onSaveWidgetClick: function(btn) {
     	//Save details
-		console.log("WIDGaT.controller.Widget.onSaveWidgetClick()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onSaveWidgetClick()");
 		
 		var me = this;
 		var _btn = btn;
@@ -388,37 +388,38 @@ Ext.define('WIDGaT.controller.Widgets', {
 		btn.up('window').close();
     },
 	
-	
 	//New Widget Window
 	onTemplateItemClick: function (view, record, htmlItem, index) {
-		console.log("WIDGaT.controller.Widget.onTemplateItemClick()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onTemplateItemClick()");
 		var vt = this.getNewWindow().down('selecttplpanel');
 		Ext.each(vt.items.items, function(i) {
 			if(i.down('templateDataView'))
 				i.down('templateDataView').getSelectionModel().deselectAll();
 		});
 		view.select(index);
+		WIDGaT.selectedTemplate = record;
 		Ext.getCmp('move-next').setDisabled(false);
 		Ext.getCmp('move-finish').setDisabled(false);
 	},
 	
 	onTemplateContainerClick: function (view, e) {
-		console.log("WIDGaT.controller.Widget.onTemplateContainerClick()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onTemplateContainerClick()");
 		var vt = this.getNewWindow().down('selecttplpanel');
 		Ext.each(vt.items.items, function(i) {
 			if(i.down('templateDataView'))
 				i.down('templateDataView').getSelectionModel().deselectAll();
 		});
+		WIDGaT.selectedTemplate = null;
 		Ext.getCmp('move-next').setDisabled(true);
 		Ext.getCmp('move-finish').setDisabled(true);
 	},
     
     onFinishButtonClick: function(btn) {
-		console.log("WIDGaT.controller.Widget.onFinishButtonClick(btn)", btn);
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onFinishButtonClick(btn)", btn);
 		
 		var layout = btn.up('window').getLayout();
+		
 		var vals = layout.getLayoutItems()[1].getForm().getFieldValues();
-			
 		if(vals.title.length)
 			WIDGaT.newWidget.set('name', vals.title);
 		if(vals.description.length)
@@ -450,6 +451,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: {
 				'verb': 'create',
+				'name': WIDGaT.selectedTemplate.get('name'),
 				'value': Ext.JSON.encode(WIDGaT.newWidget.json4Serv())
 			},
 			success: function(response) {
@@ -459,14 +461,14 @@ Ext.define('WIDGaT.controller.Widgets', {
 				WIDGaT.activeWidget = tmpStore.first();
 				me.getWidgetsStore().loadRawData(response);
 				//WIDGaT.activeWidget = me.getWidgetsStore().first();
-				console.log("Widget successfuly created with id:", WIDGaT.activeWidget.internalId);
-				console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+				if(WIDGaT.debug) console.log("Widget successfuly created with id:", WIDGaT.activeWidget.internalId);
+				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 				Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/</a>');
 				if(Ext.getCmp('welcomeWindow'))
 					Ext.getCmp('welcomeWindow').close();
 				
 				//populating ActionStore
-				WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
+				/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
 				WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
 				
 				WIDGaT.activeWidget.components().each(function(record) {
@@ -478,23 +480,47 @@ Ext.define('WIDGaT.controller.Widgets', {
 						if(attr.get('output'))
 							WIDGaT.outputStore.add(attr);
 					});
-				});
+				});*/
+				me.updateGlobalStores();
+				
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
-				console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();
 			},
 			failure: function(response) {
-				console.log('An error occured while creating widget. response:', response);		
+				if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
 			}
 		});
 		
 		btn.up('window').close();
     },
 	
+	onToolRefreshClick: function() {
+		var me = this;
+		Ext.data.JsonP.request({
+			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+			params: {
+				'verb': 'refresh',
+				'name': WIDGaT.activeWidget.get('id')
+			},
+			success: function(response) {
+				var tmpStore = Ext.create('WIDGaT.store.Widgets');
+				tmpStore.loadRawData(response);
+				WIDGaT.activeWidget = tmpStore.first();
+				me.getWidgetsStore().loadRawData(response);
+				me.updateGlobalStores();
+			},
+			failure: function(response) {
+				if(WIDGaT.debug) console.log('An error occured while refreshing the widget. response:', response);		
+			}
+		});
+		me.getWidgetView().setSrc();
+	},
+	
 	onToolBinClick: function() {
 		var me = this;
-		console.log('onToolBinClick');
+		if(WIDGaT.debug) console.log('onToolBinClick');
 		
 		if(WIDGaT.selectedCompo) {
 			
@@ -511,7 +537,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					'value': Ext.JSON.encode(new Array(WIDGaT.selectedCompo.get('id')))*/
 				},
 				success: function(response) {
-					console.log('Component successfully deleted. response:', response);
+					if(WIDGaT.debug) console.log('Component successfully deleted. response:', response);
 					WIDGaT.selectedCompo = null;
 					me.getAttributeList().getStore().removeAll();
 					me.getAttributeList().setTitle('Edit ');
@@ -529,11 +555,11 @@ Ext.define('WIDGaT.controller.Widgets', {
 							WIDGaT.activeWidget = tmpStore.first();
 							me.getWidgetsStore().loadRawData(response);
 							//WIDGaT.activeWidget = me.getWidgetsStore().first();
-							console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
-							console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+							if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
+							if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 							
 							//populating ActionStore
-							WIDGaT.actionStore.removeAll();
+							/*WIDGaT.actionStore.removeAll();
 							WIDGaT.outputStore.removeAll();
 							
 							WIDGaT.activeWidget.components().each(function(record) {
@@ -545,12 +571,12 @@ Ext.define('WIDGaT.controller.Widgets', {
 									if(attr.get('output'))
 										WIDGaT.outputStore.add(attr);
 								});
-							});
-							//me.updateGlobalStores();
-							console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+							});*/
+							me.updateGlobalStores();
+							if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 						},
 						failure: function(response) {
-							console.log('An error occured while creating widget. response:', response);		
+							if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
 						}
 					});
 					
@@ -558,14 +584,14 @@ Ext.define('WIDGaT.controller.Widgets', {
 					MIF.setSrc();
 				},
 				failure: function(response) {
-					console.log('An error occured while saving widget details. response:', response);	
+					if(WIDGaT.debug) console.log('An error occured while saving widget details. response:', response);	
 				}
 			});
 		}
 	},
 	
 	onCompoDropped: function(cmp, placeHolder) {
-		console.log('WIDGaT.controller.Compos.onCompoDropped()');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoDropped()');
 		
 		var me = this;
 		var tpEl = Ext.create('Ext.Element', cmp);		
@@ -616,9 +642,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		
 		
-		console.log('top.window, component dropped:', newCmp);
-		console.log('top.window, placeHolder dropped in:', placeHolder);
-		console.log('top.window, new component to append: ', newCmp.actions());
+		if(WIDGaT.debug) console.log('top.window, component dropped:', newCmp);
+		if(WIDGaT.debug) console.log('top.window, placeHolder dropped in:', placeHolder);
+		if(WIDGaT.debug) console.log('top.window, new component to append: ', newCmp.actions());
 		
 		var tmpOR = new Object();
 		
@@ -630,7 +656,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: tmpOR,
 			success: function(response, opts) {
-				console.log('Compo added successfully. response:',response);
+				if(WIDGaT.debug) console.log('Compo added successfully. response:',response);
 				Ext.data.JsonP.request({
 					url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 					params: {
@@ -644,11 +670,11 @@ Ext.define('WIDGaT.controller.Widgets', {
 						WIDGaT.activeWidget = tmpStore.first();
 						me.getWidgetsStore().loadRawData(response);
 						//WIDGaT.activeWidget = me.getWidgetsStore().first();
-						console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
-						console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+						if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
+						if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 						
 						//populating ActionStore
-						WIDGaT.actionStore.removeAll();
+						/*WIDGaT.actionStore.removeAll();
 						WIDGaT.outputStore.removeAll();
 						
 						WIDGaT.activeWidget.components().each(function(record) {
@@ -661,20 +687,20 @@ Ext.define('WIDGaT.controller.Widgets', {
 									WIDGaT.outputStore.add(attr);
 								}
 							});
-						});
-						//me.updateGlobalStores();
-						console.log('WIDGaT.actionStore', WIDGaT.actionStore);
-						console.log('WIDGaT.outputStore', WIDGaT.outputStore);
+						});*/
+						me.updateGlobalStores();
+						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
 					},
 					failure: function(response) {
-						console.log('An error occured while creating widget. response:', response);		
+						if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
 					}
 				});
 				me.getWidgetView().setSrc();
-				console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 			},
 			failure: function(response, opts) {
-				console.log('server-side failure with status code ' + response.status);
+				if(WIDGaT.debug) console.log('server-side failure with status code ' + response.status);
 			}
 		});
 		
@@ -687,7 +713,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				'value': Ext.JSON.encode(newCmp.json4Serv())
 			},
 			success: function(response) {
-				console.log('Compo added successfully. response:',response);
+				if(WIDGaT.debug) console.log('Compo added successfully. response:',response);
 				Ext.data.JsonP.request({
 					url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 					params: {
@@ -701,8 +727,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 						WIDGaT.activeWidget = tmpStore.first();
 						me.getWidgetsStore().loadRawData(response);
 						//WIDGaT.activeWidget = me.getWidgetsStore().first();
-						console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
-						console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+						if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
+						if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 						
 						//populating ActionStore
 						WIDGaT.actionStore.removeAll();
@@ -720,15 +746,15 @@ Ext.define('WIDGaT.controller.Widgets', {
 							});
 						});
 						//me.updateGlobalStores();
-						console.log('WIDGaT.actionStore', WIDGaT.actionStore);
-						console.log('WIDGaT.outputStore', WIDGaT.outputStore);
+						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
 					},
 					failure: function(response) {
-						console.log('An error occured while creating widget. response:', response);		
+						if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
 					}
 				});
 				me.getWidgetView().setSrc();
-				console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 			},
 			failure: function(response) {
 				console.error(response);	
@@ -738,14 +764,14 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
 	//inserting guidance need further work to display only the relevant guidances
 	onWidgetStoreLoad: function(store, records){
-		console.log("WIDGaT.controller.Widget.onWidgetStoreLoad(store, records)", store, records);
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onWidgetStoreLoad(store, records)", store, records);
 		var gStore = Ext.create('WIDGaT.store.Guidances');
 		var arGuid = new Array();
 		store.first().components().each(function(cmp) {
 			cmp.guidances().each(function(guid) { arGuid.push(guid); });										 
 		});
 		gStore.loadRecords(arGuid);
-		console.log('gStore', gStore);
+		if(WIDGaT.debug) console.log('gStore', gStore);
 		this.getGuidanceList().bindStore(gStore);
 	},
 	
@@ -772,7 +798,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
 	//Complete tool activation
 	activeTool: function() {
-			console.log("WIDGaT.controller.Widget.activeTool()");
+			if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.activeTool()");
 			Ext.getCmp('widgetDetailsButton').setDisabled(false);
 			Ext.getCmp('saveButton').setDisabled(false);
 			Ext.getCmp('previewButton').setDisabled(false);
@@ -788,7 +814,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
 	//Complete tool deactivation
 	disableTool: function() {
-			console.log("WIDGaT.controller.Widget.disableTool()");
+			if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.disableTool()");
 			Ext.getCmp('widgetDetailsButton').setDisabled(true);
 			Ext.getCmp('saveButton').setDisabled(true);
 			Ext.getCmp('previewButton').setDisabled(true);

@@ -1,3 +1,10 @@
+/*
+This file is part of WIDGaT Toolkit
+
+This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
+
+Contact:  http://arc.tees.ac.uk/
+*/
 Ext.Loader.setConfig({
 				enabled:true,
 				paths:{
@@ -21,13 +28,18 @@ Ext.application({
     autoCreateViewport: true,
     
     launch: function() {
-    	console.log("WIDGaT.launch()sdf");
-
+	
+		WIDGaT.debug = true;
+		
+    	if(WIDGaT.debug) console.log("WIDGaT.launch()");
+		
 		Ext.QuickTips.init();
+		
 		Ext.apply(Ext.QuickTips.getQuickTip(), {
 			dismissDelay: 0,
 			showDelay: 100 ,
 			trackMouse: true
 		});
+		
     }
 });

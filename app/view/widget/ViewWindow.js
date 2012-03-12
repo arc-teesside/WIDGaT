@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -21,6 +20,7 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
 					width: 400,
 					height: 500,
 					y: 130,
+					x: 210,
 					style: {
 						margin: 'auto'
 					},
@@ -49,13 +49,13 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
 										'value': Ext.JSON.encode(new Array(WIDGaT.selectedCompo.get('id')))
 									},
 									success: function(response) {
-										console.log('Widget details saved successfully. response:', response);
+										if(WIDGaT.debug) console.log('Widget details saved successfully. response:', response);
 										WIDGaT.activeWidget.components().remove(WIDGaT.selectedCompo);
 										var MIF = Ext.ComponentQuery.query('#stageFrame > miframe')[0];
 										MIF.setSrc();
 									},
 									failure: function(response) {
-										console.log('An error occured while saving widget details. response:', response);	
+										if(WIDGaT.debug) console.log('An error occured while saving widget details. response:', response);	
 									}
 								});
 							}

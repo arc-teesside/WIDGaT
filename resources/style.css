@@ -1,3 +1,10 @@
+/*
+This file is part of WIDGaT Toolkit
+
+This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
+
+Contact:  http://arc.tees.ac.uk/
+*/
 * {
 	font-family:Arial, Helvetica, sans-serif;
 }
@@ -197,6 +204,10 @@ margin-top: 21px;
 	margin-right:10px;
 	font-size:15px;
 	line-height:19px;
+}
+
+.tooltip-list li {
+	padding-left: 10px;
 }
 
 .highPriority > td{

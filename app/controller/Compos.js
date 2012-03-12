@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -46,7 +45,7 @@ Ext.define('WIDGaT.controller.Compos', {
 			},
 			'#openButton': {
 				click: function() {
-					console.log(me.getAttributeList().getStore());
+					if(WIDGaT.debug) console.log(me.getAttributeList().getStore());
 				}
 			},
 			'guidancelist': {
@@ -64,34 +63,88 @@ Ext.define('WIDGaT.controller.Compos', {
 		});
 		me.getAttributesStore().on({
 			update: function(store, record) {
-				console.log('WIDGaT.controller.Compos.onAttributesStoreUpdate()');
-				console.log('Updated record:', record);
-				console.log('Combobox:', me.getActionComboBox());
+				if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onAttributesStoreUpdate()');
+				if(WIDGaT.debug) console.log('Updated record:', record);
+				
 				var updatedCompo = WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id'));
 				
-				if(record.get('type') == 'Action' || record.get('type') == 'action' || record.get('input')) {
-					//update pipes for input and actions and set value to id.action or id.attribute
+				if(record.get('type').toLowerCase() == 'action' || record.get('input')) {
 					
+					var recordAction = record.get('widgat.model.compo_id') + '.' + record.get('shortName');
+					var valueAction = record.get('value');
+					
+					var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', recordAction)
+					
+					if(relatedPipe) {
+						relatedPipe.set('to', valueAction);
+					} else {
+						relatedPipe = WIDGaT.activeWidget.pipes().findRecord('to', recordAction)
+						if(relatedPipe) {
+							relatedPipe.set('from', valueAction);
+						}
+					}
+					
+					if(relatedPipe) {
+						var jsVal = new Object();
+						jsVal.root = 'pipes['+ WIDGaT.activeWidget.pipes().indexOf(relatedPipe) +']';
+						jsVal.from = relatedPipe.get('from');
+						jsVal.to = relatedPipe.get('to');
+						
+						Ext.data.JsonP.request({
+							url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+							params: {
+								'verb': 'modify',
+								'name': WIDGaT.activeWidget.get('id'),
+								'value': Ext.JSON.encode(jsVal)
+							},
+							success: function(response) {
+								if(WIDGaT.debug) console.log(response);
+								//me.getActionWindow().close();
+								me.getWidgetView().setSrc();
+								
+							},
+							failure: function(response) {
+								console.error(response);	
+							}
+						});
+					} else {
+						relatedPipe = Ext.create('WIDGaT.model.Pipe');
+						if(record.get('type').toLowerCase() == 'action') {
+							relatedPipe.set('to', valueAction);
+							relatedPipe.set('from', recordAction);
+						} else {
+							relatedPipe.set('to', recordAction);
+							relatedPipe.set('from', valueAction);
+						}
+						Ext.data.JsonP.request({
+							url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+							params: {
+								'verb': 'append-pipe',
+								'name': WIDGaT.activeWidget.get('id'),
+								'value': Ext.JSON.encode(relatedPipe.json4Serv())
+							},
+							success: function(response) {
+								if(WIDGaT.debug) console.log(response);
+								WIDGaT.activeWidget.pipes().add(relatedPipe);
+								//me.getActionWindow().close();
+								me.getWidgetView().setSrc();
+								
+							},
+							failure: function(response) {
+								console.error(response);	
+							}
+						});
+					}
 				}
 				else {
-					//change value in widget and inform server changed value
-					var tmpO = new Object();
-					
+				
 					var indexOfParentComp = WIDGaT.activeWidget.components().indexOfId(record.get('widgat.model.compo_id'));
-					
-					console.log('indexOfParentComp:', indexOfParentComp);
-					
-					var tmpAr = new Array();
-					for(var i=0; i < indexOfParentComp; i++ ) {
-						tmpAr.push(new Object());	
-					}
-					tmpAr.push(WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')).json4Serv());
-	
-					tmpO.id = WIDGaT.activeWidget.get('id');
-					tmpO.components = tmpAr;
-					
-					console.log('tmpO: ', tmpO);
-					//will be modified to modify-component with id
+										
+					var root = "components["+indexOfParentComp+"].attributes["+record.index+"]";
+
+					var tmpO = record.json4Serv();
+					tmpO.root = root;
+										
 					Ext.data.JsonP.request({
 						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 						params: {
@@ -100,18 +153,7 @@ Ext.define('WIDGaT.controller.Compos', {
 							'value': Ext.JSON.encode(tmpO)
 						},
 						success: function(response) {
-							console.log(response);
-							
 							me.getWidgetView().setSrc();
-							
-							/*var MIF = Ext.ComponentQuery.query('#stageFrame > miframe')[0];
-							MIF.setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
-							
-							me.getWidgetsStore().loadRawData(response);
-							WIDGaT.activeWidget = me.getWidgetsStore().first();
-							console.log("Widget successfuly composed with id:", WIDGaT.activeWidget.internalId);
-							console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);*/
-							//console.log(Ext.JSON.encode(WIDGaT.activeWidget.json4Serv()));
 						},
 						failure: function(response) {
 							console.error(response);	
@@ -121,27 +163,27 @@ Ext.define('WIDGaT.controller.Compos', {
 				}
 			},
 			datachanged: function(store, records) {
-				console.log('attrStore.datachanged');
-				
+				if(WIDGaT.debug) console.log('attrStore.datachanged');
+				store.suspendEvents();
 				store.each(function(attr) {
-					console.log('each attr',attr);
+					if(WIDGaT.debug) console.log('each attr',attr);
 					
-					/*if(attr.get('type') == 'action' || attr.get('type') == 'Action') {
-						console.log('registering customEditor for actions');
-						console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
+					if(attr.get('type').toLowerCase() == 'action') {
+						if(WIDGaT.debug) console.log('registering customEditor for actions');
+						if(WIDGaT.debug) console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
 						
 						var existingP = null;
 						if( existingP = WIDGaT.activeWidget.pipes().findRecord('from', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
-							attr.set('value', existingP.get('to'));
+							attr.set('value', existingP.get('to'));  //don't set value here but when creating pipe so it doesn't trigger the update event on the store
 						} else if( existingP = existingP = WIDGaT.activeWidget.pipes().findRecord('to', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
 							attr.set('value', existingP.get('from'));
 						}
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
-							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.Button")'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")'
 							+'}'
 						+'});');
-					}*/
+					}
 						
 					if(attr.get('input')) {
 						
@@ -152,7 +194,7 @@ Ext.define('WIDGaT.controller.Compos', {
 							attr.set('value', existingP.get('from'));
 						}
 						
-						console.log('registering customEditor for inputs');
+						if(WIDGaT.debug) console.log('registering customEditor for inputs');
 						
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
@@ -162,15 +204,16 @@ Ext.define('WIDGaT.controller.Compos', {
 					}
 					
 				});
+				store.resumeEvents();
 			}
 		});
     },
 	
 	onCompoSelected: function(cmp) {
-		console.log('WIDGaT.controller.Compos.onCompoSelected()');
-		console.log('selected comp from controller', cmp);
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoSelected()');
+		if(WIDGaT.debug) console.log('selected comp from controller', cmp);
 		//the following will throw errors if WIDGaT.activeWidget==WIDGaT.newWidget   otherwise  as if you click on useacaseButton while in debug mode
-		console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(cmp.id).attributes());
+		if(WIDGaT.debug) console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(cmp.id).attributes());
 		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(cmp.id);
 		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(cmp.id), this.getAttributesStore());
 		this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
@@ -181,7 +224,7 @@ Ext.define('WIDGaT.controller.Compos', {
 	},
 	
 	onCompoDeselected: function() {
-		console.log('WIDGaT.controller.Compos.onCompoDeselected()');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoDeselected()');
 		
 		WIDGaT.selectedCompo = null;
 		this.getAttributesStore().removeAll();
@@ -191,9 +234,9 @@ Ext.define('WIDGaT.controller.Compos', {
 	},
 	
 	onGuidanceClick: function (view, record) {
-		console.log('WIDGaT.controller.Compos.onGuidanceClick()');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onGuidanceClick()');
 		//the following will throw errors if WIDGaT.activeWidget==WIDGaT.newWidget   otherwise  as if you click on useacaseButton while in debug mode	
-		console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')).attributes());
+		if(WIDGaT.debug) console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')).attributes());
 		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id'));
 		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')), this.getAttributesStore());
 		this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
@@ -210,7 +253,7 @@ Ext.define('WIDGaT.controller.Compos', {
 		tmpO.root = 'components['+ WIDGaT.activeWidget.components().indexOfId(records[0].get('widgat.model.compo_id')) +']';
 		tmpO.stylesheet = records[0].get('file');
 		
-		console.log('tmpO: ', tmpO);
+		if(WIDGaT.debug) console.log('tmpO: ', tmpO);
 		//will be modified to modify-component with id
 		Ext.data.JsonP.request({
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
@@ -220,7 +263,7 @@ Ext.define('WIDGaT.controller.Compos', {
 				'value': Ext.JSON.encode(tmpO)
 			},
 			success: function(response) {
-				console.log(response);	
+				if(WIDGaT.debug) console.log(response);	
 				me.getWidgetView().setSrc();
 			},
 			failure: function(response) {
@@ -230,13 +273,13 @@ Ext.define('WIDGaT.controller.Compos', {
 	},
 	
 	onThemeBeforeRender: function(cmb) {
-		console.log('onThemeBeforeRender');
+		if(WIDGaT.debug) console.log('onThemeBeforeRender');
 		//cmb.setValue(WIDGaT.selectedCompo.get('stylesheet'));
 	},
     
 	onComposStoreLoad: function(store, records, success, operation, eOpts) {
-       console.log("WIDGaT.controller.Compos.onComposStoreLoad()");
-	   //console.log("id=2: ", store.getById(2));
+       if(WIDGaT.debug) console.log("WIDGaT.controller.Compos.onComposStoreLoad()");
+	   //if(WIDGaT.debug) console.log("id=2: ", store.getById(2));
 	   
 		var tblItems = new Array();
 		
@@ -249,18 +292,38 @@ Ext.define('WIDGaT.controller.Compos', {
 			mDataView.bindStore(mStore);
 			mDataView.on('render', function(view) {
 				view.tip = Ext.create('Ext.tip.ToolTip', {
-					// The overall target element.
 					target: view.el,
-					// Each grid row causes its own seperate show and hide.
 					delegate: view.itemSelector,
-					// Moving within the row should not hide the tip.
 					trackMouse: true,
-					// Render immediately so that tip.body can be referenced prior to the first show.
 					renderTo: Ext.getBody(),
 					listeners: {
-						// Change content dynamically depending on which element triggered the show.
 						beforeshow: function updateTipBody(tip) {
-							tip.update(view.getRecord(tip.triggerElement).get('description'));
+							var tmpRecord = view.getRecord(tip.triggerElement);
+							var descHtml = "<b>" + tmpRecord.get('name') + "</b><br />"
+												 + tmpRecord.get('description') + "<br />";
+							if(tmpRecord.attributes().getCount() > 0) {
+								descHtml += "<b>Attributes</b><br />";
+								descHtml += '<ul class="tooltip-list">';
+								tmpRecord.attributes().each(function(r) {
+									descHtml += "<li>" + r.get('name') + "</li>";
+								});
+								descHtml += '</ul>';
+							}
+							if(tmpRecord.actions().getCount() > 0) {
+								descHtml += "<b>Actions</b><br />";
+								descHtml += '<ul class="tooltip-list">';
+								tmpRecord.actions().each(function(r) {
+									descHtml += "<li>" + r.get('name') + "</li>";
+								});
+								descHtml += '</ul>';
+							}
+							if(tmpRecord.themes().getCount() > 0) {
+								descHtml += "<b>Themes</b><br />";
+								tmpRecord.themes().each(function(r) {
+									descHtml += r.get('name') + ", ";
+								});
+							}
+							tip.update(descHtml);
 						}
 					}
 				});
@@ -282,12 +345,12 @@ Ext.define('WIDGaT.controller.Compos', {
 	},
 	
 	onAfterCompoListRender: function(list) {
-		console.log("WIDGaT.controller.Compos.onAfterCompoListRender()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Compos.onAfterCompoListRender()");
     	this.getComposStore().load();
 	},
     
     onCompoItemClick: function (view, record, item, index) {
-        /*console.log('WIDGaT.controller.Compos.onCompoItemClick()');
+        /*if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoItemClick()');
     	this.getAttributeList().bind(record, this.getAttributesStore());
 		this.getGuidanceList().bind(record, this.getGuidancesStore());*/
     	this.getCompoDataView().deselect(index, true);
@@ -298,7 +361,7 @@ Ext.define('WIDGaT.controller.Compos', {
     },
     
     onCompoSelectionChange: function(view, records) {
-		console.log("WIDGaT.controller.Compos.onCompoSelectionChange()");
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Compos.onCompoSelectionChange()");
         if (records.length) {
         	
             this.getAttributeList().bind(records[0], this.getAttributesStore());

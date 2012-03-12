@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -20,20 +19,20 @@ Ext.define('WIDGaT.view.widget.View', {
 				datasetchanged : {
 					element : 'frameElement',
 					fn : function(e){
-						console.info('datasetchanged', this, e.frameResetting);
+						if(WIDGaT.debug) console.log('datasetchanged', this, e.frameResetting);
 						//me.registerEditScript();
 					}
 				},
 				dataavailable : {    //raised when the document DOM is ready (same-origin only)
 					element : 'frameElement',  // MIFElement reference
 					fn : function(e, target){
-						console.info('WIDGaT.view.widget.View.dataavailable');
+						if(WIDGaT.debug) console.log('WIDGaT.view.widget.View.dataavailable');
 					}
 				},
 				load : {
 					element : 'frameElement',
 					fn : function(e, target){
-					   console.info(this.id, ' is loaded,' , this.isReset);
+					   if(WIDGaT.debug) console.log(this.id, ' is loaded,' , this.isReset);
 					   me.registerEditScript();
 					}
 				},
@@ -50,7 +49,7 @@ Ext.define('WIDGaT.view.widget.View', {
 	},
 	
 	registerEditScript: function() {
-		console.log('WIDGaT.view.widget.View.registerEditScript()');
+		if(WIDGaT.debug) console.log('WIDGaT.view.widget.View.registerEditScript()');
 		var doc = this.frameElement.getDoc();
 		if(doc){
 			var headID = doc.dom.getElementsByTagName("head")[0];         

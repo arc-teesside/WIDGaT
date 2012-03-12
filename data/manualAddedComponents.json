@@ -1,11 +1,11 @@
 [{
-	"id": 1,
+	"id": "analogClock2",
 	"className": "analogClock",
 	"name": "Analog Clock",
 	"description": "Analog looking clock timer using CSS3 for animation",
 	"category": "Clock",
 	"icon": "http://arc.tees.ac.uk/WIDEST/Widget/icons/analogClock.png",
-	"placeHolder": "placeholder12",
+	"placeHolder": "ph1",
 	"authors": [{
 		"name": "Franck Perrin",
 		"email": "f.perrin@tees.ac.uk",
@@ -126,57 +126,14 @@
 		"text": "The clock needs a starting time",
 		"shortName": "startTime"
 	}]
-},
-{
-	"id": 2,
-	"className": "buttonInput",
-	"name": "Button",
-	"description": "Simple button to trigger a behaviour",
-	"category": "Input",
-	"icon": "http://arc.tees.ac.uk/WIDEST/Widget/icons/button.png",
-	"authors": [{
-		"name": "Franck Perrin",
-		"email": "f.perrin@tees.ac.uk",
-		"link": "http://arc.tees.ac.uk",
-		"organization": "ARC Teesside University"
-	}],
-	"html": "button.html",
-	"themes": [{
-		"name": "Big white",
-		"file": "bigWhite.css"
-	},
-	{
-		"name": "Big blue",
-		"file": "bigBlue.css"
-	},
-	{
-		"name": "High contrast",
-		"file": "blackStyle.css"
-	}],
-	"attributes": [{
-		"shortName": "text",
-		"name": "Text",
-		"type": "String",
-		"value": "Button"
-	},
-	{
-		"shortName": "action",
-		"name": "Action",
-		"type": "Action"
-	}],
-	"guidances": [{
-		"priority": "high",
-		"text": "The button need an action",
-		"shortName": "action"
-	}]
-},
-{
-	"id": 3,
+}, {
+	"id": "sliderInput2",
 	"className": "sliderInput",
 	"name": "Slider",
 	"description": "A slider to select a value",
 	"category": "Input",
 	"icon": "http://arc.tees.ac.uk/WIDEST/Widget/icons/sliderIcon.png",
+	"placeHolder": "ph2",
 	"authors": [{
 		"name": "Franck Perrin",
 		"email": "f.perrin@tees.ac.uk",
@@ -232,87 +189,47 @@
 		"type": "Number",
 		"output": true
 	}]
-},
-{
-	"id": 4,
-	"className": "digitalClock",
-	"name": "Digital Clock",
-	"description": "Digital clock",
-	"category": "Clock",
-	"icon": "temp/textClock.png",
-	"placeHolder": "",
+}, {
+	"id": "buttonInput2",
+	"className": "buttonInput",
+	"name": "Button",
+	"description": "Simple button to trigger a behaviour",
+	"category": "Input",
+	"icon": "http://arc.tees.ac.uk/WIDEST/Widget/icons/button.png",
+	"placeHolder": "ph3",
 	"authors": [{
-		"name": "",
-		"email": "",
-		"link": "",
-		"organisation": ""
+		"name": "Franck Perrin",
+		"email": "f.perrin@tees.ac.uk",
+		"link": "http://arc.tees.ac.uk",
+		"organization": "ARC Teesside University"
 	}],
-	"html": "digital.html",
-	"javascript": "digital.js",
-	"stylesheet": "digital.css",
+	"html": "button.html",
 	"themes": [{
-		"name": "Default",
-		"file": "digital.css"
-	}],
-	"dependencies": [{
-		"name": "jquery-countdown"
-	}],
-	"attributes": [{
-		"shortName": "startTime",
-		"name": "Starting Time",
-		"type": "Number",
-		"input": true,
-		"required": true
-	}],
-	"actions": [{
-		"shortName": "launchCountdown",
-		"name": "Start Countdown"
+		"name": "Big white",
+		"file": "bigWhite.css"
 	},
 	{
-		"shortName": "resetTimer",
-		"name": "Reset timer"
+		"name": "Big blue",
+		"file": "bigBlue.css"
+	},
+	{
+		"name": "High contrast",
+		"file": "blackStyle.css"
+	}],
+	"attributes": [{
+		"shortName": "text",
+		"name": "Text",
+		"type": "String",
+		"value": "Button"
+	},
+	{
+		"shortName": "action",
+		"name": "Action",
+		"type": "Action"
 	}],
 	"guidances": [{
 		"priority": "high",
-		"text": "The clock needs a starting time",
-		"shortName": "startTime"
-	}]
-},
-{
-	"id": 5,
-	"className": "defaultTable",
-	"name": "Table",
-	"description": "Table with dynamic rows.",
-	"category": "ToDo",
-	"icon": "",
-	"placeHolder": "",
-	"authors": [{
-		"name": "Sarah Guadagno",
-		"email": "L1369039@live.tees.ac.uk",
-		"link": "http://arc.tees.ac.uk/",
-		"organisation": "Accessibility Research Centre"
-	}],
-	"html": "table.html",
-	"javascript": "table.js",
-	"stylesheet": "table.css",
-	"attributes": [{
-		"shortName": "input1",
-		"name": "Input Text",
-		"type": "String",
-		"input": true,
-		"required": false
-	}],
-	"actions": [{
-		"shortName": "addRowComplete",
-		"name": "Add Row"
-	},
-	{
-		"shortName": "deleteRow",
-		"name": "Delete Row"
-	}],
-	"guidances": [{
-		"priority": "low",
-		"text": "You might attached an input text.",
-		"shortName": "input1"
+		"text": "The button need an action",
+		"shortName": "action"
 	}]
 }]

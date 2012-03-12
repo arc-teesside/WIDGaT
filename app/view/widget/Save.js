@@ -1,5 +1,4 @@
 /*
-
 This file is part of WIDGaT Toolkit
 
 This work is licensed under a Creative Commons Attribution Non-Commercial ShareAlike 3.0 License
@@ -179,11 +178,11 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 										'name': WIDGaT.activeWidget.get('id')
 									},
 									success: function(response) {
-										console.log('Widget packaged successfully. response:', response);
+										if(WIDGaT.debug) console.log('Widget packaged successfully. response:', response);
 										window.open(response.URL+'.zip','_blank','height=100,width=100');
 									},
 									failure: function(response) {
-										console.log('An error occured while publishing the widget. response:', response);	
+										if(WIDGaT.debug) console.log('An error occured while publishing the widget. response:', response);	
 									}
 								});
 							},
@@ -216,11 +215,11 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 										'name': WIDGaT.activeWidget.get('id')
 									},
 									success: function(response) {
-										console.log('Widget packaged successfully. response:', response);
+										if(WIDGaT.debug) console.log('Widget packaged successfully. response:', response);
 										window.open(response.URL+'.wgt','_blank','height=100,width=100');
 									},
 									failure: function(response) {
-										console.log('An error occured while publishing the widget. response:', response);	
+										if(WIDGaT.debug) console.log('An error occured while publishing the widget. response:', response);	
 									}
 								});
 							},
