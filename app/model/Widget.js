@@ -31,8 +31,10 @@ Ext.define('WIDGaT.model.Widget', {
 		
 		tmpMod.id = this.get('id');
 		tmpMod.version = this.get('version');
-		tmpMod.width = this.get('width');
-		tmpMod.height = this.get('height');
+		if(!Ext.isEmpty(this.get('width')))
+			tmpMod.width = this.get('width');
+		if(!Ext.isEmpty(this.get('height')))
+			tmpMod.height = this.get('height');
 		tmpMod.name = this.get('name');
 		tmpMod.description = this.get('description');
 		tmpMod.icon = this.get('icon');

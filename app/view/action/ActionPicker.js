@@ -13,6 +13,7 @@ Contact:  http://arc.tees.ac.uk/
   matchFieldWidth:false,
   value:'',
   autoSelect: true,
+  editable: false,
   //triggerCls: Ext.baseCSSPrefix + 'form-plus-trigger',
   //renderTo: Ext.getBody(),
   createPicker: function(){

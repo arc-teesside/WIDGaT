@@ -19,7 +19,8 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
 					closable: false,
 					width: 400,
 					height: 500,
-					y: 130,
+					layout: 'fit',
+					y: 170,
 					x: 210,
 					style: {
 						margin: 'auto'

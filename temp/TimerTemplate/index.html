@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="WIDGaT:w@k123f-h0246209">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>dfsdf</title>
+        <!-- template and component stylesheet libraries followed by main stylesheet-->
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="http://arc.tees.ac.uk/widest/libs/jquery/styles/jquery.countdown.css" />
+		<!--@[<styles>]-->
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+		<!-- template and component javascript libraries followed by main javascript-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://arc.tees.ac.uk/widest/libs/jquery/jquery.countdown.js"></script>
+		<script type="text/javascript" src="http://arc.tees.ac.uk/widest/libs/template/timertemplate.js"></script>
+		<!--@[<scripts>]-->
+        <!-- template and main Javascript file -->
+        <script type="text/javascript" src="scripts/main.js"></script>
+        <!-- WIDGaT Libraries included: jquery,jquery-ui,jquery-countdown,timertemplate-->
+        <!-- WIDGaT Components included: timertemplate,analogclock,digitalclock,buttoninput,sliderinput ()-->
+	</head>
+    <body onload="init()" >
+        <div id="template" class="timerTemplate component" role="content">
+	<h1 id="template-heading">@[name]</h1><br />
+    <div id="ph1" class="placeholder">
+        <div id="analogClock1" class="analogClock component">
+	<ul id="analogClock1-clock">	
+		<li id="analogClock1-sec"></li>
+		<li id="analogClock1-min"></li>
+	</ul>
+</div>
+	<div id="analogClock2" class="analogClock component">
+	<ul id="analogClock2-clock">	
+		<li id="analogClock2-sec"></li>
+		<li id="analogClock2-min"></li>
+	</ul>
+</div>
+	<!--@[ph1]-->&nbsp;
+    </div>
+    <div id="ph2" class="placeholder">
+        <div id="sliderInput1" class="sliderInput component">
+	<table>
+		<tr>
+			<td>
+				<div id="sliderInput1-slider"></div>
+			</td>
+			<td>
+				<div id="sliderInput1-displayNb" class="ui-widget-content ui-corner-all">5mins</div>
+			</td>
+		</tr>
+	</table>
+</div>
+	<div id="sliderInput2" class="sliderInput component">
+	<table>
+		<tr>
+			<td>
+				<div id="sliderInput2-slider"></div>
+			</td>
+			<td>
+				<div id="sliderInput2-displayNb" class="ui-widget-content ui-corner-all">5mins</div>
+			</td>
+		</tr>
+	</table>
+</div>
+	<!--@[ph2]-->&nbsp;
+    </div>
+    <div id="ph3" class="placeholder">
+        <div id="buttonInput1" class="buttonInput component">
+    <input type="button" id="buttonInput1-button" value="Start Timer" onclick="action('analogClock1.launchCountdown()');" />
+</div>
+	<div id="buttonInput2" class="buttonInput component">
+    <input type="button" id="buttonInput2-button" value="Button" onclick="action('analogClock1.resetClock()');" />
+</div>
+	<!--@[ph3]-->&nbsp;
+    </div>
+</div>
+	<!--@[content]-->
+    </body>
+</html>

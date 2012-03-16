@@ -52,15 +52,16 @@ Contact:  http://arc.tees.ac.uk/
 	if(WIDGaT.debug) console.log('getRootNode', store.getRootNode());
     var treeConfig = Ext.apply({
       pickerField: me,
+	  id: 'outputTree',
       store:  store,         
       width:me.bodyEl.getWidth(),
       height:150,
-		rootVisible: false,
-		multiSelect: false,
-		floating: true,
-        hidden: true,
-		displayField: 'name',
-		valueField: 'shortName',
+	  rootVisible: false,
+	  multiSelect: false,
+	  floating: true,
+	  hidden: true,
+	  displayField: 'name',
+	  valueField: 'shortName',
       listeners:{
         scope:me,
         itemclick:me.onItemClick,
@@ -74,6 +75,11 @@ Contact:  http://arc.tees.ac.uk/
     picker = me.picker = Ext.create('Ext.tree.Panel',treeConfig);
 	if(WIDGaT.debug) console.log(picker);
     return picker;
+  },
+
+  onBeforeRender: function(cmp) {
+	if(WIDGaT.debug) console.log("picker.onBeforeRender");
+	  this.setRawValue(this.value);
   },
 
   onBeforeSelect: function(view, record) {
@@ -98,22 +104,34 @@ Contact:  http://arc.tees.ac.uk/
   },
 
   setValue:function(value){
+	if(WIDGaT.debug) console.log("setValue value", value);
     var me = this,
     inputEl = me.inputEl;
 
     if (inputEl && me.emptyText && !Ext.isEmpty(value)) {
       inputEl.removeCls(me.emptyCls);
     }
+	
     me.value = value;
-    me.applyEmptyText();
+	
+    //me.applyEmptyText();
   },
   setRawValue:function(value){
+	if(WIDGaT.debug) console.log("setRawValue value", value);
     this.inputEl.dom.value = value==null?"":value;
   },
   getValue:function(){
+	if(WIDGaT.debug) console.log("getValue value", this.value);
     return this.value;
   },
   getRawValue:function(){
+	if(WIDGaT.debug) console.log("getRawValue value", this.inputEl.dom.value);
+	if(this.inputEl.dom.value != this.value) {
+		if(this.inputEl.dom.value != '')
+			this.value = this.inputEl.dom.value;
+		if(this.picker)
+			this.picker.getSelectionModel().deselectAll();
+	}
     return this.inputEl.dom.value;
   },
   setValueWithReload:function(parentId, nodeId, nodeText){
@@ -125,6 +143,8 @@ Contact:  http://arc.tees.ac.uk/
 	var me = this,
 		picker = me.picker,
 		lastSelected, itemNode;
+		
+	//me.setRawValue(me.value);
 	if (picker && me.autoSelect && me.picker.store.getCount() > 0) {
 		// Highlight the last selected item and scroll it into view
 		lastSelected = picker.getSelectionModel().lastSelected;

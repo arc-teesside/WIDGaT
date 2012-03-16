@@ -22,7 +22,9 @@ Ext.define('WIDGaT.controller.Compos', {
         {ref: 'compoList', selector: 'compolist'},
         {ref: 'widgetView', selector: 'widgetview'},
         {ref: 'actionComboBox', selector: 'actioncombobox'},
-        {ref: 'themeComboBox', selector: 'themecombobox'}
+        {ref: 'themeComboBox', selector: 'themecombobox'},
+        {ref: 'guidanceList', selector: 'guidancelist'},
+		{ref: 'outputTree', selector: '#outputTree'}
     ],
 
     init: function() {
@@ -54,6 +56,12 @@ Ext.define('WIDGaT.controller.Compos', {
 			'themecombobox': {
                 select: me.onThemeSelect,
 				beforerender: me.onThemeBeforeRender
+			},
+			'outputfield': {
+                focus: function(cmp) { cmp.setRawValue(cmp.value); }
+			},
+			'actionpicker': {
+                focus: function(cmp) { cmp.setRawValue(cmp.value);}
 			}
         });
         
@@ -64,12 +72,16 @@ Ext.define('WIDGaT.controller.Compos', {
 		me.getAttributesStore().on({
 			update: function(store, record) {
 				if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onAttributesStoreUpdate()');
-				if(WIDGaT.debug) console.log('Updated record:', record);
+				if(WIDGaT.debug) console.log('Updated record, store:', record, store);
 				
 				var updatedCompo = WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id'));
 				
 				if(record.get('type').toLowerCase() == 'action' || record.get('input')) {
-					
+					if(WIDGaT.debug) console.log("outputtree", me.getOutputTree());
+					/*if(me.getOutputTree()) {
+						if(WIDGaT.debug) console.log("hasSelection()", me.getOutputTree().getSelectionModel().hasSelection());
+						if(WIDGaT.debug) console.log("getLastSelected", me.getOutputTree().getSelectionModel().getLastSelected());
+					}*/
 					var recordAction = record.get('widgat.model.compo_id') + '.' + record.get('shortName');
 					var valueAction = record.get('value');
 					
@@ -128,6 +140,8 @@ Ext.define('WIDGaT.controller.Compos', {
 								WIDGaT.activeWidget.pipes().add(relatedPipe);
 								//me.getActionWindow().close();
 								me.getWidgetView().setSrc();
+								if(WIDGaT.debug) console.log("success me.getGuidanceList()", me.getGuidanceList());
+								me.getGuidanceList().onBeforeRender();
 								
 							},
 							failure: function(response) {
@@ -236,12 +250,21 @@ Ext.define('WIDGaT.controller.Compos', {
 	onGuidanceClick: function (view, record) {
 		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onGuidanceClick()');
 		//the following will throw errors if WIDGaT.activeWidget==WIDGaT.newWidget   otherwise  as if you click on useacaseButton while in debug mode	
-		if(WIDGaT.debug) console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')).attributes());
-		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id'));
-		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id')), this.getAttributesStore());
+		if(WIDGaT.debug) console.log("guidance select", record);
+		var cmpId;
+		if(record.get('depth') == 1)
+			cmpId = record.get('text');
+		else
+			cmpId = record.parentNode.get('text');
+		
+		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(cmpId);
+		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(cmpId), this.getAttributesStore());
 		this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
 		this.getAttributeList().down('#toolBin').setDisabled(false);
-		this.getWidgetView().setSrc();
+		
+		this.getWidgetView().frameElement.getDoc().dom.setSelected(cmpId);
+		
+		view.deselect(record);
 	},
 	
 	onThemeSelect: function(cmb, records) {
@@ -342,6 +365,10 @@ Ext.define('WIDGaT.controller.Compos', {
 			tblItems.push(mPanel);
 		});
 		this.getCompoList().add(tblItems);
+		if(WIDGaT.debug) console.log("this.getCompoList()", this.getCompoList());
+		Ext.each(this.getCompoList().items.items, function(i) {
+				i.expand();
+		});
 	},
 	
 	onAfterCompoListRender: function(list) {
@@ -354,6 +381,13 @@ Ext.define('WIDGaT.controller.Compos', {
     	this.getAttributeList().bind(record, this.getAttributesStore());
 		this.getGuidanceList().bind(record, this.getGuidancesStore());*/
     	this.getCompoDataView().deselect(index, true);
+		
+		var vt = this.getCompoList();
+		if(WIDGaT.debug) console.log("vt", vt);
+		Ext.each(vt.items.items, function(i) {
+				if(WIDGaT.debug) console.log("i",i);
+				i.down('compoDataView').getSelectionModel().deselectAll();
+		});
     },
     
     onCompoItemMouseUp: function (view, record, item, index) {

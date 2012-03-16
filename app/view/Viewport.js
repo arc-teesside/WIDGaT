@@ -26,6 +26,7 @@ Ext.define('WIDGaT.view.Viewport', {
 					split: true,
 					width: 300,
 					layout: 'border',
+					disabled: true,
 					items: [
 						Ext.create('WIDGaT.view.style.Edit'),
 						Ext.create('WIDGaT.view.attribute.List')
@@ -37,9 +38,18 @@ Ext.define('WIDGaT.view.Viewport', {
                 	region: 'center',
                 	margins:'5 0 5 0',
 					layout: 'border',
+					disabled: true,
 					border: false,
 					items: [ 
-						Ext.create('WIDGaT.view.guidance.List'),
+						{
+							xtype: 'panel',
+							title: 'Tasks',
+							id: 'guidancePanel',
+							region: 'north',
+							split: true,
+							layout: 'fit',
+							height: 120
+						},
 						{
 							xtype: 'panel',
 							region: 'center',

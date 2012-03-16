@@ -24,7 +24,8 @@ Ext.define('WIDGaT.controller.Widgets', {
         {ref: 'widgetView', selector: 'widgetview'},
 		{ref: 'widgetViewport', selector: 'widgatviewport'},
 		{ref: 'viewWindow', selector: 'viewwindow'},
-		{ref: 'selectTplPanel', selector: 'selecttplpanel'}
+		{ref: 'selectTplPanel', selector: 'selecttplpanel'},
+		{ref: 'guidancePanel', selector: '#guidancePanel'}
     ],
 
     init: function() {
@@ -66,6 +67,9 @@ Ext.define('WIDGaT.controller.Widgets', {
     		},
             '#save-save': {
     			click: me.onSaveWidgetClick
+    		},
+            '#btnBookmark': {
+    			click: me.onBookmarkButtonClick
     		},
     		'#move-finish': {
     			click: me.onFinishButtonClick
@@ -274,6 +278,10 @@ Ext.define('WIDGaT.controller.Widgets', {
 		console.log('After save widget, activeWidget:', WIDGaT.activeWidget);
     },
 	
+	onBookmarkButtonClick: function() {
+		alert("Use ctrl+D");
+    },
+	
 	//Widget Description Window
 	onWidgetDetailsButtonClick: function (btn) {
 		console.log("WIDGaT.controller.Widget.onWidgetDetailsButtonClick()");
@@ -455,7 +463,6 @@ Ext.define('WIDGaT.controller.Widgets', {
 				'value': Ext.JSON.encode(WIDGaT.newWidget.json4Serv())
 			},
 			success: function(response) {
-				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
 				tmpStore.loadRawData(response);
 				WIDGaT.activeWidget = tmpStore.first();
@@ -482,8 +489,11 @@ Ext.define('WIDGaT.controller.Widgets', {
 					});
 				});*/
 				me.updateGlobalStores();
-				
+				me.getViewWindow().setWidth(WIDGaT.activeWidget.get('width') + 100);
+				me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
+				
+				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();
@@ -771,8 +781,43 @@ Ext.define('WIDGaT.controller.Widgets', {
 			cmp.guidances().each(function(guid) { arGuid.push(guid); });										 
 		});
 		gStore.loadRecords(arGuid);
+		
+		gStore.group('widgat.model.compo_id');
+		//if(WIDGaT.debug) console.log(WIDGaT.outputStore.getGroups());
+		
+		var obRoot = new Object();
+		obRoot.expanded = true;
+		obRoot.children = new Array();
+		
+		
+		Ext.each(gStore.getGroups(), function(group) {
+				var obGrp = new Object();
+				obGrp.text = group.name;
+				obGrp.leaf = false;
+				obGrp.expanded = true;
+				obGrp.children = new Array();
+				Ext.each(group.children, function(child) {
+					var obChild = new Object();
+					obChild.leaf = true;
+					obChild.text = child.get('text');
+					obChild.priority = child.get('priority');
+					obChild.shortName = child.get('shortName');
+					obGrp.children.push(obChild);
+				});
+				obRoot.children.push(obGrp);
+		});
+		
+		var tStore = Ext.create('Ext.data.TreeStore', {
+			model: 'WIDGaT.model.Guidance',
+			root: obRoot
+		});
+		var gdL = Ext.create('WIDGaT.view.guidance.List', {
+			store: tStore
+		});
 		if(WIDGaT.debug) console.log('gStore', gStore);
-		this.getGuidanceList().bindStore(gStore);
+		if(WIDGaT.debug) console.log('tStore', tStore);
+		
+		this.getGuidancePanel().add(gdL);
 	},
 	
 	updateGlobalStores: function() {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+    xmlns:arc="http://arc.tees.ac.uk/"
+ 		id="uk.ac.tees.arc.widgets.temp.w@k123f-h0246209"
+ 		version=""
+    width=""
+    height=""
+    viewmodes="windowed floating fullscreen"
+    defaultlocale="en-gb"
+    xml:lang="en-gb">
+  <name short="@[template]">dfsdf</name>
+  <description>
+    sdfsdfsdfdsf
+    <span arc:role="persona">
+      George is 21 and lives in Middlesbrough. He has a learning difficulty which means he needs longer to understand instructions and has difficulty in remembering large amounts of information, although he can read reasonably well. He also is easily distracted and can get confused quite easily.
+    </span>
+    <span arc:role="scenario">
+      sdsdsd
+    </span>
+  </description>
+  <content src="index.html"/>
+  <icon src=""/>
+  <author  href="http://arc.tees.ac.uk/" email=""></author>
+  <license>
+    Creative Commons Non Commercial ShareAlike 3.0
+    http://creativecommons.org/licenses/by-nc-sa/3.0/
+  </license>
+</widget>
+
+
+
