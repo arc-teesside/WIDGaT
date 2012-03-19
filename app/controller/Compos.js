@@ -113,6 +113,7 @@ Ext.define('WIDGaT.controller.Compos', {
 								if(WIDGaT.debug) console.log(response);
 								//me.getActionWindow().close();
 								me.getWidgetView().setSrc();
+								me.getGuidanceList().onBeforeRender();
 								
 							},
 							failure: function(response) {
