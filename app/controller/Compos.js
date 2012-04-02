@@ -113,6 +113,8 @@ Ext.define('WIDGaT.controller.Compos', {
 								if(WIDGaT.debug) console.log(response);
 								//me.getActionWindow().close();
 								me.getWidgetView().setSrc();
+								
+								//NEED TO RECREATE STORE FOR GUIDANCE LIST BECAUSE THE ONBEFORERENDER DELETES RECORD
 								me.getGuidanceList().onBeforeRender();
 								
 							},
@@ -169,6 +171,7 @@ Ext.define('WIDGaT.controller.Compos', {
 						},
 						success: function(response) {
 							me.getWidgetView().setSrc();
+							me.getGuidanceList().onBeforeRender();
 						},
 						failure: function(response) {
 							console.error(response);	

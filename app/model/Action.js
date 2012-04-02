@@ -9,7 +9,8 @@ Ext.define('WIDGaT.model.Action', {
     extend: 'Ext.data.Model',
     fields: [
     	{ name: 'shortName', type: 'string' },
-    	{ name: 'name', type: 'string' }
+    	{ name: 'name', type: 'string' },
+    	{ name: 'icon', type: 'string' }
     ],
 	
     associations: [
@@ -21,6 +22,7 @@ Ext.define('WIDGaT.model.Action', {
 			
 		tmpAc.shortName = this.get('shortName');
 		tmpAc.name = this.get('name');
+		tmpAc.icon = this.get('icon');
 			
 		return tmpAc;
 	}

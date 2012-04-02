@@ -40,6 +40,7 @@ Contact:  http://arc.tees.ac.uk/
 				obChild.leaf = true;
 				obChild.name = child.get('name');
 				obChild.shortName = child.get('shortName');
+				obChild.icon = child.get('icon');
 				obGrp.children.push(obChild);
 			});
 			obRoot.children.push(obGrp);

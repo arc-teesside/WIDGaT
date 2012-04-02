@@ -72,6 +72,7 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 		Ext.each(this.getRootNode().childNodes, function(parentRecord) {
 			Ext.each(parentRecord.childNodes, function(record) {
 				if(WIDGaT.debug) console.log("record", record);
+				if(record == null) return true;
 				if(record.parentNode == null) return true;
 				if(record.parentNode.parentNode != null) {
 					var gdText = record.parentNode.get('text') + '.' + record.get('shortName');
@@ -82,7 +83,14 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						if(WIDGaT.debug) console.log('relatedPipe2:', relatedPipe);
 					} 
 					if(!relatedPipe) {
-						if(WIDGaT.debug) console.log('Guidance related pipe:', relatedPipe);
+						
+						//no related pipes, check for attribute value
+						console.log(record.parentNode.get('text'), record.get('shortName'));
+						
+						if(WIDGaT.debug) console.log('WIDGaT.activeWidget.components().getById():', WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value'));
+						//WIDGaT.activeWidget.components().getById(record.parentNode.get('text'));
+						
+						
 						if (record.get('priority') == 'high') {
 							// Ext.apply or record.updateinfo
 							//return "highPriority";
@@ -93,7 +101,13 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						else if (record.get('priority') == 'low') {
 							//return "lowPriority";
 						}
+						var attrValue = WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value');
+						console.log('attrValue:', attrValue);
+						if(!Ext.isEmpty(attrValue)) {
+							record.remove();
+						}
 					} else {
+						if(WIDGaT.debug) console.log('Guidance related pipe:', relatedPipe);
 						//testing hiding parent element using Ext.get():HTMLElement
 						//var parentNod = record.parentNode;
 						record.remove();

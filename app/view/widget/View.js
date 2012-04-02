@@ -55,7 +55,7 @@ Ext.define('WIDGaT.view.widget.View', {
 			var headID = doc.dom.getElementsByTagName("head")[0];         
 			var newScript = doc.dom.createElement('script');
 			newScript.type = 'text/javascript';
-			newScript.src = 'scripts/editorlib.js';
+			newScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
 			
 			var newScript2 = doc.dom.createElement('script');
 			newScript2.type = 'text/javascript';

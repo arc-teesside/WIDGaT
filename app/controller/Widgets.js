@@ -114,7 +114,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					'name': reqStr.w
 				},
 				success: function(response) {
-					//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+					me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
 					var tmpStore = Ext.create('WIDGaT.store.Widgets');
 					tmpStore.loadRawData(response);
 					WIDGaT.activeWidget = tmpStore.first();
@@ -493,7 +493,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
 				
-				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
+				me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();
