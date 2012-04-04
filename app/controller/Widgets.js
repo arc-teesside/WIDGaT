@@ -528,7 +528,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
 				
-				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
+				me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();
@@ -697,8 +697,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		tmpOR.name = WIDGaT.activeWidget.get('id');
 		tmpOR.value = Ext.JSON.encode(newCmp.json4Serv());
 		
-		//Ext.Ajax.request({
-		Ext.data.JsonP.request({
+		Ext.Ajax.request({
+		//Ext.data.JsonP.request({
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: tmpOR,
 			success: function(response, opts) {
