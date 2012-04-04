@@ -59,7 +59,7 @@ Ext.define('WIDGaT.view.author.Edit' ,{
 					}
 				}
 			}, {
-				id: 'link',
+				id: 'authorLink',
 				fieldLabel: 'Link',
 				name: 'link',
 				anchor: '80%',

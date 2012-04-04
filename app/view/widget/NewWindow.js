@@ -23,6 +23,9 @@ Ext.define('WIDGaT.view.widget.NewWindow' ,{
 				Ext.create('WIDGaT.view.usecase.Edit')
 			],
 			bbar: [
+				{ xtype: 'tbtext', text: 'Page ' },
+				{ xtype: 'tbtext', id: 'pageNumber', text: '1 ' },
+				{ xtype: 'tbtext', text: '/  3' },
 				'->',
 				{
 					id: 'move-prev',
@@ -70,24 +73,29 @@ Ext.define('WIDGaT.view.widget.NewWindow' ,{
 			WIDGaT.newWidget.set('template', tplName);
 			
 			layout[direction]();
+			
+			this.down('#pageNumber').setText('2');
 			Ext.getCmp('move-prev').setDisabled(false);
 			Ext.getCmp('move-finish').setDisabled(false);
 		}
 		else if (layout.getActiveItem().id == 'widget-form') {
 			//second panel: widget details form
 			
-			
-			
 			layout.getNext().getForm().getFields().get('txt_keywords').setValue(WIDGaT.newWidget.objTpl.get('keywords'));
 			
 			layout[direction]();
 			Ext.getCmp('move-prev').setDisabled(!layout.getPrev());
 			Ext.getCmp('move-next').setDisabled(!layout.getNext());
+			if(!layout.getPrev())
+				this.down('#pageNumber').setText('1');
+			
+			if(!layout.getNext())
+				this.down('#pageNumber').setText('3');
 		}
 		else if (layout.getActiveItem().id == 'usecase-form') {
 			//third and last panel: usecase widget details
-			
 			layout[direction]();
+			this.down('#pageNumber').setText('2');
 			Ext.getCmp('move-prev').setDisabled(false);
 			Ext.getCmp('move-next').setDisabled(false);
 		}

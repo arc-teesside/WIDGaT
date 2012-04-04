@@ -20,6 +20,8 @@ Ext.define('WIDGaT.controller.Widgets', {
         {ref: 'metaWindow', selector: 'metawindow'},
         {ref: 'newWindow', selector: 'newwindow'},
         {ref: 'saveWindow', selector: 'savewindow'},
+        {ref: 'detailsWindow', selector: 'detailswindow'},
+        {ref: 'exportWindow', selector: 'exportwindow'},
         {ref: 'guidanceList', selector: 'guidancelist'},
         {ref: 'widgetView', selector: 'widgetview'},
 		{ref: 'widgetViewport', selector: 'widgatviewport'},
@@ -61,6 +63,9 @@ Ext.define('WIDGaT.controller.Widgets', {
     		},
             '#saveButton': {
     			click: me.onSaveButtonClick
+    		},
+            '#exportButton': {
+    			click: me.onExportButtonClick
     		},
             '#closeButton': {
     			click: me.onCloseButtonClick
@@ -200,13 +205,26 @@ Ext.define('WIDGaT.controller.Widgets', {
     //Widget Save Window
     onSaveButtonClick: function() {
 		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onSaveButtonClick()");
-		
-		var winS = Ext.create('WIDGaT.view.widget.SaveWindow');
-		
-		winS.down('#saveWindow-title').setValue(WIDGaT.activeWidget.get('name'));
-		winS.down('#saveWindow-description').setValue(WIDGaT.activeWidget.get('description'));
-		
-		winS.show();
+		if(this.getSaveWindow())
+			this.getSaveWindow().focus();
+		else {
+			var winS = Ext.create('WIDGaT.view.widget.SaveWindow');
+			
+			winS.down('#saveWindow-title').setValue(WIDGaT.activeWidget.get('name'));
+			winS.down('#saveWindow-description').setValue(WIDGaT.activeWidget.get('description'));
+			
+			winS.show();
+		}
+    },
+	
+    //Widget Save Window
+    onExportButtonClick: function() {
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onExportButtonClick()");
+		if(this.getExportWindow())
+			this.getExportWindow().focus();
+		else {
+			Ext.create('WIDGaT.view.widget.ExportWindow').show();
+		}
     },
 	
     onSaveWidgetClick: function(btn) {
@@ -256,7 +274,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 								'Warning! You can\'t complete your widget without usecase. Do you wish to fill it now ?',
 								function(btn) {
 									if(btn=='yes') {
-										Ext.create('WIDGaT.view.widget.MetaWindow').show();
+										Ext.getCmp('usecaseButton').fireEvent('click');
+										//Ext.create('WIDGaT.view.widget.MetaWindow').show();
 									}
 								});
 							} else {
@@ -265,8 +284,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 								function(btn) {
 									if(btn=='yes') {
 										//send completed to server
+										Ext.getCmp('exportButton').fireEvent('click');
 										_btn.up('window').close();
-										Ext.create('WIDGaT.view.widget.ExportWindow').show();
+										//Ext.create('WIDGaT.view.widget.ExportWindow').show();
 									}
 								});
 							}
@@ -275,7 +295,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				});
 			} else { _btn.up('window').close(); }
 		}
-		console.log('After save widget, activeWidget:', WIDGaT.activeWidget);
+		if(WIDGaT.debug) console.log('After save widget, activeWidget:', WIDGaT.activeWidget);
     },
 	
 	onBookmarkButtonClick: function() {
@@ -285,17 +305,21 @@ Ext.define('WIDGaT.controller.Widgets', {
 	//Widget Description Window
 	onWidgetDetailsButtonClick: function (btn) {
 		console.log("WIDGaT.controller.Widget.onWidgetDetailsButtonClick()");
-    	var winD = Ext.create('WIDGaT.view.widget.DetailsWindow');
-		winD.down('widgetedit').setTitle('');
-		winD.down('#title').setValue(WIDGaT.activeWidget.get('name'));
-		winD.down('#description').setValue(WIDGaT.activeWidget.get('description'));
-		if(WIDGaT.activeWidget.authors().getCount() > 0) {
-			winD.down('#name').setValue(WIDGaT.activeWidget.authors().first().get('name'));
-			winD.down('#email').setValue(WIDGaT.activeWidget.authors().first().get('email'));
-			winD.down('#link').setValue(WIDGaT.activeWidget.authors().first().get('link'));
-			winD.down('#organisation').setValue(WIDGaT.activeWidget.authors().first().get('organisation'));
+		if(this.getDetailsWindow())
+			this.getDetailsWindow().focus();
+		else {
+			var winD = Ext.create('WIDGaT.view.widget.DetailsWindow');
+			winD.down('widgetedit').setTitle('');
+			winD.down('#title').setValue(WIDGaT.activeWidget.get('name'));
+			winD.down('#description').setValue(WIDGaT.activeWidget.get('description'));
+			if(WIDGaT.activeWidget.authors().getCount() > 0) {
+				winD.down('#name').setValue(WIDGaT.activeWidget.authors().first().get('name'));
+				winD.down('#email').setValue(WIDGaT.activeWidget.authors().first().get('email'));
+				winD.down('#authorLink').setValue(WIDGaT.activeWidget.authors().first().get('link'));
+				winD.down('#organisation').setValue(WIDGaT.activeWidget.authors().first().get('organisation'));
+			}
+			winD.show();
 		}
-		winD.show();
     },
     
     onDetailsSaveButtonClick: function(btn) {
@@ -309,7 +333,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		WIDGaT.activeWidget.authors().first().set('name', btn.up('window').down('#name').getValue());
 		WIDGaT.activeWidget.authors().first().set('email', btn.up('window').down('#email').getValue());
-		WIDGaT.activeWidget.authors().first().set('link', btn.up('window').down('#link').getValue());
+		WIDGaT.activeWidget.authors().first().set('link', btn.up('window').down('#authorLink').getValue());
 		WIDGaT.activeWidget.authors().first().set('organisation', btn.up('window').down('#organisation').getValue());
 		
 		console.log('After save details, activeWidget:', WIDGaT.activeWidget);
@@ -347,12 +371,15 @@ Ext.define('WIDGaT.controller.Widgets', {
     onUsecaseButtonClick: function () {
 		console.log("WIDGaT.controller.Widget.onUsecaseButtonClick()");
 		
-		
-    	var win = Ext.create('WIDGaT.view.widget.MetaWindow');
-		if(WIDGaT.activeWidget.usecases().getCount() > 0)
-	    	win.down('usecaseedit').loadRecord(WIDGaT.activeWidget.usecases().first());
-    	win.down('usecaseedit').setTitle('');
-		win.show();
+		if(this.getMetaWindow())
+			this.getMetaWindow().focus();
+		else {
+			var win = Ext.create('WIDGaT.view.widget.MetaWindow');
+			if(WIDGaT.activeWidget.usecases().getCount() > 0)
+				win.down('usecaseedit').loadRecord(WIDGaT.activeWidget.usecases().first());
+			win.down('usecaseedit').setTitle('');
+			win.show();
+		}
     },
 	
 	onUsecaseSaveButtonClick: function(btn) {
@@ -440,7 +467,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			if(vals.email.length)
 				aut.set('email', vals.email);
 			if(vals.link.length)
-				aut.set('link', vals.link);
+				aut.set('authorLink', vals.link);
 			if(vals.organisation.length)
 				aut.set('organisation', vals.organisation);
 			WIDGaT.newWidget.authors().add(aut);
@@ -449,9 +476,17 @@ Ext.define('WIDGaT.controller.Widgets', {
 		var me = this;
 		
 		var uC = Ext.create('WIDGaT.model.Usecase');
-		uC.set('keywords', Ext.getCmp('txt_keywords').getValue());
+		
+		if(Ext.isEmpty(Ext.getCmp('txt_keywords').getValue()))
+			uC.set('keywords', WIDGaT.selectedTemplate.get('keywords'));
+		else
+			uC.set('keywords', Ext.getCmp('txt_keywords').getValue());
+		
 		uC.set('persona', Ext.getCmp('persona').getValue());
 		uC.set('scenario', Ext.getCmp('scenario').getValue());
+		
+		console.log('WIDGaT.selectedTemplate', WIDGaT.selectedTemplate);
+		console.log("keywords: ", Ext.getCmp('txt_keywords').getValue(), uC.get('keywords'));
 		
 		WIDGaT.newWidget.usecases().add(uC);
 		
@@ -493,7 +528,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
 				
-				me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
+				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();
@@ -662,7 +697,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		tmpOR.name = WIDGaT.activeWidget.get('id');
 		tmpOR.value = Ext.JSON.encode(newCmp.json4Serv());
 		
-		Ext.Ajax.request({
+		//Ext.Ajax.request({
+		Ext.data.JsonP.request({
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: tmpOR,
 			success: function(response, opts) {

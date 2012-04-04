@@ -46,10 +46,7 @@ Ext.define('WIDGaT.view.MenuBar', {
 							    }*/
 							}, {
 								id: 'exportButton',
-								text: 'Export &amp; Share',
-							    handler: function() {
-							        Ext.create('WIDGaT.view.widget.ExportWindow').show();
-							    }
+								text: 'Export &amp; Share'
 							}, '-', {
 								id: 'closeButton',
 								text: 'Close',

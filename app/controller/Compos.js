@@ -23,6 +23,7 @@ Ext.define('WIDGaT.controller.Compos', {
         {ref: 'widgetView', selector: 'widgetview'},
         {ref: 'actionComboBox', selector: 'actioncombobox'},
         {ref: 'themeComboBox', selector: 'themecombobox'},
+		{ref: 'guidancePanel', selector: '#guidancePanel'},
         {ref: 'guidanceList', selector: 'guidancelist'},
 		{ref: 'outputTree', selector: '#outputTree'}
     ],
@@ -115,7 +116,8 @@ Ext.define('WIDGaT.controller.Compos', {
 								me.getWidgetView().setSrc();
 								
 								//NEED TO RECREATE STORE FOR GUIDANCE LIST BECAUSE THE ONBEFORERENDER DELETES RECORD
-								me.getGuidanceList().onBeforeRender();
+								//me.getGuidanceList().onBeforeRender();
+								me.createGuidancePanel();
 								
 							},
 							failure: function(response) {
@@ -144,7 +146,8 @@ Ext.define('WIDGaT.controller.Compos', {
 								//me.getActionWindow().close();
 								me.getWidgetView().setSrc();
 								if(WIDGaT.debug) console.log("success me.getGuidanceList()", me.getGuidanceList());
-								me.getGuidanceList().onBeforeRender();
+								//me.getGuidanceList().onBeforeRender();
+								me.createGuidancePanel();
 								
 							},
 							failure: function(response) {
@@ -171,7 +174,8 @@ Ext.define('WIDGaT.controller.Compos', {
 						},
 						success: function(response) {
 							me.getWidgetView().setSrc();
-							me.getGuidanceList().onBeforeRender();
+							//me.getGuidanceList().onBeforeRender();
+							me.createGuidancePanel();
 						},
 						failure: function(response) {
 							console.error(response);	
@@ -404,5 +408,51 @@ Ext.define('WIDGaT.controller.Compos', {
         	
             this.getAttributeList().bind(records[0], this.getAttributesStore());
         }
-    }
+    },
+	
+	createGuidancePanel: function() {
+		var gStore = Ext.create('WIDGaT.store.Guidances');
+		var arGuid = new Array();
+		WIDGaT.activeWidget.components().each(function(cmp) {
+			cmp.guidances().each(function(guid) { arGuid.push(guid); });										 
+		});
+		gStore.loadRecords(arGuid);
+		
+		gStore.group('widgat.model.compo_id');
+		//if(WIDGaT.debug) console.log(WIDGaT.outputStore.getGroups());
+		
+		var obRoot = new Object();
+		obRoot.expanded = true;
+		obRoot.children = new Array();
+		
+		
+		Ext.each(gStore.getGroups(), function(group) {
+				var obGrp = new Object();
+				obGrp.text = group.name;
+				obGrp.leaf = false;
+				obGrp.expanded = true;
+				obGrp.children = new Array();
+				Ext.each(group.children, function(child) {
+					var obChild = new Object();
+					obChild.leaf = true;
+					obChild.text = child.get('text');
+					obChild.priority = child.get('priority');
+					obChild.shortName = child.get('shortName');
+					obGrp.children.push(obChild);
+				});
+				obRoot.children.push(obGrp);
+		});
+		
+		var tStore = Ext.create('Ext.data.TreeStore', {
+			model: 'WIDGaT.model.Guidance',
+			root: obRoot
+		});
+		var gdL = Ext.create('WIDGaT.view.guidance.List', {
+			store: tStore
+		});
+		if(WIDGaT.debug) console.log('gStore', gStore);
+		if(WIDGaT.debug) console.log('tStore', tStore);
+		this.getGuidancePanel().removeAll();
+		this.getGuidancePanel().add(gdL);
+	}
 })
