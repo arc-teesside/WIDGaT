@@ -21,11 +21,12 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 			items: [{
 				xtype: 'panel',
 				border: false,
-				html: '<h1>Widget details</h1><br />'
+				html: '<h1>Widget details</h1><span style="color:rgb(255, 0, 0);font-size:0.9em;">* mark required fields</span>'
 			}, {
 				id: 'saveWindow-title',
 				name: 'title',
 				fieldLabel: 'Title',
+				labelSeparator: ': <span style="color:rgb(255, 0, 0);">*</span>',
 	            allowBlank:false,
 				listeners: {
 					scope: this,

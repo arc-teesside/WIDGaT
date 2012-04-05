@@ -127,7 +127,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					//WIDGaT.activeWidget = me.getWidgetsStore().first();
 					if(WIDGaT.debug) console.log("Widget successfuly loaded with id:", WIDGaT.activeWidget.internalId);
 					if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
-					Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/</a>');
+					Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/</a>');
 					Ext.getCmp('welcomeWindow').close();
 					
 					//populating ActionStore
@@ -505,10 +505,11 @@ Ext.define('WIDGaT.controller.Widgets', {
 				//WIDGaT.activeWidget = me.getWidgetsStore().first();
 				if(WIDGaT.debug) console.log("Widget successfuly created with id:", WIDGaT.activeWidget.internalId);
 				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
-				Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/widgat-code/?w=' + response.id + '/</a>');
+				Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/</a>');
 				if(Ext.getCmp('welcomeWindow'))
 					Ext.getCmp('welcomeWindow').close();
-				
+				if(window.history.pushState)
+					window.history.pushState({}, "", 'http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id);
 				//populating ActionStore
 				/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
 				WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
