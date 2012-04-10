@@ -147,6 +147,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					
 					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
+					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
 					me.activeTool();
 				},
 				failure: function(response) {
@@ -254,6 +255,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				},
 				success: function(response) {
 					console.log('Widget details saved successfully. response:', response);
+					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
 				},
 				failure: function(response) {
 					console.log('An error occured while saving widget details. response:', response);	

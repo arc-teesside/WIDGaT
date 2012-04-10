@@ -9,7 +9,7 @@ Ext.define('WIDGaT.view.widget.SaveWindow' ,{
     extend: 'Ext.window.Window',
     alias : 'widget.savewindow',
 
-    title : 'Save & Export Widget',
+    title : 'Save Widget',
     
     initComponent: function() {
 		Ext.apply(this, {

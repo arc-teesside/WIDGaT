@@ -105,7 +105,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 				xtype: 'panel',
 				border: false,
 				bodyStyle: 'text-align: center',
-				html: '<a href="http://arc.tees.ac.uk/widgat-code/?w='+WIDGaT.activeWidget.get('id')+'">http://arc.tees.ac.uk/widgat-code/?w='+WIDGaT.activeWidget.get('id')+'</a><br /><br />',
+				html: '<a href="http://arc.tees.ac.uk/WIDGaT/Tool/?w='+WIDGaT.activeWidget.get('id')+'">http://arc.tees.ac.uk/WIDGaT/Tool/?w='+WIDGaT.activeWidget.get('id')+'</a><br /><br />',
 				listeners: {
 					scope: this,
 					'render': function(cmp) {

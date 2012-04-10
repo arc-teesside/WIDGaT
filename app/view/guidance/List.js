@@ -104,12 +104,14 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						var attrValue = WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value');
 						console.log('attrValue:', attrValue);
 						if(!Ext.isEmpty(attrValue)) {
-							record.remove();
+							if(record.parentNode.get('text') != "template")
+								record.remove();
 						}
 					} else {
 						if(WIDGaT.debug) console.log('Guidance related pipe:', relatedPipe);
 						//testing hiding parent element using Ext.get():HTMLElement
 						//var parentNod = record.parentNode;
+						if(record.parentNode.get('text') != "template")
 						record.remove();
 						//if(WIDGaT.debug) console.log("parentNod", parentNod.isRoot());
 						
