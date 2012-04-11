@@ -29,6 +29,9 @@ Ext.define('WIDGaT.view.compo.DataView' ,{
             overItemCls: 'x-item-over',
             itemSelector: 'div.thumb-wrap',
             emptyText: 'No component to display',
+			style: {
+				overflow: "auto"
+			},
 			plugins: [
                 Ext.create('Ext.ux.DataView.Draggable')
             ]

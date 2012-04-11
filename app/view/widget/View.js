@@ -53,16 +53,25 @@ Ext.define('WIDGaT.view.widget.View', {
 		var doc = this.frameElement.getDoc();
 		if(doc){
 			var headID = doc.dom.getElementsByTagName("head")[0];         
-			var newScript = doc.dom.createElement('script');
-			newScript.type = 'text/javascript';
-			newScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
+			var bodyID = doc.dom.getElementsByTagName("body")[0]; 
 			
-			var newScript2 = doc.dom.createElement('script');
-			newScript2.type = 'text/javascript';
-			newScript2.src = 'http://arc.tees.ac.uk/widest/libraries/ext-all-debug.js';
+			var editorScript = doc.dom.createElement('script');
+			editorScript.type = 'text/javascript';
+			editorScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
 			
-			headID.appendChild(newScript2);
-			headID.appendChild(newScript);
+			var extScript = doc.dom.createElement('script');
+			extScript.type = 'text/javascript';
+			extScript.src = 'http://arc.tees.ac.uk/widest/libraries/ext-all.js';
+			
+			var extStyle = doc.dom.createElement('link');
+			extStyle.rel = "stylesheet";
+			extStyle.type = 'text/css';
+			extStyle.href = "http://arc.tees.ac.uk/WIDEST/Libraries/resources/css/ext-all.css";
+			
+			headID.appendChild(extStyle);
+			headID.appendChild(extScript);
+			
+			
 			var newStyle = doc.dom.createElement('style');
 			newStyle.type = 'text/css';
 			
@@ -72,6 +81,7 @@ Ext.define('WIDGaT.view.widget.View', {
 					+ '		min-height: 15px;'
 					+ '		position:relative;'
 					+ '		border: 1px dashed #2a7fff;'
+					//+ '		background: url(http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png) no-repeat;'
 					+ '}'
 					/*+ '.placeholder:hover {'
 					+ '		border: 1px dashed grey;'
@@ -98,6 +108,8 @@ Ext.define('WIDGaT.view.widget.View', {
 			newStyle.appendChild(ts);
 			
 			headID.appendChild(newStyle);
+			
+			bodyID.appendChild(editorScript);
 		}
 	}
 });

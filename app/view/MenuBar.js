@@ -88,7 +88,19 @@ Ext.define('WIDGaT.view.MenuBar', {
 				        usecaseWindow.show();
 				    }*/
 				}, {
-					text: 'Help'
+					text: 'Help',
+					iconAlign: "right",
+				    handler: function() {
+				        window.open("http://arc.tees.ac.uk/WIDGaT/?p=guides", "_blank");
+				    },
+					listeners: {
+						mouseover: function() {
+							this.setIcon("resources/images/ExternalLink.gif");
+						},
+						mouseout: function() {
+							this.setIcon("");
+						}
+					}
 				},
 				'->', {
 					id: 'urlDisplay',

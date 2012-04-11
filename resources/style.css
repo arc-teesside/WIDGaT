@@ -33,6 +33,7 @@ Contact:  http://arc.tees.ac.uk/
     margin: 4px;
     margin-right: 0;
     padding: 5px;
+	width:75px;
 }
 #compo-list .thumb-wrap span {
     display: block;
