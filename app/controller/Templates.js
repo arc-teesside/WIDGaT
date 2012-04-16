@@ -26,7 +26,7 @@ Ext.define('WIDGaT.controller.Templates', {
 		var me = this;
 		me.control({
 			'newwindow': {
-				show: me.onAfterWindowShow,
+				show: me.onAfterWindowShow
 			}
 		});
 		    

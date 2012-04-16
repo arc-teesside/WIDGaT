@@ -645,11 +645,12 @@ Ext.define('WIDGaT.controller.Widgets', {
     //Widget Save Window
     onUndoButtonClick: function() {
 		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onUndoButtonClick()");
+		var me = this;
 		Ext.data.JsonP.request({
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: {
 				'verb': 'undo',
-				'name': WIDGaT.activeWidget.get('id'),
+				'name': WIDGaT.activeWidget.get('id')
 			},
 			success: function(response) {
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
