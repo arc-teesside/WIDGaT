@@ -70,6 +70,9 @@ Ext.define('WIDGaT.controller.Widgets', {
             '#closeButton': {
     			click: me.onCloseButtonClick
     		},
+            '#undoButton': {
+    			click: me.onUndoButtonClick
+    		},
             '#save-save': {
     			click: me.onSaveWidgetClick
     		},
@@ -510,6 +513,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/</a>');
 				if(Ext.getCmp('welcomeWindow'))
 					Ext.getCmp('welcomeWindow').close();
+					
 				if(window.history.pushState)
 					window.history.pushState({}, "", 'http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id);
 				//populating ActionStore
@@ -638,6 +642,51 @@ Ext.define('WIDGaT.controller.Widgets', {
 		}
 	},
 	
+    //Widget Save Window
+    onUndoButtonClick: function() {
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onUndoButtonClick()");
+		Ext.data.JsonP.request({
+			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+			params: {
+				'verb': 'undo',
+				'name': WIDGaT.activeWidget.get('id'),
+			},
+			success: function(response) {
+				var tmpStore = Ext.create('WIDGaT.store.Widgets');
+				tmpStore.loadRawData(response);
+				WIDGaT.activeWidget = tmpStore.first();
+				me.getWidgetsStore().loadRawData(response);
+				//WIDGaT.activeWidget = me.getWidgetsStore().first();
+
+				//populating ActionStore
+				/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
+				WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
+				
+				WIDGaT.activeWidget.components().each(function(record) {
+					record.actions().each(function(action) { 
+						WIDGaT.actionStore.add(action);
+					});
+					
+					record.attributes().each(function(attr) {
+						if(attr.get('output'))
+							WIDGaT.outputStore.add(attr);
+					});
+				});*/
+				me.updateGlobalStores();
+				//me.getViewWindow().setWidth(WIDGaT.activeWidget.get('width') + 100);
+				//me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
+				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
+				
+				me.getWidgetView().setSrc();
+				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
+			},
+			failure: function(response) {
+				if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
+			}
+		});
+    },
+	
 	onCompoDropped: function(cmp, placeHolder) {
 		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoDropped()');
 		
@@ -723,21 +772,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 						if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 						
 						//populating ActionStore
-						/*WIDGaT.actionStore.removeAll();
-						WIDGaT.outputStore.removeAll();
-						
-						WIDGaT.activeWidget.components().each(function(record) {
-							record.actions().each(function(action) { 
-								WIDGaT.actionStore.add(action);
-							});
-							
-							record.attributes().each(function(attr) {
-								if(attr.get('output')) {
-									WIDGaT.outputStore.add(attr);
-								}
-							});
-						});*/
 						me.updateGlobalStores();
+						
 						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
 					},
@@ -752,63 +788,6 @@ Ext.define('WIDGaT.controller.Widgets', {
 				if(WIDGaT.debug) console.log('server-side failure with status code ' + response.status);
 			}
 		});
-		
-		//Change for a POST request
-		/*Ext.data.JsonP.request({
-			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
-			params: {
-				'verb': 'append-component',
-				'name': WIDGaT.activeWidget.get('id'),
-				'value': Ext.JSON.encode(newCmp.json4Serv())
-			},
-			success: function(response) {
-				if(WIDGaT.debug) console.log('Compo added successfully. response:',response);
-				Ext.data.JsonP.request({
-					url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
-					params: {
-						'verb': 'refresh',
-						'name': WIDGaT.activeWidget.get('id')
-					},
-					success: function(response) {
-						//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
-						var tmpStore = Ext.create('WIDGaT.store.Widgets');
-						tmpStore.loadRawData(response);
-						WIDGaT.activeWidget = tmpStore.first();
-						me.getWidgetsStore().loadRawData(response);
-						//WIDGaT.activeWidget = me.getWidgetsStore().first();
-						if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
-						if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
-						
-						//populating ActionStore
-						WIDGaT.actionStore.removeAll();
-						WIDGaT.outputStore.removeAll();
-						
-						WIDGaT.activeWidget.components().each(function(record) {
-							record.actions().each(function(action) { 
-								WIDGaT.actionStore.add(action);
-							});
-							
-							record.attributes().each(function(attr) {
-								if(attr.get('output')) {
-									WIDGaT.outputStore.add(attr);
-								}
-							});
-						});
-						//me.updateGlobalStores();
-						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
-						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
-					},
-					failure: function(response) {
-						if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
-					}
-				});
-				me.getWidgetView().setSrc();
-				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
-			},
-			failure: function(response) {
-				console.error(response);	
-			}
-		});*/
 	},
 	
 	//inserting guidance need further work to display only the relevant guidances
