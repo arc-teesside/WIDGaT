@@ -101,7 +101,7 @@ Ext.define('WIDGaT.view.widget.View', {
 					+ '		border: 1px dashed grey;'
 					+ '}'
 					+ '.selected {'
-					+ '		border: 1px dashed grey;'
+					+ '		border: 2px solid grey;'
 					+ '}';
 			
 			var ts = document.createTextNode(stl);

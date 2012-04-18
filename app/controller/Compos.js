@@ -25,7 +25,8 @@ Ext.define('WIDGaT.controller.Compos', {
         {ref: 'themeComboBox', selector: 'themecombobox'},
 		{ref: 'guidancePanel', selector: '#guidancePanel'},
         {ref: 'guidanceList', selector: 'guidancelist'},
-		{ref: 'outputTree', selector: '#outputTree'}
+		{ref: 'outputTree', selector: '#outputTree'},
+		{ref: 'includedCompoGrid', selector: '#included-compo-grid'}
     ],
 
     init: function() {
@@ -63,6 +64,9 @@ Ext.define('WIDGaT.controller.Compos', {
 			},
 			'actionpicker': {
                 focus: function(cmp) { cmp.setRawValue(cmp.value);}
+			},
+			'#included-compo-grid': {
+                itemclick: me.onIncludedCompoGridItemClick
 			}
         });
         
@@ -273,6 +277,20 @@ Ext.define('WIDGaT.controller.Compos', {
 		this.getWidgetView().frameElement.getDoc().dom.setSelected(cmpId);
 		
 		view.deselect(record);
+	},
+	
+	onIncludedCompoGridItemClick: function(view, record) {
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onIncludedCompoGridItemClick()');
+		
+		var cmpId = record.get('id');
+		
+		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(cmpId);
+		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(cmpId), this.getAttributesStore());
+		this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
+		this.getAttributeList().down('#toolBin').setDisabled(false);
+		
+		this.getWidgetView().frameElement.getDoc().dom.setSelected(cmpId);
+	
 	},
 	
 	onThemeSelect: function(cmb, records) {

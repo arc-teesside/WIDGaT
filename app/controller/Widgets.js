@@ -19,6 +19,7 @@ Ext.define('WIDGaT.controller.Widgets', {
         {ref: 'attributeList', selector: 'attrlist'},
         {ref: 'metaWindow', selector: 'metawindow'},
         {ref: 'newWindow', selector: 'newwindow'},
+        {ref: 'includedWindow', selector: 'includedwindow'},
         {ref: 'saveWindow', selector: 'savewindow'},
         {ref: 'detailsWindow', selector: 'detailswindow'},
         {ref: 'exportWindow', selector: 'exportwindow'},
@@ -27,7 +28,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		{ref: 'widgetViewport', selector: 'widgatviewport'},
 		{ref: 'viewWindow', selector: 'viewwindow'},
 		{ref: 'selectTplPanel', selector: 'selecttplpanel'},
-		{ref: 'guidancePanel', selector: '#guidancePanel'}
+		{ref: 'guidancePanel', selector: '#guidancePanel'},
+		{ref: 'includedCompoGrid', selector: '#included-compo-grid'}
     ],
 
     init: function() {
@@ -39,6 +41,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 			},
             '#usecaseButton': {
                 click: me.onUsecaseButtonClick
+            },
+            '#includedButton': {
+                click: me.onIncludedButtonClick
             },
             '#widgetDetailsButton': {
                 click: me.onWidgetDetailsButtonClick
@@ -386,6 +391,21 @@ Ext.define('WIDGaT.controller.Widgets', {
 			win.show();
 		}
     },
+    
+	//Usecase Window
+    onIncludedButtonClick: function () {
+		console.log("WIDGaT.controller.Widget.onIncludedButtonClick()");
+		
+		if(this.getIncludedWindow())
+			this.getIncludedWindow().focus();
+		else {
+			var win = Ext.create('WIDGaT.view.compo.IncludedWindow');
+			/*if(WIDGaT.activeWidget.usecases().getCount() > 0)
+				win.down('usecaseedit').loadRecord(WIDGaT.activeWidget.usecases().first());
+			win.down('usecaseedit').setTitle('');*/
+			win.show();
+		}
+    },
 	
 	onUsecaseSaveButtonClick: function(btn) {
     	//Save metadata
@@ -625,6 +645,11 @@ Ext.define('WIDGaT.controller.Widgets', {
 								});
 							});*/
 							me.updateGlobalStores();
+							
+							if (me.getIncludedCompoGrid()) {
+								me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
+							}
+						
 							if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 						},
 						failure: function(response) {
@@ -674,6 +699,10 @@ Ext.define('WIDGaT.controller.Widgets', {
 					});
 				});*/
 				me.updateGlobalStores();
+				
+				if (me.getIncludedCompoGrid()) {
+					me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
+				}
 				//me.getViewWindow().setWidth(WIDGaT.activeWidget.get('width') + 100);
 				//me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
@@ -748,6 +777,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		tmpOR.verb = 'append-component';
 		tmpOR.name = WIDGaT.activeWidget.get('id');
+		tmpOR.verbose = true;
 		tmpOR.value = Ext.JSON.encode(newCmp.json4Serv());
 		
 		Ext.Ajax.request({
@@ -775,6 +805,10 @@ Ext.define('WIDGaT.controller.Widgets', {
 						//populating ActionStore
 						me.updateGlobalStores();
 						
+						if (me.getIncludedCompoGrid()) {
+							me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
+						}
+						
 						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
 					},
@@ -800,6 +834,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			cmp.guidances().each(function(guid) { arGuid.push(guid); });										 
 		});
 		gStore.loadRecords(arGuid);
+		var me =this;
 		
 		gStore.group('widgat.model.compo_id');
 		//if(WIDGaT.debug) console.log(WIDGaT.outputStore.getGroups());
@@ -870,6 +905,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			Ext.getCmp('undoButton').setDisabled(false);
 			Ext.getCmp('redoButton').setDisabled(false);
 			Ext.getCmp('usecaseButton').setDisabled(false);
+			Ext.getCmp('includedButton').setDisabled(false);
 			Ext.getCmp('stageFrame').setDisabled(false);
 			Ext.getCmp('eastPanel').setDisabled(false);
 			Ext.getCmp('compo-list').setDisabled(false);
@@ -886,6 +922,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			Ext.getCmp('undoButton').setDisabled(true);
 			Ext.getCmp('redoButton').setDisabled(true);
 			Ext.getCmp('usecaseButton').setDisabled(true);
+			Ext.getCmp('includedButton').setDisabled(true);
 			Ext.getCmp('stageFrame').setDisabled(true);
 			Ext.getCmp('eastPanel').setDisabled(true);
 			Ext.getCmp('compo-list').setDisabled(true);

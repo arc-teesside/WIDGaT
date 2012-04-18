@@ -74,33 +74,56 @@ Ext.define('WIDGaT.view.MenuBar', {
 							text: 'Preferences'	
 					}]
 				}, {
-					id: 'widgetDetailsButton',
-					text: 'Widget Details',
-					disabled: true/*,
-				    handler: function() {
-				        usecaseWindow.show();
-				    }*/
-				}, {
-					id: 'usecaseButton',
-					text: 'Usecase',
-					disabled: true/*,
-				    handler: function() {
-				        usecaseWindow.show();
-				    }*/
+					text: 'View',
+					menu: [
+						{
+							id: 'widgetDetailsButton',
+							text: 'Widget Details',
+							disabled: true/*,
+							handler: function() {
+								usecaseWindow.show();
+							}*/
+						}, {
+							id: 'usecaseButton',
+							text: 'Usecase',
+							disabled: true/*,
+							handler: function() {
+								usecaseWindow.show();
+							}*/
+						}, '-', {
+							id: 'includedButton',
+							text: 'Included Components',
+							disabled: true/*,
+							handler: function() {
+								usecaseWindow.show();
+							}*/
+						}
+					]
 				}, {
 					text: 'Help',
-					iconAlign: "right",
-				    handler: function() {
-				        window.open("http://arc.tees.ac.uk/WIDGaT/?p=guides", "_blank");
-				    },
-					listeners: {
-						mouseover: function() {
-							this.setIcon("resources/images/ExternalLink.gif");
-						},
-						mouseout: function() {
-							this.setIcon("");
+					menu: [
+						{
+							text: 'Help',
+							//iconAlign: "right",
+							icon: "resources/images/ExternalLink.gif",
+							handler: function() {
+								window.open("http://arc.tees.ac.uk/WIDGaT/?p=guides", "_blank");
+							}/*,
+							listeners: {
+								mouseover: function() {
+									this.setIcon("resources/images/ExternalLink.gif");
+								},
+								mouseout: function() {
+									this.setIcon("");
+								}
+							}*/
+						}, {
+							text: 'FaQ'	
+						}, '-',
+						{
+							text: 'About'	
 						}
-					}
+					]
 				},
 				'->', {
 					id: 'urlDisplay',

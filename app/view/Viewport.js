@@ -27,6 +27,9 @@ Ext.define('WIDGaT.view.Viewport', {
 					width: 300,
 					layout: 'border',
 					disabled: true,
+					collapsible: true,
+					title: 'Edit',
+					preventHeader: true,
 					items: [
 						Ext.create('WIDGaT.view.style.Edit'),
 						Ext.create('WIDGaT.view.attribute.List')
@@ -48,6 +51,7 @@ Ext.define('WIDGaT.view.Viewport', {
 							region: 'north',
 							split: true,
 							layout: 'fit',
+							collapsible: true,
 							height: 120
 						},
 						{
