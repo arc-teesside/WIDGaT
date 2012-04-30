@@ -29,6 +29,63 @@ document.setSelected = function(cmpId) {
 	});
 }
 
+function onFunctionAvailable(sMethod, oCallback, oObject, bScope) {
+	try {
+		if (typeof(eval(sMethod)) === 'object') {
+			bScope ? oCallback.call(oObject) : oCallback(oObject);
+		} else {
+			setTimeout(function () {
+				onFunctionAvailable(sMethod, oCallback, oObject, bScope);
+			}, 50);
+		}
+	} catch(err) {
+		//console.log('err', err);
+		setTimeout(function () {
+			onFunctionAvailable(sMethod, oCallback, oObject, bScope);
+		}, 50);
+	}
+}
+
+function initEditor() {
+	Ext.each(Ext.DomQuery.select('.placeholder'), function(el) {
+			//var tpEl = new Ext.Element(el);
+
+			var phDiv = document.createElement("div");
+			phDiv.className = "box-title";
+			
+			var phBG = document.createElement("img");
+			phBG.src = "http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png";
+			
+			phDiv.appendChild(phBG);
+			el.appendChild(phDiv);
+			
+	});
+
+	Ext.each(Ext.DomQuery.select('.component'), function(el) {
+			//var tpEl = new Ext.Element(el);
+			Ext.create('Ext.tip.ToolTip', {
+				target: el,
+				html: el.id,
+				trackMouse: true,
+				showDelay: 0,
+				hideDelay: 0
+			});
+			/*var phDiv = document.createElement("div");
+			phDiv.className = "box-title";
+			
+			var phBG = document.createElement("img");
+			phBG.src = "http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png";
+			
+			phDiv.appendChild(phBG);
+			el.appendChild(phDiv);*/
+			
+			
+	});
+}
+
+onFunctionAvailable('Ext', initEditor);
+
+//console.log('Ext typeof', typeof(Ext));
 document.onmousedown = function(e) {
 	flag = 0;
 }

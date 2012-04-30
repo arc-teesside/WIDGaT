@@ -127,7 +127,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 					'name': reqStr.w
 				},
 				success: function(response) {
-					me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+					if(window.location.hostname != "localhost")
+						me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+						
 					var tmpStore = Ext.create('WIDGaT.store.Widgets');
 					tmpStore.loadRawData(response);
 					WIDGaT.activeWidget = tmpStore.first();
@@ -534,8 +536,12 @@ Ext.define('WIDGaT.controller.Widgets', {
 				if(Ext.getCmp('welcomeWindow'))
 					Ext.getCmp('welcomeWindow').close();
 					
-				if(window.history.pushState)
-					window.history.pushState({}, "", 'http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id);
+				if(window.history.pushState) {
+					if(window.location.hostname == "localhost")
+						window.history.pushState({}, "", 'http://localhost/WIDGaT/?w=' + response.id);
+					else
+						window.history.pushState({}, "", 'http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id);
+				}
 				//populating ActionStore
 				/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
 				WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
@@ -554,8 +560,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 				me.getViewWindow().setWidth(WIDGaT.activeWidget.get('width') + 100);
 				me.getViewWindow().setHeight(WIDGaT.activeWidget.get('height') + 40);
 				me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
-				
-				me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
+				if(window.location.hostname != "localhost")
+					me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 				me.activeTool();

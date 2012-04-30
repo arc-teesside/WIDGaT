@@ -57,7 +57,11 @@ Ext.define('WIDGaT.view.widget.View', {
 			
 			var editorScript = doc.dom.createElement('script');
 			editorScript.type = 'text/javascript';
-			editorScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
+				
+			if(window.location.hostname == "localhost")
+				editorScript.src = 'http://localhost/WIDGaT/temp/TimerTemplate/scripts/editorlib.js';
+			else
+				editorScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
 			
 			var extScript = doc.dom.createElement('script');
 			extScript.type = 'text/javascript';
