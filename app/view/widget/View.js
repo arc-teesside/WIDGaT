@@ -65,7 +65,7 @@ Ext.define('WIDGaT.view.widget.View', {
 			
 			var extScript = doc.dom.createElement('script');
 			extScript.type = 'text/javascript';
-			extScript.src = 'http://arc.tees.ac.uk/widest/libraries/ext-all.js';
+			extScript.src = 'http://arc.tees.ac.uk/widest/libraries/ext-all-debug.js';
 			
 			var extStyle = doc.dom.createElement('link');
 			extStyle.rel = "stylesheet";
