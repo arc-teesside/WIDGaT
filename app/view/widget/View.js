@@ -13,6 +13,7 @@ Ext.define('WIDGaT.view.widget.View', {
 		var me = this;
 		Ext.apply(me, {
 			frameName : 'MIFportal',
+			id: 'iFrameWidgetView',
 			eventsFollowFrameLinks : true,
 			src : 'temp/TimerTemplate/index.html',
 			listeners : {          //These listeners clear themselves on destruction
@@ -62,51 +63,81 @@ Ext.define('WIDGaT.view.widget.View', {
 				editorScript.src = 'http://localhost/WIDGaT/temp/TimerTemplate/scripts/editorlib.js';
 			else
 				editorScript.src = 'http://arc.tees.ac.uk/widest/libraries/editorlib.js';
+				
+			var jQueryScript = doc.dom.createElement('script');
+			jQueryScript.type = 'text/javascript';
+			jQueryScript.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
 			
-			var extScript = doc.dom.createElement('script');
-			extScript.type = 'text/javascript';
-			extScript.src = 'http://arc.tees.ac.uk/widest/libraries/ext-all-debug.js';
+			var jQueryUIScript = doc.dom.createElement('script');
+			jQueryUIScript.type = 'text/javascript';
+			jQueryUIScript.src = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js';
 			
-			var extStyle = doc.dom.createElement('link');
+			var jQueryUIStyle = doc.dom.createElement('link');
+			jQueryUIStyle.rel = "stylesheet";
+			jQueryUIStyle.type = 'text/css';
+			jQueryUIStyle.href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css";
+			
+			/*var extStyle = doc.dom.createElement('link');
 			extStyle.rel = "stylesheet";
 			extStyle.type = 'text/css';
 			extStyle.href = "http://arc.tees.ac.uk/WIDEST/Libraries/resources/css/ext-all.css";
 			
-			headID.appendChild(extStyle);
-			headID.appendChild(extScript);
+			headID.appendChild(extStyle);*/
+			headID.appendChild(jQueryUIStyle);
+			headID.appendChild(jQueryScript);
+			headID.appendChild(jQueryUIScript);
 			
 			
 			var newStyle = doc.dom.createElement('style');
 			newStyle.type = 'text/css';
 			
 			var stl = '.placeholder {'
-					+ '		display: block;'
-					+ '		width: 100%;'
-					+ '		min-height: 15px;'
-					+ '		position:relative;'
-					+ '		border: 1px dashed #2a7fff;'
-					//+ '		background: url(http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png) no-repeat;'
-					+ '}'
-					/*+ '.placeholder:hover {'
-					+ '		border: 1px dashed grey;'
-					+ '}'*/
-					+ '.box-title {'
-					+ '		width: 66px;'
-					+ '		height: 15px;'
-					+ '		position: absolute;'
-					+ '		top:-1px;'
-					+ '		left:-1px;'
-					+ '}'
-					+ '.component {'
-					+ '		cursor: pointer;'
-					+ '		border: none;'
-					+ '}'
-					+ '.component:hover {'
-					+ '		border: 1px dashed grey;'
-					+ '}'
-					+ '.selected {'
-					+ '		border: 2px solid grey;'
-					+ '}';
+						+ '	display: block;'
+						+ '	width: 100%;'
+						+ '	min-height: 15px;'
+						+ '	position:relative;'
+						+ '	border: 1px dashed #2a7fff;'
+						+ '	padding: 4px;'
+						//+ '		background: url(http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png) no-repeat;'
+						+ '}'
+						/*+ '.placeholder:hover {'
+						+ '		border: 1px dashed grey;'
+						+ '}'*/
+						+ '.box-title {'
+						+ '	width: 66px;'
+						+ '	height: 15px;'
+						+ '	position: absolute;'
+						+ '	top:-1px;'
+						+ '	left:-1px;'
+						+ '}'
+						+ '.component {'
+						+ '	display: inline-block;'
+						+ '	cursor: pointer;'
+						+ '	border: none;'
+						+ '}'
+						+ '.selected {'
+						+ '	border: 2px solid #fed22f;'
+						+ '}'
+						+'.component:before, .component:after {'
+						+'		content:"";'
+						+'		display:table;'
+						+'}'
+						+'.component:after {'
+						+'		clear:both;'
+						+'}'
+						+'.component {'
+						+'		zoom:1;' /* For IE 6/7 (trigger hasLayout) */
+						+'}'
+						+'.placeholder:before, .placeholder:after {'
+						+'		content:"";'
+						+'		display:table;'
+						+'}'
+						+'.placeholder:after {'
+						+'		clear:both;'
+						+'}'
+						+'.placeholder {'
+						+'		zoom:1;' /* For IE 6/7 (trigger hasLayout) */
+						+'}';
 			
 			var ts = document.createTextNode(stl);
 			newStyle.appendChild(ts);

@@ -24,7 +24,143 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 			},
 			bodyStyle: 'padding: 10 5 0 5;',
 			defaultType: 'textfield',
-			items: [Ext.create("WIDGaT.view.theme.ComboBox")],
+			items: [
+				Ext.create("WIDGaT.view.theme.ComboBox"), 
+				{
+					xtype: 'container',
+					anchor: '100%',
+					layout:'column',
+					style: {
+						textAlign: 'center',
+						marginTop: '20px'
+					},
+					defaults: {
+						columnWidth: 1/3
+					},
+					items:[{
+						xtype: 'container',
+						layout: 'anchor',
+						items: {
+							xtype: 'button',
+							itemId : 'justifyleft',
+							cls : Ext.baseCSSPrefix + 'btn-icon',
+							iconCls: Ext.baseCSSPrefix + 'edit-justifyleft',
+							enableToggle: false
+						}
+					}, {
+						xtype: 'container',
+						layout: 'anchor',
+						items: {
+							xtype: 'button',
+							itemId : 'justifycenter',
+							cls : Ext.baseCSSPrefix + 'btn-icon',
+							iconCls: Ext.baseCSSPrefix + 'edit-justifycenter',
+							enableToggle: false
+						}
+					}, {
+						xtype: 'container',
+						layout: 'anchor',
+						items: {
+							xtype: 'button',
+							itemId : 'justifyright',
+							cls : Ext.baseCSSPrefix + 'btn-icon',
+							iconCls: Ext.baseCSSPrefix + 'edit-justifyright',
+							enableToggle: false
+						}
+					}]
+				}, {
+					xtype: 'container',
+					anchor: '100%',
+					layout:'column',
+					style: {
+						textAlign: 'center',
+						marginTop: '20px'
+					},
+					defaults: {
+						columnWidth: 0.25
+					},
+					items:[{
+						xtype: 'container',
+						layout: 'anchor',
+						style: {
+							lineHeight: '22px',
+							textAlign: 'left',
+							verticalAlign: 'bottom'
+						},
+						html: 'Text:'
+					}, {
+						xtype: 'container',
+						layout: 'anchor',
+						style: {
+							textAlign: 'left'
+						},
+						items: {
+							xtype: 'splitbutton',
+							text: '<div style="width: 14px; height: 14px; background-color: black; border: 1px solid black" id="text-color-picker"></div>',
+							menu: new Ext.menu.Menu({
+								items: [
+									Ext.create('Ext.picker.Color', {
+										value: '000000',
+										listeners: {
+											select: function(picker, selColor) {
+												Ext.fly('text-color-picker').setStyle('background-color', selColor);
+												Ext.menu.Manager.hideAll();
+											}
+										}
+									})
+								]
+							})
+						}
+					}, {
+						xtype: 'container',
+						layout: 'anchor',
+						style: {
+							lineHeight: '22px',
+							textAlign: 'left',
+							verticalAlign: 'bottom'
+						},
+						html: 'Background:'
+					}, {
+						xtype: 'container',
+						layout: 'anchor',
+						items: {
+							xtype: 'splitbutton',
+							text: '<div style="width: 14px; height: 14px; background-color: white; border: 1px solid black" id="bg-color-picker"></div>',
+							menu: new Ext.menu.Menu({
+								items: [
+									Ext.create('Ext.picker.Color', {
+										value: '000000',
+										listeners: {
+											select: function(picker, selColor) {
+												Ext.fly('bg-color-picker').setStyle('background-color', selColor);
+												Ext.menu.Manager.hideAll();
+											}
+										}
+									})
+								]
+							})
+						}
+					}]
+				}, {
+					xtype: 'combobox',
+					fieldLabel: 'Display',
+					queryMode: 'local',
+					displayField: 'text',
+					valueField: 'value',
+					width: '100px',
+					editable: false,
+					style: {
+						marginTop: '20px'
+					},
+					store: Ext.create('Ext.data.Store', {
+						fields: ['value', 'text'],
+						data : [
+							{"value":"block", "text":"Block"},
+							{"value":"inline", "text":"Inline"}
+						]
+					})
+				}
+			],
 			listeners: {
 				scope: this,
 				'render': function(cmp) {

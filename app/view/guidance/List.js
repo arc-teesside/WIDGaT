@@ -87,7 +87,7 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						//no related pipes, check for attribute value
 						console.log(record.parentNode.get('text'), record.get('shortName'));
 						
-						if(WIDGaT.debug) console.log('WIDGaT.activeWidget.components().getById():', WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value'));
+						//if(WIDGaT.debug) console.log('WIDGaT.activeWidget.components().getById():', WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value'));
 						//WIDGaT.activeWidget.components().getById(record.parentNode.get('text'));
 						
 						

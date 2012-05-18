@@ -8,8 +8,8 @@ Contact:  http://arc.tees.ac.uk/
 Ext.define('WIDGaT.controller.Attributes', {
 	extend: 'Ext.app.Controller',
 	
-    models: ['Compo', 'Attribute'],
-    stores: ['Compos', 'Attributes'],
+    models: ['Compo', 'Attribute', 'Choice'],
+    stores: ['Compos', 'Attributes', 'Choices'],
 	
 	views: [
         'attribute.List',

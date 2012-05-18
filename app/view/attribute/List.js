@@ -16,6 +16,10 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 			region: 'center',
 			flex: 2,
 			source: {},
+			bodyCls: 'edit-panel',
+			bodyStyle: {
+				background: 'white url(resources/images/edit-bg.png) center bottom no-repeat'
+			},
 			listeners: {
 				'beforeselect': function (rowModel, record, index) {
 					if(WIDGaT.debug) console.log('beforeselect');

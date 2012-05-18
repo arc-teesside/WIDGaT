@@ -140,4 +140,9 @@ Contact:  http://arc.tees.ac.uk/
         //this.picker.destroy();
 		this.callParent(arguments);
     },
+  onFocus: function() {
+        //this.picker.destroy();
+		this.callParent(arguments);
+		this.expand();
+    }
 })

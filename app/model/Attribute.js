@@ -19,6 +19,8 @@ Ext.define('WIDGaT.model.Attribute', {
     
     belongsTo: 'Compo',
 	
+	hasMany: [ {model: 'WIDGaT.model.Choice', name: 'choices', primaryKey: 'shortName'} ],
+	
 	json4Serv: function() {
 		var tmpAt = new Object()
 			

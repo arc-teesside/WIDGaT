@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 /* main CSS */
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
 
 * {
 	margin:0;
@@ -158,3 +159,9 @@ p {
 	padding: 4px 0 0 0;
 }
 
+
+#mulberrysvg1 {
+	position: relative;
+	width: 100px;
+	height: 100px;
+}

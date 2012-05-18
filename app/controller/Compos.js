@@ -8,8 +8,8 @@ Contact:  http://arc.tees.ac.uk/
 Ext.define('WIDGaT.controller.Compos', {
 	extend: 'Ext.app.Controller',
 	
-    models: ['Compo', 'Action', 'Attribute', 'Author', 'Dependency', 'Guidance', 'Theme'],
-    stores: ['Compos', 'Actions', 'Attributes', 'Authors', 'Dependencies', 'Guidances', 'Themes'],
+    models: ['Compo', 'Action', 'Attribute', 'Author', 'Dependency', 'Guidance', 'Theme', 'Choice'],
+    stores: ['Compos', 'Actions', 'Attributes', 'Authors', 'Dependencies', 'Guidances', 'Themes', 'Choices'],
 	
 	views: [
         'compo.List'
@@ -198,6 +198,8 @@ Ext.define('WIDGaT.controller.Compos', {
 						if(WIDGaT.debug) console.log('registering customEditor for actions');
 						if(WIDGaT.debug) console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
 						
+						
+						
 						var existingP = null;
 						if( existingP = WIDGaT.activeWidget.pipes().findRecord('from', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
 							attr.set('value', existingP.get('to'));  //don't set value here but when creating pipe so it doesn't trigger the update event on the store
@@ -225,6 +227,18 @@ Ext.define('WIDGaT.controller.Compos', {
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.OutputField")'
+							+'}'
+						+'});');
+					}
+					
+					if(attr.choices().getCount() > 0) {
+						
+						
+						if(WIDGaT.debug) console.log('registering customEditor for choices');
+						
+						eval('Ext.apply(me.getAttributeList(), {'
+							+'customEditors: {'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})'
 							+'}'
 						+'});');
 					}

@@ -8,8 +8,8 @@ Contact:  http://arc.tees.ac.uk/
 Ext.define('WIDGaT.controller.Widgets', {
 	extend: 'Ext.app.Controller',
 	
-    models: ['Widget', 'Usecase', 'Pipe', 'Compo', 'Action', 'Attribute', 'Author', 'Dependency', 'Guidance'],
-    stores: ['Widgets', 'Usecases', 'Pipes', 'Compos', 'Actions', 'Attributes', 'Authors', 'Dependencies', 'Guidances'],
+    models: ['Widget', 'Usecase', 'Pipe', 'Compo', 'Action', 'Attribute', 'Author', 'Dependency', 'Guidance', 'Choice'],
+    stores: ['Widgets', 'Usecases', 'Pipes', 'Compos', 'Actions', 'Attributes', 'Authors', 'Dependencies', 'Guidances', 'Choices'],
 	
 	views: [
         'widget.MetaWindow'

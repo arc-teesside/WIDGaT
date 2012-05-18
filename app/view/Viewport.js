@@ -57,6 +57,7 @@ Ext.define('WIDGaT.view.Viewport', {
 						{
 							xtype: 'panel',
 							region: 'center',
+							id: 'centerGreyFill',
 							bodyStyle: {
 								background: "lightgrey"
 							}

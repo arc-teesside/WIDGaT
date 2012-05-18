@@ -20,6 +20,7 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
 					width: 400,
 					height: 500,
 					layout: 'fit',
+					maximizable: true,
 					y: 170,
 					x: 210,
 					style: {
@@ -62,7 +63,53 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
 							}
 						}
 					}],*/
-					items: Ext.create('WIDGaT.view.widget.View')
+					items: Ext.create('WIDGaT.view.widget.View'),
+					maximize: function() {
+						var me = this;
+
+						if (!me.maximized) {
+							me.expand(false);
+							if (!me.hasSavedRestore) {
+								me.restoreSize = me.getSize();
+								me.restorePos = me.getPosition(true);
+							}
+							if (me.maximizable) {
+								me.tools.maximize.hide();
+								me.tools.restore.show();
+							}
+							me.maximized = true;
+							me.el.disableShadow();
+
+							if (me.dd) {
+								me.dd.disable();
+							}
+							if (me.collapseTool) {
+								me.collapseTool.hide();
+							}
+							me.el.addCls(Ext.baseCSSPrefix + 'window-maximized');
+							me.container.addCls(Ext.baseCSSPrefix + 'window-maximized-ct');
+
+							me.syncMonitorWindowResize();
+							/*me.setPosition(0, 0);
+							me.fitContainer();*/
+							var cmpPos = Ext.getCmp('centerGreyFill').getPosition();
+							
+							me.setPosition(cmpPos[0], cmpPos[1]);
+							me.fitContainer();
+							//me.setWidth(Ext.getCmp('centerGreyFill').getWidth());
+							//me.setHeight(Ext.getCmp('centerGreyFill').getHeight());
+							//console.log('Position', Ext.getCmp('centerGreyFill').getWidth(), Ext.getCmp('centerGreyFill').getHeight());
+							me.fireEvent('maximize', me);
+						}
+						return me;
+					},
+					fitContainer: function() {
+						/*var parent = this.floatParent,
+							container = parent ? parent.getTargetEl() : this.container,
+							size = container.getViewSize(false);*/
+
+						this.setSize(Ext.getCmp('centerGreyFill').getSize());
+					}
 		});
         this.callParent(arguments);
     }

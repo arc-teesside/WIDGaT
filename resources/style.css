@@ -161,6 +161,9 @@ height:31px;
 -ms-interpolation-mode:bicubic;
 }
 
+.edit-panel {
+	background: url(images/edit-bg.png) center bottom no-repeat;
+}
 
 #test_javascript 
 {
