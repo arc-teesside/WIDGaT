@@ -755,6 +755,12 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		Ext.each(cmpObj.attributes, function(attribute) {
 			var newAtt = Ext.create('WIDGaT.model.Attribute', attribute);
+			
+			Ext.each(attribute.choices, function(choice) {
+				var newCho = Ext.create('WIDGaT.model.Choice', choice);
+				newAtt.choices().add(newCho);
+			});
+			
 			newCmp.attributes().add(newAtt);
 		});
 		

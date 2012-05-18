@@ -191,6 +191,9 @@ Ext.define('WIDGaT.controller.Compos', {
 			datachanged: function(store, records) {
 				if(WIDGaT.debug) console.log('attrStore.datachanged');
 				store.suspendEvents();
+				
+				var attrWithChoices = new Array();
+				
 				store.each(function(attr) {
 					if(WIDGaT.debug) console.log('each attr',attr);
 					
@@ -235,6 +238,10 @@ Ext.define('WIDGaT.controller.Compos', {
 						
 						
 						if(WIDGaT.debug) console.log('registering customEditor for choices');
+						/*var tmpObj = new Object();
+						tmpObj.name = attr.get('name');
+						tmpObj.store = attr.choices();
+						attrWithChoices.push(tmpObj);*/
 						
 						eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
@@ -244,6 +251,13 @@ Ext.define('WIDGaT.controller.Compos', {
 					}
 					
 				});
+				
+				/*eval('Ext.apply(me.getAttributeList(), {'
+							+'customEditors: {'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})'
+							+'}'
+						+'});');*/
+						
 				store.resumeEvents();
 			}
 		});

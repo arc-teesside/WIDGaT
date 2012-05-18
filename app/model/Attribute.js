@@ -31,6 +31,14 @@ Ext.define('WIDGaT.model.Attribute', {
 		tmpAt.output = this.get('output');
 		tmpAt.required = this.get('required');
 		tmpAt.value = this.get('value');
+		
+		//Choices
+		if(this.choices().getCount() > 0) {
+			tmpAt.choices = new Array();
+			this.choices().each(function(r) {
+				tmpAt.choices.push(r.json4Serv());							 
+			});
+		}
 			
 		return tmpAt;
 	}

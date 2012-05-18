@@ -101,6 +101,13 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						else if (record.get('priority') == 'low') {
 							//return "lowPriority";
 						}
+						
+						var relatedCmp = WIDGaT.activeWidget.components().getById(record.parentNode.get('text'));
+						var relatedCmpAttributes = relatedCmp.attributes();
+						var relatedAttribute = relatedCmpAttributes.findRecord('shortName', record.get('shortName'));
+						
+						console.log('relatedCmp, relatedCmpAttributes', relatedCmp, relatedCmpAttributes, relatedAttribute);
+						
 						var attrValue = WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value');
 						console.log('attrValue:', attrValue);
 						if(!Ext.isEmpty(attrValue)) {

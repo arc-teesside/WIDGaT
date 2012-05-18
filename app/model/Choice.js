@@ -14,12 +14,10 @@ Ext.define('WIDGaT.model.Choice', {
     ],
 	
 	json4Serv: function() {
-		var tmpAc = new Object()
+		var tmpCh = new Object()
 			
-		tmpAc.shortName = this.get('shortName');
-		tmpAc.name = this.get('name');
-		tmpAc.icon = this.get('icon');
+		tmpCh.str = this.get('str');
 			
-		return tmpAc;
+		return tmpCh;
 	}
 });
