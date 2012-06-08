@@ -21,12 +21,74 @@ Ext.define('WIDGaT.view.widget.Export' ,{
 			items: [{
 				xtype: 'panel',
 				border: false,
-				html: '<h1>WIDGaT link to your Widget</h1><br />' //tooltip here
+				html: '<h1>Your Widget</h1><br />' //tooltip here
 			}, {
 				xtype: 'panel',
 				border: false,
 				bodyStyle: 'text-align: center',
+				html: '<a href="http://arc.tees.ac.uk/WIDEST/Widget/Output/'+WIDGaT.activeWidget.get('id')+'/">http://arc.tees.ac.uk/WIDEST/Widget/Output/'+WIDGaT.activeWidget.get('id')+'/</a><br /><br />'
+			}, {
+				xtype: 'panel',
+				border: false,
+				bodyStyle: 'text-align: center',
+				defaults: {
+					margin: '0 5'
+				},
+				items:[{
+						xtype: 'button',
+						text: 'Editor link',
+						enableToggle: true,
+						toggleGroup: 'widgetLinkShare',
+						toggleHandler: function(btn, state) {
+							console.log('Editor lnk');
+							if(state)
+								this.up('window').down('#editorLinkPanel').show();
+							else
+								this.up('window').down('#editorLinkPanel').hide();
+						}
+					}, {
+						xtype: 'button',
+						text: 'Embed code',
+						enableToggle: true,
+						toggleGroup: 'widgetLinkShare',
+						toggleHandler: function(btn, state) {
+							console.log('Embed code');
+							if(state)
+								this.up('window').down('#embedCodePanel').show();
+							else
+								this.up('window').down('#embedCodePanel').hide();
+						}
+				}]
+			}, {
+				xtype: 'panel',
+				id: 'editorLinkPanel',
+				border: false,
+				hideCollapseTool: true,
+				preventHeader: true,
+				bodyStyle: 'text-align: center',
+				hidden: true,
+				padding: '10 0',
 				html: '<a href="http://arc.tees.ac.uk/WIDGaT/Tool/?w='+WIDGaT.activeWidget.get('id')+'">http://arc.tees.ac.uk/WIDGaT/Tool/?w='+WIDGaT.activeWidget.get('id')+'</a><br />'
+			}, {
+				xtype: 'panel',
+				id: 'embedCodePanel',
+				border: false,
+				hideCollapseTool: true,
+				preventHeader: true,
+				bodyStyle: 'text-align: center',
+				hidden: true,
+				layout: 'fit',
+				items: [{
+					xtype: 'textareafield',
+					name: 'embedCode',
+					hideLabel: true,
+					readOnly: true,
+					selectOnFocus: true,
+					rows: 3,
+					padding: '10 10 10 0',
+					value: '<iframe width="560" height="315" src="http://arc.tees.ac.uk/WIDEST/Widget/Output/'+WIDGaT.activeWidget.get('id')+'/" frameborder="0"></iframe>',
+					
+				}]
 			}, {
 				xtype: 'panel',
 				border: false,

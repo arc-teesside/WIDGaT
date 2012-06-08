@@ -25,48 +25,39 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 			bodyStyle: 'padding: 10 5 0 5;',
 			defaultType: 'textfield',
 			items: [
-				Ext.create("WIDGaT.view.theme.ComboBox"), 
+				Ext.create("WIDGaT.view.theme.ComboBox"),
 				{
 					xtype: 'container',
-					anchor: '100%',
-					layout:'column',
 					style: {
-						textAlign: 'center',
-						marginTop: '20px'
+						marginTop: '10px'
 					},
 					defaults: {
-						columnWidth: 1/3
+						margin: '0 8 0 0'
 					},
 					items:[{
-						xtype: 'container',
-						layout: 'anchor',
-						items: {
-							xtype: 'button',
-							itemId : 'justifyleft',
-							cls : Ext.baseCSSPrefix + 'btn-icon',
-							iconCls: Ext.baseCSSPrefix + 'edit-justifyleft',
-							enableToggle: false
-						}
+						xtype: 'label',
+						html: 'Text Align:'
 					}, {
-						xtype: 'container',
-						layout: 'anchor',
-						items: {
-							xtype: 'button',
-							itemId : 'justifycenter',
-							cls : Ext.baseCSSPrefix + 'btn-icon',
-							iconCls: Ext.baseCSSPrefix + 'edit-justifycenter',
-							enableToggle: false
-						}
+						xtype: 'button',
+						itemId : 'justifyleft',
+						tooltip: 'Align the text to the left',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-justifyleft',
+						enableToggle: false
 					}, {
-						xtype: 'container',
-						layout: 'anchor',
-						items: {
-							xtype: 'button',
-							itemId : 'justifyright',
-							cls : Ext.baseCSSPrefix + 'btn-icon',
-							iconCls: Ext.baseCSSPrefix + 'edit-justifyright',
-							enableToggle: false
-						}
+						xtype: 'button',
+						itemId : 'justifycenter',
+						tooltip: 'Align the text in center',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-justifycenter',
+						enableToggle: false
+					}, {
+						xtype: 'button',
+						itemId : 'justifyright',
+						tooltip: 'Align the text to the right',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-justifyright',
+						enableToggle: false
 					}]
 				}, {
 					xtype: 'container',
@@ -74,7 +65,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 					layout:'column',
 					style: {
 						textAlign: 'center',
-						marginTop: '20px'
+						marginTop: '10px'
 					},
 					defaults: {
 						columnWidth: 0.25
@@ -147,10 +138,10 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 					queryMode: 'local',
 					displayField: 'text',
 					valueField: 'value',
-					width: '100px',
+					anchor: '100%',
 					editable: false,
 					style: {
-						marginTop: '20px'
+						marginTop: '10px'
 					},
 					store: Ext.create('Ext.data.Store', {
 						fields: ['value', 'text'],
@@ -159,6 +150,39 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 							{"value":"inline", "text":"Inline"}
 						]
 					})
+				}, {
+					xtype: 'container',
+					style: {
+						marginTop: '10px'
+					},
+					defaults: {
+						margin: '0 8 0 0'
+					},
+					items:[{
+						xtype: 'label',
+						html: 'Block Align:'
+					}, {
+						xtype: 'button',
+						itemId : 'displayleft',
+						tooltip: 'Align the component to the left',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-displayleft',
+						enableToggle: false
+					}, {
+						xtype: 'button',
+						itemId : 'displaycenter',
+						tooltip: 'Align the component in center',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-displaycenter',
+						enableToggle: false
+					}, {
+						xtype: 'button',
+						itemId : 'displayright',
+						tooltip: 'Align the component to the right',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-displayright',
+						enableToggle: false
+					}]
 				}
 			],
 			listeners: {

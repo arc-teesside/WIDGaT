@@ -98,7 +98,33 @@ $(document).ready(function() {
 			},
 			update: function(event, ui) {
 				console.log('event', event);
-				console.log('ui', ui.item.index());
+				console.log('ui', ui.item);
+				
+				var sibling = ui.item.prev('.component');
+				
+				var targetPh = ui.item.parent('.placeholder');
+				
+				var eOpts = new Object();
+				eOpts.rootId = ui.item.attr('id');
+				eOpts.targetPh = targetPh.attr('id');
+				eOpts.before = false;
+				eOpts.after = false;
+				
+				console.log('targetPh', targetPh);
+				if(sibling.length > 0) {
+					//move after
+					eOpts.after = sibling.attr('id');
+				}
+				else {
+					sibling = ui.item.next('.component')
+					if(sibling.length > 0) {
+						//move before
+						eOpts.before = sibling.attr('id');
+					}
+					
+				}
+				
+				top.Ext.ComponentManager.get('compo-list').fireEvent('moved', eOpts);
 			}
 		});
 	});

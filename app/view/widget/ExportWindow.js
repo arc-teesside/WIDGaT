@@ -13,12 +13,11 @@ Ext.define('WIDGaT.view.widget.ExportWindow' ,{
     
     initComponent: function() {
 		Ext.apply(this, {
-			height: 270,
+			height: 291,
 		 	width: 500,
 			border: false,
 			layout:'fit',
-			closeAction: 'hide',
-			items: Ext.create('WIDGaT.view.widget.Export'),
+			items: Ext.create('WIDGaT.view.widget.Export')
 		});
         this.callParent(arguments);
     }

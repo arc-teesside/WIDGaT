@@ -30,7 +30,8 @@ Ext.define('WIDGaT.view.compo.List' ,{
 		this.addEvents({
 			selected: true,
 			deselected: true,
-			dropped: true
+			dropped: true,
+			moved: true
 		});
 		
 		this.callParent(arguments);

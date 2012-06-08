@@ -46,7 +46,8 @@ Ext.define('WIDGaT.view.MenuBar', {
 							    }*/
 							}, {
 								id: 'exportButton',
-								text: 'Export &amp; Share'
+								text: 'Export &amp; Share',
+								disabled: true
 							}, '-', {
 								id: 'closeButton',
 								text: 'Close',
@@ -124,6 +125,15 @@ Ext.define('WIDGaT.view.MenuBar', {
 							text: 'About'	
 						}
 					]
+				},
+				' ',
+				{
+					xtype: 'tbtext',
+					html: '<img src="resources/images/WIDGaT_LogoTB.png" style="height:22px;" />',
+					flex:12,
+					style: {
+						textAlign: 'center'
+					}
 				},
 				'->', {
 					id: 'urlDisplay',

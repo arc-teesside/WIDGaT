@@ -94,7 +94,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 				click: me.onToolBinClick	
 			},
 			'compolist': {
-				dropped: me.onCompoDropped
+				dropped: me.onCompoDropped,
+				moved: me.onCompoMoved
 			},
 			'widgatviewport': {
 				afterrender: me.onViewportAfterRender
@@ -723,8 +724,59 @@ Ext.define('WIDGaT.controller.Widgets', {
 		});
     },
 	
+	onCompoMoved: function(eOpts) {
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Widgets.onCompoMoved(eOpts)', eOpts);
+		var me= this;
+		
+		var tmpO = new Object();
+		
+		tmpO.root = "components['"+ eOpts.rootId +"']";
+		tmpO.placeHolder = eOpts.targetPh;
+		
+		if(eOpts.after) {
+			tmpO.after = "components['"+ eOpts.after +"']";
+		} else {
+			tmpO.before = "components['"+ eOpts.before +"']";
+		}
+		
+		Ext.data.JsonP.request({
+			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+			params: {
+				'verb': 'move',
+				'name': WIDGaT.activeWidget.get('id'),
+				'value': Ext.JSON.encode(tmpO)
+			},
+			success: function(response) {
+				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+				if(!Ext.isDefined(response.ERROR)) {
+					var tmpStore = Ext.create('WIDGaT.store.Widgets');
+					tmpStore.loadRawData(response);
+					WIDGaT.activeWidget = tmpStore.first();
+					me.getWidgetsStore().loadRawData(response);
+					//WIDGaT.activeWidget = me.getWidgetsStore().first();
+					if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
+					if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+					
+					//populating ActionStore
+					me.updateGlobalStores();
+					
+					if (me.getIncludedCompoGrid()) {
+						me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
+					}
+					
+					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+					if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
+				}
+			},
+			failure: function(response) {
+				if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
+			}
+		});
+		me.getWidgetView().setSrc();
+	},
+	
 	onCompoDropped: function(cmp, placeHolder) {
-		if(WIDGaT.debug) console.log('WIDGaT.controller.Compos.onCompoDropped()');
+		if(WIDGaT.debug) console.log('WIDGaT.controller.Widgets.onCompoDropped()');
 		
 		var me = this;
 		var tpEl = Ext.create('Ext.Element', cmp);		
@@ -912,6 +964,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.activeTool()");
 			Ext.getCmp('widgetDetailsButton').setDisabled(false);
 			Ext.getCmp('saveButton').setDisabled(false);
+			Ext.getCmp('exportButton').setDisabled(false);
 			Ext.getCmp('previewButton').setDisabled(false);
 			Ext.getCmp('closeButton').setDisabled(false);
 			Ext.getCmp('undoButton').setDisabled(false);
@@ -929,6 +982,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.disableTool()");
 			Ext.getCmp('widgetDetailsButton').setDisabled(true);
 			Ext.getCmp('saveButton').setDisabled(true);
+			Ext.getCmp('exportButton').setDisabled(true);
 			Ext.getCmp('previewButton').setDisabled(true);
 			Ext.getCmp('closeButton').setDisabled(true);
 			Ext.getCmp('undoButton').setDisabled(true);
