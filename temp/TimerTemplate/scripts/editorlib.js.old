@@ -161,16 +161,14 @@ document.onmousedown = function(e) {
 }
 
 document.onmouseup = function(e) {
-	console.log("iFrame: mouseUp event")
+	
 	var elem, ph, comp, selected;
 	
 	elem = new top.Ext.Element(e.target);
-	console.log("iFrame: mouseUp event", elem)
+	
 	if(!elem.hasCls('placeholder'))
 		ph = elem.up('.placeholder');
-	else
-		ph = elem;
-		
+	
 	if(elem.hasCls('component'))
 		comp = elem;
 	else
@@ -183,8 +181,6 @@ document.onmouseup = function(e) {
 		if(selNodes.length != 0)
 			selected = selNodes;
 	});
-	
-	console.log("iFrame ph, selected", ph, selected)
 	
 	if(!comp && !selected) {  //outside template no cmp under pointer and no cmp selected in left list
 		//deselecting all component
