@@ -13,7 +13,8 @@ Ext.define('WIDGaT.store.Compos', {
 		type: 'jsonp',
 		url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 		extraParams: {
-			verb: 'components'	
+			verb: 'components',
+			key: 'WIDGaT-918273645-911'
 		}
 	},
 	/*

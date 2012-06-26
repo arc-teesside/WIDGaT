@@ -125,7 +125,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 				params: {
 					'verb': 'refresh',
-					'name': reqStr.w
+					'name': reqStr.w,
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					if(window.location.hostname != "localhost")
@@ -262,7 +263,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 				params: {
 					'verb': 'modify',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(tmpOb)
+					'value': Ext.JSON.encode(tmpOb),
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					console.log('Widget details saved successfully. response:', response);
@@ -363,7 +365,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			params: {
 				'verb': 'modify',
 				'name': WIDGaT.activeWidget.get('id'),
-				'value': Ext.JSON.encode(tmpO)
+				'value': Ext.JSON.encode(tmpO),
+				'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				console.log('Widget details saved successfully. response:', response);
@@ -438,7 +441,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			params: {
 				'verb': 'modify',
 				'name': WIDGaT.activeWidget.get('id'),
-				'value': Ext.JSON.encode(tmpObj)
+				'value': Ext.JSON.encode(tmpObj),
+				'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				console.log('Usecase saved successfully. response:', response);
@@ -523,7 +527,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			params: {
 				'verb': 'create',
 				'name': WIDGaT.selectedTemplate.get('name'),
-				'value': Ext.JSON.encode(WIDGaT.newWidget.json4Serv())
+				'value': Ext.JSON.encode(WIDGaT.newWidget.json4Serv()),
+				'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
@@ -581,7 +586,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: {
 				'verb': 'refresh',
-				'name': WIDGaT.activeWidget.get('id')
+				'name': WIDGaT.activeWidget.get('id'),
+					'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
@@ -610,7 +616,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 				params: {
 					'verb': 'delete',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(tmpO)
+					'value': Ext.JSON.encode(tmpO),
+					'key': 'WIDGaT-918273645-911'
 					/*'verb': 'remove',
 					'name': WIDGaT.activeWidget.get('id'),
 					'value': Ext.JSON.encode(new Array(WIDGaT.selectedCompo.get('id')))*/
@@ -625,7 +632,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 						params: {
 							'verb': 'refresh',
-							'name': WIDGaT.activeWidget.get('id')
+							'name': WIDGaT.activeWidget.get('id'),
+					'key': 'WIDGaT-918273645-911'
 						},
 						success: function(response) {
 							//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
@@ -682,7 +690,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 			params: {
 				'verb': 'undo',
-				'name': WIDGaT.activeWidget.get('id')
+				'name': WIDGaT.activeWidget.get('id'),
+					'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				var tmpStore = Ext.create('WIDGaT.store.Widgets');
@@ -744,7 +753,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			params: {
 				'verb': 'move',
 				'name': WIDGaT.activeWidget.get('id'),
-				'value': Ext.JSON.encode(tmpO)
+				'value': Ext.JSON.encode(tmpO),
+					'key': 'WIDGaT-918273645-911'
 			},
 			success: function(response) {
 				//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
@@ -843,6 +853,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		tmpOR.name = WIDGaT.activeWidget.get('id');
 		tmpOR.verbose = true;
 		tmpOR.value = Ext.JSON.encode(newCmp.json4Serv());
+		tmpOR.key = 'WIDGaT-918273645-911';
 		
 		Ext.Ajax.request({
 		//Ext.data.JsonP.request({
@@ -854,7 +865,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 					url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 					params: {
 						'verb': 'refresh',
-						'name': WIDGaT.activeWidget.get('id')
+						'name': WIDGaT.activeWidget.get('id'),
+						'key': 'WIDGaT-918273645-911'
 					},
 					success: function(response) {
 						//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');

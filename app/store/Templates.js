@@ -18,7 +18,8 @@ Ext.define('WIDGaT.store.Templates', {
 		type: 'jsonp',
 		url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 		extraParams: {
-			verb: 'templates'	
+			verb: 'templates',
+			key: 'WIDGaT-918273645-911'
 		}
 	},
 	

@@ -68,7 +68,8 @@ Ext.define('WIDGaT.controller.Actions', {
 				params: {
 					'verb': 'modify',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(jsVal)
+					'value': Ext.JSON.encode(jsVal),
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					if(WIDGaT.debug) console.log(response);
@@ -89,7 +90,8 @@ Ext.define('WIDGaT.controller.Actions', {
 				params: {
 					'verb': 'append-pipe',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(relatedPipe.json4Serv())
+					'value': Ext.JSON.encode(relatedPipe.json4Serv()),
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					if(WIDGaT.debug) console.log(response);
@@ -200,7 +202,8 @@ Ext.define('WIDGaT.controller.Actions', {
 				params: {
 					'verb': 'modify',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(jsVal)
+					'value': Ext.JSON.encode(jsVal),
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					if(WIDGaT.debug) console.log(response);
@@ -222,7 +225,8 @@ Ext.define('WIDGaT.controller.Actions', {
 				params: {
 					'verb': 'append-pipe',
 					'name': WIDGaT.activeWidget.get('id'),
-					'value': Ext.JSON.encode(relatedPipe.json4Serv())
+					'value': Ext.JSON.encode(relatedPipe.json4Serv()),
+					'key': 'WIDGaT-918273645-911'
 				},
 				success: function(response) {
 					if(WIDGaT.debug) console.log(response);

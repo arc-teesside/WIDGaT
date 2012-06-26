@@ -176,7 +176,8 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 									params: {
 										'verb': 'package',
-										'name': WIDGaT.activeWidget.get('id')
+										'name': WIDGaT.activeWidget.get('id'),
+										'key': 'WIDGaT-918273645-911'
 									},
 									success: function(response) {
 										if(WIDGaT.debug) console.log('Widget packaged successfully. response:', response);
@@ -213,7 +214,8 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 									params: {
 										'verb': 'package',
-										'name': WIDGaT.activeWidget.get('id')
+										'name': WIDGaT.activeWidget.get('id'),
+										'key': 'WIDGaT-918273645-911'
 									},
 									success: function(response) {
 										if(WIDGaT.debug) console.log('Widget packaged successfully. response:', response);
