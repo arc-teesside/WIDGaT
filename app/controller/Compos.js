@@ -424,9 +424,9 @@ Ext.define('WIDGaT.controller.Compos', {
 		});
 		this.getCompoList().add(tblItems);
 		if(WIDGaT.debug) console.log("this.getCompoList()", this.getCompoList());
-		Ext.each(this.getCompoList().items.items, function(i) {
+		/*Ext.each(this.getCompoList().items.items, function(i) {
 				i.expand();
-		});
+		});*/
 	},
 	
 	onAfterCompoListRender: function(list) {
