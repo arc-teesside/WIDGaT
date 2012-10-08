@@ -125,6 +125,9 @@ Ext.define('WIDGaT.view.MenuBar', {
 							text: 'About'	
 						}
 					]
+				}, {
+					text: 'Feedback & Support',
+					id: 'feedbackButton'
 				},
 				' ',
 				{

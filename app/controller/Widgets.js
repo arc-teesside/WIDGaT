@@ -23,6 +23,7 @@ Ext.define('WIDGaT.controller.Widgets', {
         {ref: 'saveWindow', selector: 'savewindow'},
         {ref: 'detailsWindow', selector: 'detailswindow'},
         {ref: 'exportWindow', selector: 'exportwindow'},
+        {ref: 'feedbackWindow', selector: 'feedbackwindow'},
         {ref: 'guidanceList', selector: 'guidancelist'},
         {ref: 'widgetView', selector: 'widgetview'},
 		{ref: 'widgetViewport', selector: 'widgatviewport'},
@@ -47,6 +48,9 @@ Ext.define('WIDGaT.controller.Widgets', {
             },
             '#widgetDetailsButton': {
                 click: me.onWidgetDetailsButtonClick
+            },
+            '#feedbackButton': {
+                click: me.onFeedbackButtonClick
             },
             '#details-save': {
     			click: me.onDetailsSaveButtonClick
@@ -394,6 +398,18 @@ Ext.define('WIDGaT.controller.Widgets', {
 			if(WIDGaT.activeWidget.usecases().getCount() > 0)
 				win.down('usecaseedit').loadRecord(WIDGaT.activeWidget.usecases().first());
 			win.down('usecaseedit').setTitle('');
+			win.show();
+		}
+    },
+	
+	//feedback Window
+    onFeedbackButtonClick: function () {
+		console.log("WIDGaT.controller.Widget.onFeedbackButtonClick()");
+		
+		if(this.getFeedbackWindow())
+			this.getFeedbackWindow().focus();
+		else {
+			var win = Ext.create('WIDGaT.view.feedback.FeedbackWindow');
 			win.show();
 		}
     },
