@@ -1,4 +1,3 @@
-Wed, 07 Nov 12 08:54:53 +0000 -- hello -- sdasd@free.fr -- dsreiorendfndfg
 Wed, 07 Nov 12 12:11:13 +0000 -- Colin Galley -- colin.galley@newdur.ac.uk -- Ability to re-size image from internet
 Wed, 07 Nov 12 12:25:50 +0000 -- Mark -- mark.boyle@dilstoncollege.ac.uk -- http://arc.tees.ac.uk/WIDGaT/Tool/?w=w@k12b7-c0038191/
 
@@ -13,4 +12,3 @@ http://arc.tees.ac.uk/WIDEST/Widget/Output/w@k12b7-c2626354/
 
 Thanks,
 Stephen.
-Tue, 04 Dec 12 03:10:46 +0000 -- papy -- coco@coco.com -- yo bitch

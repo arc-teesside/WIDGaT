@@ -30,7 +30,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		{ref: 'viewWindow', selector: 'viewwindow'},
 		{ref: 'selectTplPanel', selector: 'selecttplpanel'},
 		{ref: 'guidancePanel', selector: '#guidancePanel'},
-		{ref: 'includedCompoGrid', selector: '#included-compo-grid'}
+		{ref: 'includedCompoGrid', selector: '#included-compo-grid'},
+		{ref: 'libraryList', selector: 'library'}
     ],
 
     init: function() {
@@ -164,6 +165,29 @@ Ext.define('WIDGaT.controller.Widgets', {
 					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
+					
+					//Load library
+					Ext.data.JsonP.request({
+						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+						params: {
+							'verb': 'media',
+							'name': WIDGaT.activeWidget.get('id'),
+							'key': 'WIDGaT-918273645-911'
+						},
+						success: function(response) {
+							console.log(response.files);
+							var arLibrary = new Array();
+							Ext.each(response.files, function(file, index) {
+								var tmpOL = new Object();
+								tmpOL.name = file;
+								tmpOL.type = "Image";
+								arLibrary.push(tmpOL);
+							});
+							me.getLibraryList().getStore().loadData(arLibrary);
+							
+						}
+					});
+					
 					me.activeTool();
 				},
 				failure: function(response) {

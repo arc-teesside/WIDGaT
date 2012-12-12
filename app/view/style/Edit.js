@@ -171,6 +171,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
 														"style": "color:#"+selColor
+														"color": selColor
 													}
 													
 													Ext.data.JsonP.request({
@@ -222,6 +223,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
 														"style": 'background:#'+selColor
+														"background": 'red'
 													}
 													
 													Ext.data.JsonP.request({
