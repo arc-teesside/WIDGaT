@@ -39,25 +39,97 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 						html: 'Text Align:'
 					}, {
 						xtype: 'button',
-						itemId : 'justifyleft',
+						id : 'justifyleft',
 						tooltip: 'Align the text to the left',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-justifyleft',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"text-align": "left"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}, {
 						xtype: 'button',
 						itemId : 'justifycenter',
 						tooltip: 'Align the text in center',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-justifycenter',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"text-align": "center"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}, {
 						xtype: 'button',
 						itemId : 'justifyright',
 						tooltip: 'Align the text to the right',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-justifyright',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"text-align": "right"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}]
 				}, {
 					xtype: 'container',
@@ -95,6 +167,28 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 										listeners: {
 											select: function(picker, selColor) {
 												Ext.fly('text-color-picker').setStyle('background-color', selColor);
+												if(WIDGaT.selectedCompo) {
+													var tmpO = {
+														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+														"style": "color:#"+selColor
+													}
+													
+													Ext.data.JsonP.request({
+														url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+														params: {
+															'verb': 'modify',
+															'name': WIDGaT.activeWidget.get('id'),
+															'value': Ext.JSON.encode(tmpO),
+															'key': 'WIDGaT-918273645-911'
+														},
+														success: function(response) {
+															Ext.getCmp('iFrameWidgetView').setSrc();
+														},
+														failure: function(response) {
+															console.error(response);	
+														}
+													});
+												}
 												Ext.menu.Manager.hideAll();
 											}
 										}
@@ -124,6 +218,28 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 										listeners: {
 											select: function(picker, selColor) {
 												Ext.fly('bg-color-picker').setStyle('background-color', selColor);
+												if(WIDGaT.selectedCompo) {
+													var tmpO = {
+														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+														"style": 'background:#'+selColor
+													}
+													
+													Ext.data.JsonP.request({
+														url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+														params: {
+															'verb': 'modify',
+															'name': WIDGaT.activeWidget.get('id'),
+															'value': Ext.JSON.encode(tmpO),
+															'key': 'WIDGaT-918273645-911'
+														},
+														success: function(response) {
+															Ext.getCmp('iFrameWidgetView').setSrc();
+														},
+														failure: function(response) {
+															console.error(response);	
+														}
+													});
+												}
 												Ext.menu.Manager.hideAll();
 											}
 										}

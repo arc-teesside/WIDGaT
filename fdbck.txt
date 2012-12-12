@@ -1,0 +1,16 @@
+Wed, 07 Nov 12 08:54:53 +0000 -- hello -- sdasd@free.fr -- dsreiorendfndfg
+Wed, 07 Nov 12 12:11:13 +0000 -- Colin Galley -- colin.galley@newdur.ac.uk -- Ability to re-size image from internet
+Wed, 07 Nov 12 12:25:50 +0000 -- Mark -- mark.boyle@dilstoncollege.ac.uk -- http://arc.tees.ac.uk/WIDGaT/Tool/?w=w@k12b7-c0038191/
+
+Can we develop an interactive calendar that would count down the days until the end of term (this would provide a visual reference for low ability students in helping them to contextualise when they are going home - we are a residential college). As days pass it would be helpful to cross them out, perhaps using a red cross through the day.....?
+Wed, 07 Nov 12 12:36:06 +0000 -- Stephen Allen -- sallen30@gmail.com -- Hi,
+
+Please can you add a feature to open a link in a new window?
+
+For example, when clicking the image link below if, opens in the same window
+
+http://arc.tees.ac.uk/WIDEST/Widget/Output/w@k12b7-c2626354/
+
+Thanks,
+Stephen.
+Tue, 04 Dec 12 03:10:46 +0000 -- papy -- coco@coco.com -- yo bitch

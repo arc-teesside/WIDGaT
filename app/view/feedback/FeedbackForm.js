@@ -24,11 +24,13 @@ Ext.define('WIDGaT.view.feedback.FeedbackForm' ,{
 			defaultType: 'textfield',
 			items: [{
 				fieldLabel: 'Name',
+				inputId: 'feedback-txt-name',
 				afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>',
 				name: 'name',
 				allowBlank: false
 			},{
 				fieldLabel: 'Email',
+				inputId: 'feedback-txt-email',
 				afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>',
 				name: 'email',
 				allowBlank: false,

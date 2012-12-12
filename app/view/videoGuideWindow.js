@@ -45,7 +45,7 @@ Ext.define('WIDGaT.view.VideoGuideWindow' ,{
 				style: {
 					textAlign: 'center'
 				},
-				html : '<iframe width="585" height="460" src="http://www.youtube.com/embed/JzzVBrAy8Cw" frameborder="0" allowfullscreen></iframe>'
+				html : '<iframe width="585" height="460" src="http://www.youtube.com/embed/VRJSQLqMhM8" frameborder="0" allowfullscreen></iframe>'
 			},  {
 				xtype: 'panel',
 				border: false,
