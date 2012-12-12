@@ -170,14 +170,13 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 												if(WIDGaT.selectedCompo) {
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
-														"style": "color:#"+selColor
-														"color": selColor
+														"color": '#'+selColor
 													}
 													
 													Ext.data.JsonP.request({
 														url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 														params: {
-															'verb': 'modify',
+															'verb': 'style',
 															'name': WIDGaT.activeWidget.get('id'),
 															'value': Ext.JSON.encode(tmpO),
 															'key': 'WIDGaT-918273645-911'
@@ -222,14 +221,13 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 												if(WIDGaT.selectedCompo) {
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
-														"style": 'background:#'+selColor
-														"background": 'red'
+														"background": '#'+selColor
 													}
 													
 													Ext.data.JsonP.request({
 														url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 														params: {
-															'verb': 'modify',
+															'verb': 'style',
 															'name': WIDGaT.activeWidget.get('id'),
 															'value': Ext.JSON.encode(tmpO),
 															'key': 'WIDGaT-918273645-911'
