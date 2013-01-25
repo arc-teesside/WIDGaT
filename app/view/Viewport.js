@@ -32,7 +32,8 @@ Ext.define('WIDGaT.view.Viewport', {
 					preventHeader: true,
 					items: [
 						Ext.create('WIDGaT.view.style.Edit'),
-						Ext.create('WIDGaT.view.attribute.List')
+						Ext.create('WIDGaT.view.attribute.List'),
+						Ext.create('WIDGaT.view.widget.Library')
 					]
 				},
                 Ext.create('WIDGaT.view.compo.List'),

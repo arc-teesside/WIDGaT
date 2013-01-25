@@ -170,7 +170,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 												if(WIDGaT.selectedCompo) {
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
-														"color": selColor
+														"color": '#'+selColor
 													}
 													
 													Ext.data.JsonP.request({
@@ -221,7 +221,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 												if(WIDGaT.selectedCompo) {
 													var tmpO = {
 														"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
-														"background": 'red'
+														"background": '#'+selColor
 													}
 													
 													Ext.data.JsonP.request({

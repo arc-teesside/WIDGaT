@@ -1,8 +1,14 @@
-Tue, 06 Nov 12 17:50:11 +0000 -- Fra -- asd@free.fr -- mnmn,mm
-Tue, 06 Nov 12 17:50:12 +0000 -- Fra -- asd@free.fr -- mnmn,mm
-Tue, 06 Nov 12 18:05:32 +0000 -- Franck -- franck@free.fr -- My comments are awesome!!!
-Tue, 06 Nov 12 18:07:04 +0000 -- Franck -- sadasd@free.fr -- asdasdasdasd
-Tue, 06 Nov 12 18:10:59 +0000 -- Franck -- franck@free.fr -- asdasdasd
-Tue, 06 Nov 12 18:17:39 +0000 -- Franck -- franck@free.fr -- awesomeeeeee
-Tue, 06 Nov 12 18:21:16 +0000 -- Franck -- franck@free.fr -- awesomeness!!!!
-Tue, 06 Nov 12 18:22:58 +0000 -- Franck -- franck@free.fr -- sdfsdfsdfsdf
+Wed, 07 Nov 12 12:11:13 +0000 -- Colin Galley -- colin.galley@newdur.ac.uk -- Ability to re-size image from internet
+Wed, 07 Nov 12 12:25:50 +0000 -- Mark -- mark.boyle@dilstoncollege.ac.uk -- http://arc.tees.ac.uk/WIDGaT/Tool/?w=w@k12b7-c0038191/
+
+Can we develop an interactive calendar that would count down the days until the end of term (this would provide a visual reference for low ability students in helping them to contextualise when they are going home - we are a residential college). As days pass it would be helpful to cross them out, perhaps using a red cross through the day.....?
+Wed, 07 Nov 12 12:36:06 +0000 -- Stephen Allen -- sallen30@gmail.com -- Hi,
+
+Please can you add a feature to open a link in a new window?
+
+For example, when clicking the image link below if, opens in the same window
+
+http://arc.tees.ac.uk/WIDEST/Widget/Output/w@k12b7-c2626354/
+
+Thanks,
+Stephen.
