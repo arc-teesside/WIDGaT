@@ -197,6 +197,8 @@ Ext.define('WIDGaT.controller.Compos', {
 				
 				var attrWithChoices = new Array();
 				
+				var customEdits = new Array();
+				
 				store.each(function(attr) {
 					if(WIDGaT.debug) console.log('each attr',attr);
 					
@@ -212,11 +214,12 @@ Ext.define('WIDGaT.controller.Compos', {
 						} else if( existingP = existingP = WIDGaT.activeWidget.pipes().findRecord('to', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
 							attr.set('value', existingP.get('from'));
 						}
-						eval('Ext.apply(me.getAttributeList(), {'
+						/*eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")'
 							+'}'
-						+'});');
+						+'});');*/
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")');
 					}
 						
 					if(attr.get('input')) {
@@ -230,11 +233,12 @@ Ext.define('WIDGaT.controller.Compos', {
 						
 						if(WIDGaT.debug) console.log('registering customEditor for inputs');
 						
-						eval('Ext.apply(me.getAttributeList(), {'
+						/*eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.OutputField")'
 							+'}'
-						+'});');
+						+'});');*/
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.OutputField")');
 					}
 					
 					if(attr.choices().getCount() > 0) {
@@ -246,14 +250,34 @@ Ext.define('WIDGaT.controller.Compos', {
 						tmpObj.store = attr.choices();
 						attrWithChoices.push(tmpObj);*/
 						
-						eval('Ext.apply(me.getAttributeList(), {'
+						/*eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})'
 							+'}'
-						+'});');
+						+'});');*/
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})');
 					}
-					
 				});
+				
+				if(customEdits.length > 0) {
+					
+					var customEditStr = ""
+				
+					for(var i=0;i<customEdits.length;i++) {
+						
+						customEditStr += customEdits[i];
+						if(i<(customEdits.length-1)){
+							customEditStr += ',';
+						}
+						
+					}
+					console.log(customEditStr);
+					eval('Ext.apply(me.getAttributeList(), {'
+							+'customEditors: {'
+							+ customEditStr
+							+'}'
+						+'});');
+				}
 				
 				/*eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'

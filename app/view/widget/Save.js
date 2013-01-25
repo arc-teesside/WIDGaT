@@ -172,7 +172,38 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 						html: '<img src="resources/images/arDl.png" alt="Download" /><br />Download (.zip)',
 						listeners: {
 							'click': function () {
-								Ext.data.JsonP.request({
+							
+								/*var saveFrm = this.up('window').down('form').getForm();
+								
+								if(!saveFrm.hasInvalidField()) {
+									var frmVals = saveFrm.getFieldValues();
+									console.log(frmVals.completed);
+									WIDGaT.activeWidget.set('name', frmVals.title);
+									WIDGaT.activeWidget.set('description', frmVals.description);
+									
+									var tmpOb = new Object();
+									tmpOb.name = WIDGaT.activeWidget.get('name');
+									tmpOb.description = WIDGaT.activeWidget.get('description');
+									
+									Ext.data.JsonP.request({
+										url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+										params: {
+											'verb': 'modify',
+											'name': WIDGaT.activeWidget.get('id'),
+											'value': Ext.JSON.encode(tmpOb),
+											'key': 'WIDGaT-918273645-911'
+										},
+										success: function(response) {
+											console.log('Widget details saved successfully. response:', response);
+											me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
+										},
+										failure: function(response) {
+											console.log('An error occured while saving widget details. response:', response);	
+										}
+									});
+								}*/
+							
+								/*Ext.data.JsonP.request({
 									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 									params: {
 										'verb': 'package',
@@ -186,7 +217,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 									failure: function(response) {
 										if(WIDGaT.debug) console.log('An error occured while publishing the widget. response:', response);	
 									}
-								});
+								});*/
 							},
 							'render': function(cmp) {
 								cmp.tip = Ext.create('Ext.tip.ToolTip', {
@@ -210,7 +241,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 						html: '<img src="resources/images/arDl.png" alt="Download" /><br />Download (.wgt)',
 						listeners: {
 							'click': function () {
-								Ext.data.JsonP.request({
+								/*Ext.data.JsonP.request({
 									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 									params: {
 										'verb': 'package',
@@ -224,7 +255,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 									failure: function(response) {
 										if(WIDGaT.debug) console.log('An error occured while publishing the widget. response:', response);	
 									}
-								});
+								});*/
 							},
 							'render': function(cmp) {
 								cmp.tip = Ext.create('Ext.tip.ToolTip', {

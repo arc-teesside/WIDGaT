@@ -64,6 +64,12 @@ Ext.define('WIDGaT.controller.Widgets', {
             '#startButton': {
     			click: me.onNewButtonClick
     		},
+			'#btnDownloadZip': {
+				click: me.onBtnDownloadClick
+			},
+			'#btnDownloadWgt': {
+				click: me.onBtnDownloadClick
+			},
             '#previewButton': {
     			click: me.onPreviewButtonClick
     		},
@@ -281,7 +287,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			
 			if(frmVals.completed){
 				Ext.MessageBox.confirm('Confirm',
-				'You chose to update the design status of your widget as \'Completed\'. This mean that your widget will no longer be editable. However, you can share this link and allow other users to start from a copy of your widget and adapt it as they see fit. Do you wish to continue ?',
+				'You chose to update the design status of your widget as \'Completed\'. This means that your widget will no longer be editable. However, you can share this link and allow other users to start from a copy of your widget and adapt it as they see fit. Do you wish to continue ?',
 				function(btn) {
 					if(btn=='yes') {
 						//send completed to server
@@ -320,6 +326,60 @@ Ext.define('WIDGaT.controller.Widgets', {
 	onBookmarkButtonClick: function() {
 		alert("Use ctrl+D");
     },
+	
+    onBtnDownloadClick: function(btn) {
+		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onBtnDownloadZip()");
+		
+		var me = this;
+		var _btn = btn;
+		var saveFrm = btn.up('window').down('form').getForm();
+		
+		if(!saveFrm.hasInvalidField()) {
+			var frmVals = saveFrm.getFieldValues();
+			console.log(frmVals.completed);
+			WIDGaT.activeWidget.set('name', frmVals.title);
+			WIDGaT.activeWidget.set('description', frmVals.description);
+			
+			var tmpOb = new Object();
+			tmpOb.name = WIDGaT.activeWidget.get('name');
+			tmpOb.description = WIDGaT.activeWidget.get('description');
+			
+			Ext.data.JsonP.request({
+				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+				params: {
+					'verb': 'modify',
+					'name': WIDGaT.activeWidget.get('id'),
+					'value': Ext.JSON.encode(tmpOb),
+					'key': 'WIDGaT-918273645-911'
+				},
+				success: function(response) {
+					console.log('Widget details saved successfully. response:', response);
+					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
+					Ext.data.JsonP.request({
+						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+						params: {
+							'verb': 'package',
+							'name': WIDGaT.activeWidget.get('id'),
+							'key': 'WIDGaT-918273645-911'
+						},
+						success: function(response) {
+							if(WIDGaT.debug) console.log('Widget packaged successfully. response:', response);
+							var uri = response.URL;
+							if(_btn.id == "btnDownloadWgt") { uri += '.wgt'; }
+							else { uri += '.zip'; }
+							window.open(uri,'_blank','height=100,width=100');
+						},
+						failure: function(response) {
+							if(WIDGaT.debug) console.log('An error occured while publishing the widget. response:', response);	
+						}
+					});
+				},
+				failure: function(response) {
+					console.log('An error occured while saving widget details. response:', response);	
+				}
+			});
+		}
+	},
 	
 	//Widget Description Window
 	onWidgetDetailsButtonClick: function (btn) {
