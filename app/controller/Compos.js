@@ -81,7 +81,7 @@ Ext.define('WIDGaT.controller.Compos', {
 				
 				var updatedCompo = WIDGaT.activeWidget.components().getById(record.get('widgat.model.compo_id'));
 				
-				if(record.get('type').toLowerCase() == 'action' || record.get('input')) {
+				if(record.get('type').toLowerCase() == 'action' && !record.get('input')) {
 					if(WIDGaT.debug) console.log("outputtree", me.getOutputTree());
 					/*if(me.getOutputTree()) {
 						if(WIDGaT.debug) console.log("hasSelection()", me.getOutputTree().getSelectionModel().hasSelection());
@@ -161,6 +161,109 @@ Ext.define('WIDGaT.controller.Compos', {
 							}
 						});
 					}
+				}
+				else if(record.get('type').toLowerCase() != 'action' && record.get('input')) {
+										
+					var recordAction = record.get('widgat.model.compo_id') + '.' + record.get('shortName');
+					var valueAction = record.get('value');
+					
+					console.log('recordAction', recordAction);
+					console.log('valueAction', valueAction);
+					
+					var verifOutput = /^[a-zA-Z0-9]*\.[a-zA-Z0-9]*$/.test(valueAction);
+					var verifNumber = /^\d*$/.test(valueAction);
+					
+					console.log('VALUE ACTION, NB', valueAction, valueAction.length);
+					console.log('VERIF OUTPUT', verifOutput);
+					
+					var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', recordAction)
+					
+					if(relatedPipe) {
+						if(verifOutput || verifNumber) {
+							relatedPipe.set('to', valueAction);
+						}
+						else {
+							relatedPipe.set('to', '['+valueAction+']');
+						}
+					} else {
+						relatedPipe = WIDGaT.activeWidget.pipes().findRecord('to', recordAction)
+						if(relatedPipe) {
+							if(verifOutput || verifNumber) {
+								relatedPipe.set('from', valueAction);
+							}
+							else {
+								relatedPipe.set('from', '['+valueAction+']');
+							}
+						}
+					}
+					
+					if(relatedPipe) {
+						var jsVal = new Object();
+						jsVal.root = 'pipes['+ WIDGaT.activeWidget.pipes().indexOf(relatedPipe) +']';
+						jsVal.from = relatedPipe.get('from');
+						jsVal.to = relatedPipe.get('to');
+						
+						Ext.data.JsonP.request({
+							url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+							params: {
+								'verb': 'modify',
+								'name': WIDGaT.activeWidget.get('id'),
+								'value': Ext.JSON.encode(jsVal),
+								'key': 'WIDGaT-918273645-911'
+							},
+							success: function(response) {
+								if(WIDGaT.debug) console.log(response);
+								//me.getActionWindow().close();
+								me.getWidgetView().setSrc();
+								
+								//NEED TO RECREATE STORE FOR GUIDANCE LIST BECAUSE THE ONBEFORERENDER DELETES RECORD
+								//me.getGuidanceList().onBeforeRender();
+								me.createGuidancePanel();
+								
+							},
+							failure: function(response) {
+								console.error(response);	
+							}
+						});
+					} else {
+						relatedPipe = Ext.create('WIDGaT.model.Pipe');
+						if(record.get('type').toLowerCase() == 'action') {
+							relatedPipe.set('to', valueAction);
+							relatedPipe.set('from', recordAction);
+						} else {
+							if(verifOutput || verifNumber) {
+								relatedPipe.set('from', valueAction);
+							}
+							else {
+								relatedPipe.set('from', '['+valueAction+']');
+							}
+							relatedPipe.set('to', recordAction);
+							//relatedPipe.set('from', valueAction);
+						}
+						Ext.data.JsonP.request({
+							url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+							params: {
+								'verb': 'append-pipe',
+								'name': WIDGaT.activeWidget.get('id'),
+								'value': Ext.JSON.encode(relatedPipe.json4Serv()),
+								'key': 'WIDGaT-918273645-911'
+							},
+							success: function(response) {
+								if(WIDGaT.debug) console.log(response);
+								WIDGaT.activeWidget.pipes().add(relatedPipe);
+								//me.getActionWindow().close();
+								me.getWidgetView().setSrc();
+								if(WIDGaT.debug) console.log("success me.getGuidanceList()", me.getGuidanceList());
+								//me.getGuidanceList().onBeforeRender();
+								me.createGuidancePanel();
+								
+							},
+							failure: function(response) {
+								console.error(response);	
+							}
+						});
+					}
+					
 				}
 				else {
 				
