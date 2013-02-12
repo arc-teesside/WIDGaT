@@ -24,3 +24,9 @@ Mon, 21 Jan 13 13:11:46 +0000 -- Scott Lee -- j9036811@live.tees.ac.uk -- It wou
 
 
 Tue, 22 Jan 13 11:17:16 +0000 -- Colin Galley -- colin.galley@newdur.ac.uk -- Hi I can add the text answer quiz into my table but how do I set it to say if the answer is right or wrong. the second answer comes first before the first answer. Not sure if I need to link it to something else or not. I am trying to get it done today as I have no students in if you can let me know either by e-mail or by phone 01913754047
+Mon, 04 Feb 13 13:26:07 +0000 -- Scott Lee -- j9036811@live.tees.ac.uk -- Hi Frank,
+
+Would it be possible to have the "Deadline" component resizeable, so multiple components could fit on a reasonably sized stage.
+
+Thanks.
+Mon, 04 Feb 13 22:13:05 +0000 -- Elaine -- e.pearson@tees.ac.uk -- deadline component seems to have a bug - returns invalid data message whatever you put in. 

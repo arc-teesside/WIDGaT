@@ -300,6 +300,8 @@ Ext.define('WIDGaT.controller.Compos', {
 				
 				var attrWithChoices = new Array();
 				
+				
+				
 				var customEdits = new Array();
 				
 				store.each(function(attr) {
@@ -353,15 +355,19 @@ Ext.define('WIDGaT.controller.Compos', {
 						tmpObj.store = attr.choices();
 						attrWithChoices.push(tmpObj);*/
 						
+						attrWithChoices.push(attr.choices());
+						
 						/*eval('Ext.apply(me.getAttributeList(), {'
 							+'customEditors: {'
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})'
 							+'}'
 						+'});');*/
-						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attr.choices()})');
+						
+						indexAttr = attrWithChoices.length-1;
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.ChoicesComboBox", { store: attrWithChoices['+indexAttr+'] })');
 					}
 				});
-				
+				//console.log('custonEdits', customEdits);
 				if(customEdits.length > 0) {
 					
 					var customEditStr = ""
