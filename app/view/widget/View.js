@@ -111,7 +111,7 @@ Ext.define('WIDGaT.view.widget.View', {
 						+ '	left:-1px;'
 						+ '}'
 						+ '.component {'
-						+ '	display: inline-block;'
+						//+ '	display: inline-block;'
 						+ '	cursor: pointer;'
 						+ '	border: none;'
 						+ '}'
