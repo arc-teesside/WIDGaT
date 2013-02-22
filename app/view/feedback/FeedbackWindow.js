@@ -13,7 +13,7 @@ Ext.define('WIDGaT.view.feedback.FeedbackWindow' ,{
     
     initComponent: function() {
 		Ext.apply(this, {
-			height: 344,
+			height: 295,
 			width: 336,
 			border: false,
 			layout:'fit',
@@ -28,8 +28,9 @@ Ext.define('WIDGaT.view.feedback.FeedbackWindow' ,{
 						var win = this.up('window');
 						if(form.isValid()) {
 							fieldValues = form.getFieldValues()
-							fieldValues.recaptcha_response_field = this.up('window').down('recaptcha').getResponse();
-							fieldValues.recaptcha_challenge_field = this.up('window').down('recaptcha').getChallenge();
+							fieldValues.widgetID = WIDGaT.activeWidget.get('id');
+							//fieldValues.recaptcha_response_field = this.up('window').down('recaptcha').getResponse();
+							//fieldValues.recaptcha_challenge_field = this.up('window').down('recaptcha').getChallenge();
 							console.log(fieldValues);
 							
 							form.submit({

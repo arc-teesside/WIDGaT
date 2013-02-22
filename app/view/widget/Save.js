@@ -127,7 +127,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 					textAlign: 'center'
 				},
 				defaults: {
-					columnWidth: 0.5
+					columnWidth: 1/3
 				},
 				items:[{
 					xtype: 'container',
@@ -137,6 +137,15 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 						xtype: 'button',
 						id: 'btnBookmark',
 						text: 'Bookmark link'
+					}
+				}, {
+					xtype: 'container',
+					layout: 'anchor',
+					//html: '<img src="resources/images/arDl.png" alt="Download" /><br />Download',
+					items: {
+						xtype: 'button',
+						id: 'btnEmailMe',
+						html: '<b>Email me!</b>'
 					}
 				}, {
 					xtype: 'container',

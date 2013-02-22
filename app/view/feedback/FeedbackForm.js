@@ -40,16 +40,16 @@ Ext.define('WIDGaT.view.feedback.FeedbackForm' ,{
 				xtype: 'textareafield',
 				afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>',
 				name: 'comment',
-				rows: 6,
+				rows: 12,
 				allowBlank: false
-			},Ext.create('WIDGaT.util.ReCaptcha',{
+			}]/*,Ext.create('WIDGaT.util.ReCaptcha',{
 				fieldLabel: 'Captcha',
 				name: 'recaptcha',
 				recaptchaId: 'recaptcha',
 				publickey: '6LeQc9cSAAAAAIxDsVMQrY0iE6WZaJOJL5sGuR93',
 				theme: 'white',
 				lang: 'en'
-			})]
+			})]*/
 		});
         this.callParent(arguments);
     }

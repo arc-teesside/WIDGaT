@@ -95,6 +95,9 @@ Ext.define('WIDGaT.controller.Widgets', {
             '#btnBookmark': {
     			click: me.onBookmarkButtonClick
     		},
+			'#btnEmailMe': {
+				click: me.onBtnEmailMeClick
+			},
     		'#move-finish': {
     			click: me.onFinishButtonClick
     		},
@@ -350,6 +353,27 @@ Ext.define('WIDGaT.controller.Widgets', {
 	onBookmarkButtonClick: function() {
 		alert("Use ctrl+D");
     },
+	
+	onBtnEmailMeClick: function() {
+		console.log('EmailMEEEEEE');
+		
+		Ext.Msg.prompt('Email', 'Please enter your email:', function(btn, text) {
+			if(btn == 'ok') {
+				//email using php
+				Ext.Ajax.request({
+					url: 'email.php',
+					params: {
+						email: text,
+						widgetID: WIDGaT.activeWidget.get('id')
+					},
+					success: function(response){
+						Ext.Msg.alert('Status',response.responseText);
+						// process server response here
+					}
+				});
+			}
+		});
+	},
 	
     onBtnDownloadClick: function(btn) {
 		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onBtnDownloadZip()");

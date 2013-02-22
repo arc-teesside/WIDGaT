@@ -4,10 +4,12 @@ require_once('recaptchalib.php');
 
 if(isset($_POST['name']) && !empty($_POST['name']) &&
 	isset($_POST['email']) && !empty($_POST['email']) &&
-	isset($_POST['comment']) && !empty($_POST['comment']) &&
-	isset($_POST["recaptcha_response_field"]) && !empty($_POST['recaptcha_response_field'])) {
+	isset($_POST['widgetID']) && !empty($_POST['widgetID']) &&
+	isset($_POST['comment']) && !empty($_POST['comment'])) {
+	
+	//isset($_POST["recaptcha_response_field"]) && !empty($_POST['recaptcha_response_field'])) {
 
-	$privatekey = "6LeQc9cSAAAAAKCQwraAaglVZRHadv_Q9lviiXoV";
+	/*$privatekey = "6LeQc9cSAAAAAKCQwraAaglVZRHadv_Q9lviiXoV";
 
 	# the response from reCAPTCHA
 	$resp = null;
@@ -21,26 +23,26 @@ if(isset($_POST['name']) && !empty($_POST['name']) &&
 											$_POST["recaptcha_challenge_field"],
 											$_POST["recaptcha_response_field"]);
 
-			if ($resp->is_valid) {
+			if ($resp->is_valid) {*/
 							
 				$fh = fopen("fdbck.txt", 'a+') or die("can't open file");
 				
 				fread($fh, filesize("fdbck.txt"));
 				
-				$stringData = date(DATE_RFC822)." -- ".$_POST['name']." -- ".$_POST['email']." -- ".$_POST['comment'].PHP_EOL;
+				$stringData = date(DATE_RFC822)." -- ".$_POST['widgetID']." -- ".$_POST['name']." -- ".$_POST['email']." -- ".$_POST['comment'].PHP_EOL;
 				
 				fwrite($fh, $stringData);
 				
 				fclose($fh);
 				
-			} else {
+			/*} else {
 					# set the error code so that we can display it
 					//header("HTTP/1.0 400");
 					header('Bad captcha', true, 400);
 					echo '101';
 					die();
 			}
-	}
+	}*/
 } else {
 	header("HTTP/1.0 400");
 }
