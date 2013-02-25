@@ -42,3 +42,29 @@ the first is that I have put in the rough design of my widgat, then when i try t
 the second (this may just be me missing something) is when I have input all my test into the textboxes then start doing the timers all my text disappers, do I need to save or something to stop this happening?
 Fri, 22 Feb 13 15:43:57 +0000 -- w@k132m-d1357670 -- F -- ff@free.fr -- somme comment here
 Fri, 22 Feb 13 16:31:29 +0000 -- w@k132m-g2840405 -- Lawrence  -- k0084447@live.tees.ac.uk -- How do you center the calender?
+Mon, 25 Feb 13 12:28:41 +0000 -- w@k132p-c2209857 -- kirsty hudson -- k0020999@tees.ac.uk -- Hi, I'm currently trying to change the background colour but the style attribute (component style - background)  doesn't seem to be working at the moment
+Mon, 25 Feb 13 12:41:54 +0000 -- w@k132m-g3402858 -- Lawrence Smith -- k0084447@live.tees.ac.uk -- Currently when I try and delete the top image it deletes everything else rather than the image itself.
+
+Also, even though I have referenced the image like the other images below it doesn't display the image.
+
+I was also hoping it would be possible to center the calender as I can't do at the moment.
+Mon, 25 Feb 13 12:43:13 +0000 -- w@k132p-c2746756 -- Ann-Marie Merrie -- k0023198@live.tees.ac.uk -- I need multiple rows and columns on the grid within the paging component the paging component seems to cancel out the grid?
+
+I need also a component box at the bottom of the paging screen where the user when clicking on the symbol it will display in the box at the bottom of the screen.
+
+I also need the option to add a sound to the images which will say what the symbol is when clicked. Is it possible for me to upload my own voice and then the symbols to act as buttons so when they are pressed they are placed in the box at the bottom of the screen and play the sound.
+
+Is this possible?
+Mon, 25 Feb 13 12:49:52 +0000 -- w@k132p-c2746756 -- Ann-Marie Merrie -- k0023198@live.tees.ac.uk -- I want to be able to edit the symbol once it is placed in the paging but the paging blocks this. Is this possible?
+Mon, 25 Feb 13 13:05:14 +0000 -- w@k132p-c0119967 -- Steven -- m2179673@live.tees.ac.uk -- http://arc.tees.ac.uk/WIDGaT/Tool/?w=w@k132p-c0119967
+
+Hi frank,
+
+above is my widg@t url for you to look at,
+
+I would like the option of removing the text display from the deadline calculator and is there a way to allow the calculator to dynamically update its values if possible?
+
+also the scroll on the deadline attributes will not let you scroll, steve has seen this and may explane better
+
+many thanks
+Steven
