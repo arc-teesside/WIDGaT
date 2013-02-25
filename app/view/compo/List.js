@@ -22,7 +22,7 @@ Ext.define('WIDGaT.view.compo.List' ,{
 			collapsible: true,
 			layout: { 
 						type: 'accordion',
-						multi: true
+						multi: false
 					},
 			width: 180
 		});

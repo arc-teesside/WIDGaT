@@ -276,6 +276,16 @@ margin-top: 21px;
 	background-image:url('images/blockAlignIcons.png')
 }
 
+.x-edit-inlineleft{
+	background-position:0 0;
+	background-image:url('images/image-align-left.png')
+}
+
+.x-edit-inlineright{
+	background-position:0 0;
+	background-image:url('images/image-align-right.png')
+}
+
 .clearBoth {
 	clear:both;
 }

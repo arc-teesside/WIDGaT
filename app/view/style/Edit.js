@@ -248,7 +248,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 							})
 						}
 					}]
-				}, {
+				},/* {
 					xtype: 'combobox',
 					fieldLabel: 'Display',
 					queryMode: 'local',
@@ -266,7 +266,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 							{"value":"inline", "text":"Inline"}
 						]
 					})
-				}, {
+				}, */{
 					xtype: 'container',
 					style: {
 						marginTop: '10px'
@@ -283,21 +283,165 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 						tooltip: 'Align the component to the left',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-displayleft',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"position": "left"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}, {
 						xtype: 'button',
 						itemId : 'displaycenter',
 						tooltip: 'Align the component in center',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-displaycenter',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"position": "center"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}, {
 						xtype: 'button',
 						itemId : 'displayright',
 						tooltip: 'Align the component to the right',
 						cls : Ext.baseCSSPrefix + 'btn-icon',
 						iconCls: Ext.baseCSSPrefix + 'edit-displayright',
-						enableToggle: false
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"position": "right"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
+					}]
+				}, {
+					xtype: 'container',
+					style: {
+						marginTop: '10px'
+					},
+					defaults: {
+						margin: '0 8 0 0'
+					},
+					items:[{
+						xtype: 'button',
+						itemId : 'inlineleft',
+						tooltip: 'Align the component inline left',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-inlineleft',
+						enableToggle: false,
+						margin: '0 8 0 70',
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"position": "next"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
+					}, {
+						xtype: 'button',
+						itemId : 'inlineright',
+						tooltip: 'Align the component inline right',
+						cls : Ext.baseCSSPrefix + 'btn-icon',
+						iconCls: Ext.baseCSSPrefix + 'edit-inlineright',
+						enableToggle: false,
+						handler: function() {
+							if(WIDGaT.selectedCompo) {
+								var tmpO = {
+									"root": "$['"+WIDGaT.selectedCompo.get('id')+"']",
+									"position": "end"
+								}
+								
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'style',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': Ext.JSON.encode(tmpO),
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										Ext.getCmp('iFrameWidgetView').setSrc();
+									},
+									failure: function(response) {
+										console.error(response);	
+									}
+								});
+							}
+						}
 					}]
 				}
 			],
