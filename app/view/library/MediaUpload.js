@@ -26,10 +26,11 @@ Ext.define('WIDGaT.view.library.MediaUpload' ,{
 								url: 'file-upload.php',
 								waitMsg: 'Uploading your file...',
 								success: function(fp, o) {
-									msg('Success', 'Your file has been uploaded');
+									Ext.getCmp('library-panel').loadMedia();
+									Ext.Msg.alert('Success', 'Your file has been uploaded');
 								},
 								failure: function(f, o) {
-									msg('Error', 'The following error occured: ' + o.result.error);
+									Ext.Msg.alert('Error', 'The following error occured: ' + o.result.error);
 								}
 							});
 						}

@@ -21,9 +21,9 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 			autoExpandColumn : 'name',
 			viewConfig: {
 				plugins: {
-					ptype: 'gridviewdragdrop',
+					ptype: 'gridviewdragdrop'/*,
 					ddGroup: 'depGridDD',
-					dragText: 'Drag and drop to reorganize'
+					dragText: 'Drag and drop to reorganize'*/
 				}
 			},
 			columns: [
@@ -37,7 +37,21 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 						tooltip: 'Insert',
 						handler: function(grid, rowIndex, colIndex) {
 							var rec = grid.getStore().getAt(rowIndex);
-							alert("Terminate " + rec.get('name'));
+							var recName = rec.get('name');
+							
+							var recExt = recName.substr(recName.lastIndexOf('.')+1);
+							recExt.toLowerCase();
+							
+							
+								if(recExt == "png" || recExt == "jpeg" || recExt == "jpg" || recExt == "gif") {
+									console.log('add img cmp');
+									
+									
+								} else if(recExt == "wav" || recExt == "mp3") {
+									console.log('add sound cmp');
+									
+									
+								}
 						}
 					}, {
 						icon: 'resources/images/delete.png',
@@ -64,5 +78,29 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 			}
 		});
         this.callParent(arguments);
-    }
+    },
+	
+	loadMedia: function() {
+		var me = this;
+		
+		//Load library
+		Ext.data.JsonP.request({
+			url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+			params: {
+				'verb': 'media',
+				'name': WIDGaT.activeWidget.get('id'),
+				'key': 'WIDGaT-918273645-911'
+			},
+			success: function(response) {
+				var arLibrary = new Array();
+				Ext.each(response.files, function(file, index) {
+					var tmpOL = new Object();
+					tmpOL.name = file;
+					tmpOL.type = "Image";
+					arLibrary.push(tmpOL);
+				});
+				me.getStore().loadData(arLibrary);
+			}
+		});
+	}
 });
