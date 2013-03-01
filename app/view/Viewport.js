@@ -33,7 +33,7 @@ Ext.define('WIDGaT.view.Viewport', {
 					items: [
 						Ext.create('WIDGaT.view.style.Edit'),
 						Ext.create('WIDGaT.view.attribute.List'),
-						Ext.create('WIDGaT.view.widget.Library')
+						Ext.create('WIDGaT.view.library.LibraryGrid')
 					]
 				},
                 Ext.create('WIDGaT.view.compo.List'),

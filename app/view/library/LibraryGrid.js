@@ -5,9 +5,9 @@ This work is licensed under a Creative Commons Attribution Non-Commercial ShareA
 
 Contact:  http://arc.tees.ac.uk/
 */
-Ext.define('WIDGaT.view.widget.Library' ,{
+Ext.define('WIDGaT.view.library.LibraryGrid' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.library',
+    alias : 'widget.librarygrid',
 
     title : 'Library',
     

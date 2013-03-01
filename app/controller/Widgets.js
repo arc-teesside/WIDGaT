@@ -31,7 +31,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		{ref: 'selectTplPanel', selector: 'selecttplpanel'},
 		{ref: 'guidancePanel', selector: '#guidancePanel'},
 		{ref: 'includedCompoGrid', selector: '#included-compo-grid'},
-		{ref: 'libraryList', selector: 'library'}
+		{ref: 'libraryList', selector: 'librarygrid'}
     ],
 
     init: function() {
@@ -355,8 +355,7 @@ Ext.define('WIDGaT.controller.Widgets', {
     },
 	
 	onBtnEmailMeClick: function() {
-		console.log('EmailMEEEEEE');
-		
+				
 		Ext.Msg.prompt('Email', 'Please enter your email:', function(btn, text) {
 			if(btn == 'ok') {
 				//email using php

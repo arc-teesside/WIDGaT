@@ -22,7 +22,8 @@ Ext.application({
         'Attributes',
         'Templates',
 		'Guidances',
-		'Actions'
+		'Actions',
+		'Library'
     ],
     
     autoCreateViewport: true,

@@ -253,6 +253,10 @@ margin-top: 21px;
 	font-size:100px
 }
 
+.upload-icon {
+background: url('images/image_add.png') no-repeat 0 0 !important;
+}
+
 .x-form-more-trigger {
 	background-image:url('images/more-trigger.gif')
 }
