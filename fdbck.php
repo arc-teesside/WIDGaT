@@ -25,9 +25,9 @@ if(isset($_POST['name']) && !empty($_POST['name']) &&
 
 			if ($resp->is_valid) {*/
 							
-				$fh = fopen("fdbck.txt", 'a+') or die("can't open file");
+				$fh = fopen("../fdbck.txt", 'a+') or die("can't open file");
 				
-				fread($fh, filesize("fdbck.txt"));
+				fread($fh, filesize("../fdbck.txt"));
 				
 				$stringData = date(DATE_RFC822)." -- ".$_POST['widgetID']." -- ".$_POST['name']." -- ".$_POST['email']." -- ".$_POST['comment'].PHP_EOL;
 				
