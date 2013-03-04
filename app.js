@@ -31,7 +31,7 @@ Ext.application({
     launch: function() {
 	
 		WIDGaT.debug = true;
-		
+		window.myAppGlobal = this;
     	if(WIDGaT.debug) console.log("WIDGaT.launch()");
 		
 		Ext.QuickTips.init();
