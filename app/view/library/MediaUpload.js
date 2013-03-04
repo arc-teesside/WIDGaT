@@ -27,8 +27,8 @@ Ext.define('WIDGaT.view.library.MediaUpload' ,{
 								waitMsg: 'Uploading your file...',
 								success: function(fp, o) {
 									Ext.getCmp('library-panel').loadMedia();
-									window.myAppGlobal.getController('WIDGaT.controller.Widgets').updateGlobalStores();
-									
+									//window.myAppGlobal.getController('WIDGaT.controller.Widgets').updateGlobalStores();
+									me.fireEvent('fileuploaded');
 									Ext.Msg.alert('Success', 'Your file has been uploaded');
 								},
 								failure: function(f, o) {

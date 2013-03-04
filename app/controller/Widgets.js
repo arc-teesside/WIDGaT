@@ -41,6 +41,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 				itemclick: me.onTemplateItemClick,
 				containerclick: me.onTemplateContainerClick
 			},
+			'mediaupload': {
+				fileuploaded: me.updateGlobalStores
+			},
             '#usecaseButton': {
                 click: me.onUsecaseButtonClick
             },
