@@ -326,6 +326,26 @@ Ext.define('WIDGaT.controller.Compos', {
 						+'});');*/
 						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")');
 					}
+					
+					if(attr.get('name').toLowerCase() == 'url') {
+						if(WIDGaT.debug) console.log('registering customEditor for images');
+						//if(WIDGaT.debug) console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
+						
+						
+						
+						/*var existingP = null;
+						if( existingP = WIDGaT.activeWidget.pipes().findRecord('from', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
+							attr.set('value', existingP.get('to'));  //don't set value here but when creating pipe so it doesn't trigger the update event on the store
+						} else if( existingP = existingP = WIDGaT.activeWidget.pipes().findRecord('to', attr.get('widgat.model.compo_id') + '.' + attr.get('shortName'))) {
+							attr.set('value', existingP.get('from'));
+						}*/
+						/*eval('Ext.apply(me.getAttributeList(), {'
+							+'customEditors: {'
+							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")'
+							+'}'
+						+'});');*/
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.MediaCombo")');
+					}
 						
 					if(attr.get('input')) {
 						

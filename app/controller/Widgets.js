@@ -171,6 +171,31 @@ Ext.define('WIDGaT.controller.Widgets', {
 						});
 					});
 					
+					
+					Ext.data.JsonP.request({
+						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+						params: {
+							'verb': 'media',
+							'name': WIDGaT.activeWidget.get('id'),
+							'key': 'WIDGaT-918273645-911'
+						},
+						success: function(response) {
+							var arLibrary = new Array();
+							Ext.each(response.files, function(file, index) {
+								var tmpOL = new Object();
+								tmpOL.url = "http://arc.tees.ac.uk/WIDEST/Widget/Output/"+WIDGaT.activeWidget.get('id')+'/media/'+file;
+								tmpOL.name = file;
+								arLibrary.push(tmpOL);
+							});
+							var mediaStore =  Ext.create('Ext.data.Store', {
+								fields: ['url', 'name'],
+								data : arLibrary
+							});
+							WIDGaT.mediaStore = mediaStore;
+							console.log('mediaStore:', arLibrary);
+						}
+					});
+					
 					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
