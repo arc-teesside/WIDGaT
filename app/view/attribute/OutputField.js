@@ -127,7 +127,7 @@ Contact:  http://arc.tees.ac.uk/
   getRawValue:function(){
 	if(WIDGaT.debug) console.log("getRawValue value", this.inputEl.dom.value);
 	if(this.inputEl.dom.value != this.value) {
-		if(this.inputEl.dom.value != '')
+		//if(this.inputEl.dom.value != '')
 			this.value = this.inputEl.dom.value;
 		if(this.picker)
 			this.picker.getSelectionModel().deselectAll();

@@ -118,23 +118,23 @@ Ext.define('WIDGaT.view.widget.View', {
 						+ '.selected {'
 						+ '	border: 2px solid #fed22f;'
 						+ '}'
-						+'.component:before, .component:after {'
+						/*+'.component:before, .component:after {'
 						+'		content:"";'
 						+'		display:table;'
-						+'}'
+						+'}'*/
 						+'.component:after {'
 						+'		clear:both;'
 						+'}'
 						+'.component {'
 						+'		zoom:1;' /* For IE 6/7 (trigger hasLayout) */
 						+'}'
-						+'.placeholder:before, .placeholder:after {'
+						/*+'.placeholder:before, .placeholder:after {'
 						+'		content:"";'
 						+'		display:table;'
 						+'}'
 						+'.placeholder:after {'
 						+'		clear:both;'
-						+'}'
+						+'}'*/
 						+'.placeholder {'
 						+'		zoom:1;' /* For IE 6/7 (trigger hasLayout) */
 						+'}';
