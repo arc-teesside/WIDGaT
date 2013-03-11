@@ -327,8 +327,8 @@ Ext.define('WIDGaT.controller.Compos', {
 						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")');
 					}
 					
-					if(attr.get('name').toLowerCase() == 'url') {
-						if(WIDGaT.debug) console.log('registering customEditor for images');
+					if(attr.get('type').toLowerCase() == 'image' || attr.get('type').toLowerCase() == 'sound' || attr.get('name').toLowerCase() == 'url') {
+						if(WIDGaT.debug) console.log('registering customEditor for medias');
 						//if(WIDGaT.debug) console.log(me.getAttributeList().getDockedComponent('attributeToolbar'));
 						
 						
@@ -344,7 +344,15 @@ Ext.define('WIDGaT.controller.Compos', {
 							+'	"' + attr.get('name') + '": Ext.create("WIDGaT.view.action.ActionPicker")'
 							+'}'
 						+'});');*/
-						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.MediaCombo")');
+						
+						var mediaType;
+						
+						if(attr.get('type').toLowerCase() != 'image' && attr.get('type').toLowerCase() != 'sound' && attr.get('name').toLowerCase() == 'url')
+							mediaType = 'Image';
+						else
+							mediaType = attr.get('type');
+						
+						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.MediaCombo", { mediaType: "'+mediaType+'" })');
 					}
 						
 					if(attr.get('input')) {

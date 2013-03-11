@@ -5,7 +5,7 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 		$file_temp = $_FILES['formFile']['tmp_name'];
 		$file_name = $_FILES['formFile']['name'];
 		$file_ext = substr($file_name,strrpos( $file_name, '.')+1);
-		$file_size_max = 500000;
+		$file_size_max = 2000000;
 		
 		$widgetID = $_POST['widgetID'];
 		
@@ -91,8 +91,23 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 				}
 			
 			} elseif ($file_ext == 'wav' || $file_ext == 'mp3') {
-				//upload wav & mp3
-				echo '{"success":false, "error":'.json_encode("Sounds are not supported at this time. Apologies").'}';
+				if (!empty($file_temp) && is_uploaded_file($file_temp)) {
+					if (filesize($file_temp)<$file_size_max) {
+						if (move_uploaded_file($file_temp, $file_folder.$file_nameTemp)) {
+							unlink($file_folder.$file_nameTemp);
+							echo '{"success":true}';
+						}
+						else {
+							echo '{"success":false, "error":'.json_encode("An error occured during the upload.").'}';
+						}
+					}
+					else {
+						echo '{"success":false, "error":'.json_encode("Your file is to big").'}';
+					}
+				}
+				else {
+					echo '{"success":false, "error":'.json_encode("No file to upload").'}';
+				}
 			} else {
 				echo '{"success":false, "error":'.json_encode("Wrong file format (Accepted format: JPG, JPEG, GIF, PNG, WAV, MP3)").'}';
 			}

@@ -96,7 +96,14 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 				Ext.each(response.files, function(file, index) {
 					var tmpOL = new Object();
 					tmpOL.name = file;
-					tmpOL.type = "Image";
+					
+					var fileExt = file.substr(file.lastIndexOf('.')+1).toLowerCase();
+					if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
+						tmpOL.type = "Image";
+					else if(fileExt == "wav" || fileExt == "mp3")
+						tmpOL.type = "Sound";
+					else
+						tmpOL.type = "Other";
 					arLibrary.push(tmpOL);
 				});
 				me.getStore().loadData(arLibrary);

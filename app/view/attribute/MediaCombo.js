@@ -12,12 +12,13 @@ Ext.define('WIDGaT.view.attribute.MediaCombo', {
 	initComponent: function(){
 		var me = this;
 		
+		console.log('Media type', this.mediaType);
 		
 		Ext.apply(me, {  
 			allowBlank: true,
 			blankText: 'Select file',
 			editable: true,
-			store: WIDGaT.mediaStore,
+			store: WIDGaT.mediaStore.filter('type', me.mediaType),
 			queryMode: 'local',
 			displayField: 'name',
 			valueField: 'url',

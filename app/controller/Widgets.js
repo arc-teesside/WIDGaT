@@ -1115,10 +1115,19 @@ Ext.define('WIDGaT.controller.Widgets', {
 					var tmpOL = new Object();
 					tmpOL.url = "http://arc.tees.ac.uk/WIDEST/Widget/Output/"+WIDGaT.activeWidget.get('id')+'/media/'+file;
 					tmpOL.name = file;
+					
+					var fileExt = file.substr(file.lastIndexOf('.')+1).toLowerCase();
+					if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
+						tmpOL.type = "Image";
+					else if(fileExt == "wav" || fileExt == "mp3")
+						tmpOL.type = "Sound";
+					else
+						tmpOL.type = "Other";
+					
 					arLibrary.push(tmpOL);
 				});
 				var mediaStore =  Ext.create('Ext.data.Store', {
-					fields: ['url', 'name'],
+					fields: ['url', 'name', 'type'],
 					data : arLibrary
 				});
 				WIDGaT.mediaStore = mediaStore;
