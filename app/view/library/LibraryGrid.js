@@ -96,7 +96,7 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 				Ext.each(response.files, function(file, index) {
 					var tmpOL = new Object();
 					tmpOL.name = file;
-					
+					tmpOL.url = "http://arc.tees.ac.uk/WIDEST/Widget/Output/"+WIDGaT.activeWidget.get('id')+'/media/'+file;
 					var fileExt = file.substr(file.lastIndexOf('.')+1).toLowerCase();
 					if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
 						tmpOL.type = "Image";
