@@ -33,6 +33,10 @@ Ext.define('WIDGaT.view.MenuBar', {
 								id: 'previewButton',
 								text: 'Preview',
 								disabled: true
+							}, {
+								id: 'mobilePreviewButton',
+								text: 'Preview for Mobile',
+								disabled: true
 							}, '-',	{
 								id: 'openButton',
 								text: 'Open',

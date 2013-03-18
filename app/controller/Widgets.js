@@ -77,6 +77,9 @@ Ext.define('WIDGaT.controller.Widgets', {
             '#previewButton': {
     			click: me.onPreviewButtonClick
     		},
+            '#mobilePreviewButton': {
+    			click: me.onMobilePreviewButtonClick
+    		},
             '#toolPreview': {
     			click: me.onPreviewButtonClick
     		},
@@ -160,7 +163,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					Ext.getCmp('welcomeWindow').close();
 					
 					//populating ActionStore
-					WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
+					/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
 					WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
 					
 					WIDGaT.activeWidget.components().each(function(record) {
@@ -206,7 +209,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 							WIDGaT.mediaStore = mediaStore;
 							console.log('mediaStore:', arLibrary);
 						}
-					});
+					});*/
+					me.updateGlobalStores();
 					
 					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
@@ -250,6 +254,11 @@ Ext.define('WIDGaT.controller.Widgets', {
     onPreviewButtonClick: function() {
     	if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onPreviewButtonClick()");
 		window.open('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/','_blank','',true); //(url, target, options, history.replace)
+    },
+	
+	//File Menu mobile preview button
+	onMobilePreviewButtonClick: function() {
+		window.open('http://arc.tees.ac.uk/widest/display.aspx?w=' + WIDGaT.activeWidget.get('id'),'_blank','',true); //(url, target, options, history.replace)
     },
 	
 	//File Menu close button
@@ -748,10 +757,10 @@ Ext.define('WIDGaT.controller.Widgets', {
 		var me = this;
 		if(WIDGaT.debug) console.log('onToolBinClick');
 		
-		if(WIDGaT.selectedCompo) {
+		if(WIDGaT.selectedCompo && WIDGaT.selectedCompo.get('id') != 'template') {
 			
 			var tmpO = new Object();
-			tmpO.root = 'components[' + WIDGaT.activeWidget.components().indexOfId(WIDGaT.selectedCompo.get('id')) + ']';
+			tmpO.root = "components['" + WIDGaT.selectedCompo.get('id') + "']";
 			Ext.data.JsonP.request({
 				url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 				params: {
@@ -1152,6 +1161,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			Ext.getCmp('saveButton').setDisabled(false);
 			Ext.getCmp('exportButton').setDisabled(false);
 			Ext.getCmp('previewButton').setDisabled(false);
+			Ext.getCmp('mobilePreviewButton').setDisabled(false);
 			Ext.getCmp('closeButton').setDisabled(false);
 			Ext.getCmp('undoButton').setDisabled(false);
 			Ext.getCmp('redoButton').setDisabled(false);
@@ -1170,6 +1180,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			Ext.getCmp('saveButton').setDisabled(true);
 			Ext.getCmp('exportButton').setDisabled(true);
 			Ext.getCmp('previewButton').setDisabled(true);
+			Ext.getCmp('mobilePreviewButton').setDisabled(true);
 			Ext.getCmp('closeButton').setDisabled(true);
 			Ext.getCmp('undoButton').setDisabled(true);
 			Ext.getCmp('redoButton').setDisabled(true);
@@ -1179,5 +1190,18 @@ Ext.define('WIDGaT.controller.Widgets', {
 			Ext.getCmp('eastPanel').setDisabled(true);
 			Ext.getCmp('compo-list').setDisabled(true);
 			Ext.getCmp('centerPanel').setDisabled(true);
+			
+			if(this.getIncludedWindow())
+				this.getIncludedWindow().close();
+			if(this.getFeedbackWindow())
+				this.getFeedbackWindow().close();
+			if(this.getMetaWindow())
+				this.getMetaWindow().close();
+			if(this.getDetailsWindow())
+				this.getDetailsWindow().close();
+			if(this.getSaveWindow())
+				this.getSaveWindow().close();
+			if(this.getExportWindow())
+				this.getExportWindow().close();
 	}
 })
