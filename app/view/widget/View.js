@@ -22,12 +22,14 @@ Ext.define('WIDGaT.view.widget.View', {
 					fn : function(e){
 						if(WIDGaT.debug) console.log('datasetchanged', this, e.frameResetting);
 						//me.registerEditScript();
+						
 					}
 				},
 				dataavailable : {    //raised when the document DOM is ready (same-origin only)
 					element : 'frameElement',  // MIFElement reference
 					fn : function(e, target){
 						if(WIDGaT.debug) console.log('WIDGaT.view.widget.View.dataavailable');
+						
 					}
 				},
 				load : {
@@ -98,6 +100,9 @@ Ext.define('WIDGaT.view.widget.View', {
 						+ '	position:relative;'
 						+ '	border: 1px dashed #2a7fff;'
 						+ '	padding: 4px;'
+						+ '	-moz-box-sizing:    border-box;'
+						+ '	-webkit-box-sizing: border-box;'
+						+ '	box-sizing:        border-box;'
 						//+ '		background: url(http://arc.tees.ac.uk/WIDGaT/Tool/resources/images/placeholder_bg.png) no-repeat;'
 						+ '}'
 						/*+ '.placeholder:hover {'
@@ -116,7 +121,10 @@ Ext.define('WIDGaT.view.widget.View', {
 						+ '	border: none;'
 						+ '}'
 						+ '.selected {'
-						+ '	border: 2px solid #fed22f;'
+						+ '	border: 2px solid #fed22f !important;'
+						+ '	-moz-box-sizing:    border-box;'
+						+ '	-webkit-box-sizing: border-box;'
+						+ '	box-sizing:        border-box;'
 						+ '}'
 						/*+'.component:before, .component:after {'
 						+'		content:"";'

@@ -124,6 +124,21 @@ Ext.define('WIDGaT.view.MenuBar', {
 							}*/
 						}, {
 							text: 'FaQ'	
+						}, {
+							text: 'Browse Symbols',
+							//iconAlign: "right",
+							icon: "resources/images/ExternalLink.gif",
+							handler: function() {
+								window.open("http://arc.tees.ac.uk/WIDGaT/reference/?p=symbols", "_blank");
+							}/*,
+							listeners: {
+								mouseover: function() {
+									this.setIcon("resources/images/ExternalLink.gif");
+								},
+								mouseout: function() {
+									this.setIcon("");
+								}
+							}*/
 						}, '-',
 						{
 							text: 'About'	

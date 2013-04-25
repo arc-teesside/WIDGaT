@@ -32,6 +32,7 @@ Ext.application({
 	
 		WIDGaT.debug = true;
 		window.myAppGlobal = this;
+		window.editable = true;
     	if(WIDGaT.debug) console.log("WIDGaT.launch()");
 		
 		Ext.QuickTips.init();
