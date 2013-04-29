@@ -93,8 +93,8 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 			} elseif ($file_ext == 'wav' || $file_ext == 'mp3') {
 				if (!empty($file_temp) && is_uploaded_file($file_temp)) {
 					if (filesize($file_temp)<$file_size_max) {
-						if (move_uploaded_file($file_temp, $file_folder.$file_nameTemp)) {
-							unlink($file_folder.$file_nameTemp);
+						if (move_uploaded_file($file_temp, $file_folder.$file_name)) {
+							//unlink($file_folder.$file_nameTemp);
 							echo '{"success":true}';
 						}
 						else {

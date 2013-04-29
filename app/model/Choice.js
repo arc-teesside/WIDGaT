@@ -7,7 +7,7 @@ Contact:  http://arc.tees.ac.uk/
 */
 Ext.define('WIDGaT.model.Choice', {
     extend: 'Ext.data.Model',
-	fields: ['str'],
+	fields: ['name', 'str'],
 	
     associations: [
         { type: 'belongsTo', model: 'WIDGaT.model.Attribute' }
@@ -16,6 +16,7 @@ Ext.define('WIDGaT.model.Choice', {
 	json4Serv: function() {
 		var tmpCh = new Object()
 			
+		tmpCh.name = this.get('name');
 		tmpCh.str = this.get('str');
 			
 		return tmpCh;

@@ -17,8 +17,20 @@ Ext.define('WIDGaT.view.attribute.ChoicesComboBox', {
 			typeAhead: true,
 			queryMode: 'local',
 			selectOnFocus: true,
-			displayField: 'str',
+			displayField: 'name',
 			valueField: 'str',
+			tpl: Ext.create('Ext.XTemplate',
+				'<tpl for=".">',
+					'<tpl if="typeof name === \'string\' && name.length &gt; 0">',
+						 '<div class="x-boundlist-item">{name}</div>',
+					'</tpl>',
+					'<tpl if="typeof name === \'undefined\' || name.length == 0">',
+						 '<div class="x-boundlist-item">{str}</div>',
+					'</tpl>',
+					//   '<div class="x-boundlist-item">{[typeof name === "string" ? "{name}" : "{str}"]}</div>',
+				'</tpl>',
+				{ disableFormats: true }
+			),
 			listeners: {
 				select: {
 					fn: function(combo, records) {
@@ -33,5 +45,5 @@ Ext.define('WIDGaT.view.attribute.ChoicesComboBox', {
 			}
 		});
 		this.callParent(arguments);
-	}
+	}  
 });

@@ -58,17 +58,17 @@ Ext.define('WIDGaT.view.widget.NewWindow' ,{
 		
 		if(layout.getActiveItem().id == 'template-list') {
 			//first panel: select template
-			var vt = this.down('selecttplpanel');
+						
 			var tplName = null;
 			
-			Ext.each(vt.items.items, function(i) {
-				if(i.down('templateDataView')) {
-					if(i.down('templateDataView').getSelectedNodes().length > 0) {
-						tplName = i.down('templateDataView').getSelectedNodes()[0].id;
-						WIDGaT.newWidget.objTpl = i.down('templateDataView').getRecord(i.down('templateDataView').getSelectedNodes()[0]);
-					}
+			if(this.down('templateDataView')) {
+				var tplDV = this.down('templateDataView');
+				if(tplDV.getSelectedNodes().length > 0) {
+					tplName = tplDV.getSelectedNodes()[0].id;
+					WIDGaT.newWidget.objTpl = tplDV.getRecord(tplDV.getSelectedNodes()[0]);
+					console.log('WIDGaT.newWidget.objTpl', WIDGaT.newWidget.objTpl);
 				}
-			});
+			}
 			
 			WIDGaT.newWidget.set('template', tplName);
 			

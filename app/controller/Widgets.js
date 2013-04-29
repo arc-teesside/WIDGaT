@@ -608,11 +608,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 	//New Widget Window
 	onTemplateItemClick: function (view, record, htmlItem, index) {
 		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onTemplateItemClick()");
-		var vt = this.getNewWindow().down('selecttplpanel');
-		Ext.each(vt.items.items, function(i) {
-			if(i.down('templateDataView'))
-				i.down('templateDataView').getSelectionModel().deselectAll();
-		});
+		
 		view.select(index);
 		WIDGaT.selectedTemplate = record;
 		Ext.getCmp('move-next').setDisabled(false);
@@ -621,11 +617,10 @@ Ext.define('WIDGaT.controller.Widgets', {
 	
 	onTemplateContainerClick: function (view, e) {
 		if(WIDGaT.debug) console.log("WIDGaT.controller.Widget.onTemplateContainerClick()");
-		var vt = this.getNewWindow().down('selecttplpanel');
-		Ext.each(vt.items.items, function(i) {
-			if(i.down('templateDataView'))
-				i.down('templateDataView').getSelectionModel().deselectAll();
-		});
+		
+		if(this.getNewWindow().down('templateDataView'))
+			this.getNewWindow().down('templateDataView').getSelectionModel().deselectAll();
+		
 		WIDGaT.selectedTemplate = null;
 		Ext.getCmp('move-next').setDisabled(true);
 		Ext.getCmp('move-finish').setDisabled(true);

@@ -34,8 +34,6 @@ Ext.define('WIDGaT.controller.Templates', {
 			scope: me,
 			load : me.onTemplatesStoreLoad
 		});
-			
-		//me.getTemplatesStore().load();
 	},
 
 	onTemplatesStoreLoad: function(store, records) {
@@ -43,23 +41,10 @@ Ext.define('WIDGaT.controller.Templates', {
 		var tblItems = new Array();
 		WIDGaT.newWidget = Ext.create('WIDGaT.model.Widget');
 		
-		Ext.each(store.getGroups(), function(group) {
-			
-			var mStore = Ext.create('WIDGaT.store.Templates')
-			mStore.loadRecords(group.children);
-			
-			var mDataView = Ext.create('WIDGaT.view.template.DataView')
-			mDataView.bindStore(mStore);
-			
-			var mPanel = Ext.create('Ext.panel.Panel', {
-				title: group.name,
-				items: mDataView
-			});
-				
-			tblItems.push(mPanel);
-		});
+		var mDataView = Ext.create('WIDGaT.view.template.DataView')
+		mDataView.bindStore(store);
 		
-		this.getNewWindow().down('#template-list').add(tblItems);
+		this.getNewWindow().down('#template-list').add(mDataView);
 	},
 
 	onAfterWindowShow: function() {
