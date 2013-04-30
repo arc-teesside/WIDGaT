@@ -351,7 +351,7 @@ Ext.define('WIDGaT.controller.Compos', {
 							mediaType = 'Image';
 						else
 							mediaType = attr.get('type');
-						
+							
 						customEdits.push('"' + attr.get('name') + '": Ext.create("WIDGaT.view.attribute.MediaCombo", { mediaType: "'+mediaType+'" })');
 					}
 						

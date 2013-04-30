@@ -14,12 +14,20 @@ Ext.define('WIDGaT.view.attribute.MediaCombo', {
 		
 		console.log('Media type', this.mediaType);
 		
+		var tmpStore = Ext.create('Ext.data.Store', {
+			fields: ['url', 'name', 'type']
+		});
+		console.log('WIDGaT.mediaStore.getGroups(me.mediaType)',WIDGaT.mediaStore.getGroups(me.mediaType));
+		if(typeof WIDGaT.mediaStore.getGroups(me.mediaType) !== 'undefined')
+			tmpStore.loadRecords(WIDGaT.mediaStore.getGroups(me.mediaType).children);
+		
 		Ext.apply(me, {  
 			allowBlank: true,
+			emptyText: 'No sound available',
 			blankText: 'Select file',
 			editable: true,
-			store: WIDGaT.mediaStore.filter('type', me.mediaType),
 			queryMode: 'local',
+			store: tmpStore,
 			displayField: 'name',
 			valueField: 'url',
 			listeners: {

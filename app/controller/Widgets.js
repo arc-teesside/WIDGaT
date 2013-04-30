@@ -1141,7 +1141,9 @@ Ext.define('WIDGaT.controller.Widgets', {
 				});
 				var mediaStore =  Ext.create('Ext.data.Store', {
 					fields: ['url', 'name', 'type'],
-					data : arLibrary
+					data : arLibrary,
+					groupField: 'type',
+					groupDir: 'ASC'
 				});
 				WIDGaT.mediaStore = mediaStore;
 				console.log('mediaStore:', arLibrary);
