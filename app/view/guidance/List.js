@@ -107,12 +107,13 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 						var relatedAttribute = relatedCmpAttributes.findRecord('shortName', record.get('shortName'));
 						
 						console.log('relatedCmp, relatedCmpAttributes', relatedCmp, relatedCmpAttributes, relatedAttribute);
-						
-						var attrValue = WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value');
-						console.log('attrValue:', attrValue);
-						if(!Ext.isEmpty(attrValue)) {
-							if(record.parentNode.get('text') != "template")
-								record.remove();
+						if(relatedAttribute != null) {
+							var attrValue = WIDGaT.activeWidget.components().getById(record.parentNode.get('text')).attributes().findRecord('shortName', record.get('shortName')).get('value');
+							console.log('attrValue:', attrValue);
+							if(!Ext.isEmpty(attrValue)) {
+								if(record.parentNode.get('text') != "template")
+									record.remove();
+							}
 						}
 					} else {
 						if(WIDGaT.debug) console.log('Guidance related pipe:', relatedPipe);
