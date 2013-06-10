@@ -15,7 +15,6 @@ Ext.define('WIDGaT.view.MenuBar', {
         
         Ext.apply(me, {
         	region: 'north',
-			ui: 'blue-toolbar',
 			style: {
 				borderLeft: 0,
 				borderTop: 0,
