@@ -10,6 +10,7 @@ Ext.define('WIDGaT.view.widget.ViewWindow' ,{
     alias : 'widget.viewwindow',
 
     title : 'Widget',
+	ui: 'blue-window',
     
     initComponent: function() {
 		Ext.apply(this, {

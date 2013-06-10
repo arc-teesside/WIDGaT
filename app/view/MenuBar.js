@@ -15,14 +15,22 @@ Ext.define('WIDGaT.view.MenuBar', {
         
         Ext.apply(me, {
         	region: 'north',
+			ui: 'blue-toolbar',
 			style: {
 				borderLeft: 0,
 				borderTop: 0,
 				borderRight: 0
 			},
+			defaults: { // defaults are applied to items, not the container
+				ui: 'blue-button'
+			},
             items: [{
 					text: 'File',
+						defaults: { // defaults are applied to items, not the container
+							ui: 'blue-button'
+						},
 					menu: {
+						ui: 'blue-panel',
 						items: [{
 								id: 'newButton',
 								text: 'New'/*,
