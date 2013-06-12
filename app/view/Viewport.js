@@ -47,6 +47,7 @@ Ext.define('WIDGaT.view.Viewport', {
 					items: [ 
 						{
 							xtype: 'panel',
+							ui: 'blue-panel',
 							title: 'Tasks',
 							id: 'guidancePanel',
 							region: 'north',

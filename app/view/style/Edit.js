@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.style.Edit' ,{
 			id: 'style-form',
 			autoScroll: true,
 			region: 'north',
+			ui: 'blue-panel',
 			split: true,
 			flex: 1,
 			fieldDefaults: {

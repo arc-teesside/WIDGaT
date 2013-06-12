@@ -4,24 +4,6 @@
  *
  * @member Global_CSS
  */
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-default {
-  line-height: 17px;
-  font-weight: 800;
-  color: #464646; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-default .x-panel-header-text {
-    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px; }
-
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-default-framed {
-  line-height: 17px;
-  font-weight: 800;
-  color: #464646; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-default-framed .x-panel-header-text {
-    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px; }
-
 /* line 248, ../../themes/stylesheets/basic/default/widgets/_panel.scss */
 .x-panel-red-panel {
   border-color: #8a8a8a; }
@@ -88,31 +70,31 @@
 .x-panel-header-red-panel-bottom-bc {
   background-position: 0 bottom; }
 
-/* line 63, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 60, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-panel {
   -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset; }
 
-/* line 69, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 66, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-text-red-panel {
   text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
-/* line 75, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 72, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-panel {
   -webkit-box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset; }
 
-/* line 82, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 79, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-panel + .x-panel-body-red-panel {
   border-top-color: #db503d; }
 
-/* line 90, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 87, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-panel .x-tool img {
   background-image: url('../../themes/images/basic-light/tools/tool-sprites-white.png'); }
 
-/* line 100, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 97, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-accordion-item .x-panel-header-red-panel {
   background-color: #e37768 !important;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e57f71), color-stop(100%, #e27364)) !important;
@@ -122,40 +104,31 @@
   background-image: linear-gradient(top, #e57f71, #e27364) !important;
   border-top-width: 0px !important;
   border-bottom-color: #df6452 !important; }
-  /* line 107, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 104, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-accordion-item .x-panel-header-red-panel .x-panel-header-text {
     color: white; }
-  /* line 110, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 107, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-accordion-item .x-panel-header-red-panel:hover {
     cursor: pointer; }
 
-/* line 115, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 112, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-accordion-hd-sibling-expanded.x-panel-header-red-panel {
   border-top: 1px solid #df6452 !important; }
 
-/* line 125, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 122, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel.x-grid .x-grid-row-selected .x-grid-cell, .x-panel-red-panel.x-grid .x-grid-row-selected .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important;
   border-right-color: #e16f5f !important;
   background-color: #e57f71 !important; }
-/* line 131, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 128, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel.x-grid .x-grid-row-selected + .x-grid-row .x-grid-cell, .x-panel-red-panel.x-grid .x-grid-row-selected + .x-grid-row .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important; }
-/* line 135, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 132, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel.x-grid .x-grid-row-selected .x-grid-cell-inner {
   color: white; }
-/* line 138, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 135, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel.x-grid .x-grid-row-selected .x-grid-rowbody {
   color: white; }
-
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-red-panel {
-  line-height: 17px;
-  font-weight: 800;
-  color: white; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-red-panel .x-panel-header-text {
-    text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
 /* line 248, ../../themes/stylesheets/basic/default/widgets/_panel.scss */
 .x-panel-red-panel-framed {
@@ -459,44 +432,35 @@
 .x-panel-header-red-panel-framed-bottom-bc {
   background-position: 0 bottom; }
 
-/* line 329, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 316, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-panel-framed {
   -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset, rgba(255, 255, 255, 0.4) 0 1px;
   -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset, rgba(255, 255, 255, 0.4) 0 1px;
   box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset, rgba(255, 255, 255, 0.4) 0 1px; }
 
-/* line 334, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 321, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-text-red-panel-framed {
   text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
-/* line 338, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 325, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel-framed {
   border-top-color: #df6452 !important; }
 
-/* line 345, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 332, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-panel-framed .x-tool img {
   background-image: url('../../themes/images/basic-light/tools/tool-sprites-white.png'); }
 
-/* line 354, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 341, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel-framed.x-grid .x-grid-row-selected .x-grid-cell, .x-panel-red-panel-framed.x-grid .x-grid-row-selected .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important;
   border-right-color: #e16f5f !important;
   background-color: #e57f71 !important; }
-/* line 360, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 347, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel-framed.x-grid .x-grid-row-selected + .x-grid-row .x-grid-cell, .x-panel-red-panel-framed.x-grid .x-grid-row-selected + .x-grid-row .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important; }
-/* line 364, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 351, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-panel-framed.x-grid .x-grid-row-selected .x-grid-cell-inner {
   color: white; }
-
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-red-panel-framed {
-  line-height: 17px;
-  font-weight: 800;
-  color: white; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-red-panel-framed .x-panel-header-text {
-    text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
 /* line 144, ../../themes/stylesheets/basic/default/widgets/_toolbar.scss */
 .x-toolbar-red-toolbar {
@@ -617,47 +581,47 @@
 .x-panel-header-red-tab-bottom-bc {
   background-position: 0 bottom; }
 
-/* line 63, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 60, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-tab {
   -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset; }
 
-/* line 69, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 66, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-text-red-tab {
   text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
-/* line 75, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 72, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-tab {
   -webkit-box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.6) 0 1px inset; }
 
-/* line 82, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 79, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-tab + .x-panel-body-red-tab {
   border-top-color: #db503d; }
 
-/* line 90, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 87, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-header-red-tab .x-tool img {
   background-image: url('../../themes/images/basic-light/tools/tool-sprites-white.png'); }
 
-/* line 161, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 158, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-red-tab > .x-tab-bar {
   background-color: #e06857;
   background-image: none;
   -webkit-box-shadow: #d73d28 0 1px inset;
   -moz-box-shadow: #d73d28 0 1px inset;
   box-shadow: #d73d28 0 1px inset; }
-  /* line 167, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 164, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar .x-tab-bar-body {
     border-right-color: #d94530; }
-  /* line 171, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 168, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar.x-tab-bar-default-plain {
     background-color: transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
-  /* line 177, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 174, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar .x-tab-default-top {
     background-color: #e06857;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e16f5f), color-stop(100%, #de604e));
@@ -669,11 +633,11 @@
     -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #d53d27 0 -1px inset;
     -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #d53d27 0 -1px inset;
     box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #d53d27 0 -1px inset; }
-    /* line 186, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+    /* line 183, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
     .x-panel-red-tab > .x-tab-bar .x-tab-default-top .x-tab-inner {
       color: white;
       text-shadow: none; }
-    /* line 191, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+    /* line 188, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
     .x-panel-red-tab > .x-tab-bar .x-tab-default-top.x-tab-over {
       background-color: #e57f71;
       background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e57f71), color-stop(100%, #e06857));
@@ -681,7 +645,7 @@
       background-image: -moz-linear-gradient(top, #e57f71, #e06857);
       background-image: -o-linear-gradient(top, #e57f71, #e06857);
       background-image: linear-gradient(top, #e57f71, #e06857); }
-    /* line 199, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+    /* line 196, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
     .x-panel-red-tab > .x-tab-bar .x-tab-default-top.x-tab-active {
       background-color: #e8e8e8;
       border-top-color: #8a8a8a;
@@ -693,186 +657,32 @@
       background-image: -moz-linear-gradient(top, #f0f0f0, #ebebeb);
       background-image: -o-linear-gradient(top, #f0f0f0, #ebebeb);
       background-image: linear-gradient(top, #f0f0f0, #ebebeb); }
-      /* line 213, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+      /* line 210, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
       .x-panel-red-tab > .x-tab-bar .x-tab-default-top.x-tab-active .x-tab-inner {
         color: #393939;
         text-shadow: rgba(255, 255, 255, 0.8) 1px 1px; }
-  /* line 222, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 219, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar .x-tab-bar-strip-default-top {
     border-top-color: #d94530; }
-  /* line 228, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 225, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar .x-tab-close-btn {
     background-image: url('../../themes/images/basic-light/tab/tab-white-close.gif'); }
-  /* line 235, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+  /* line 232, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
   .x-panel-red-tab > .x-tab-bar .x-tab-active .x-tab-close-btn {
     background-image: url('../../themes/images/basic-light/tab/tab-default-close.gif'); }
-  /* line 144, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-top {
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-color: #d94530; }
-  /* line 154, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab {
-    padding: 0 15px 0 8px;
-    background-color: #e06857;
-    -webkit-box-shadow: #d94530 0 -1px inset;
-    -moz-box-shadow: #d94530 0 -1px inset;
-    box-shadow: #d94530 0 -1px inset;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e16f5f), color-stop(100%, #de604e));
-    background-image: -webkit-linear-gradient(top, #e16f5f, #de604e);
-    background-image: -moz-linear-gradient(top, #e16f5f, #de604e);
-    background-image: -o-linear-gradient(top, #e16f5f, #de604e);
-    background-image: linear-gradient(top, #e16f5f, #de604e); }
-    /* line 163, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab .x-tab-inner {
-      color: white;
-      font-weight: 800;
-      line-height: 20px;
-      text-shadow: none; }
-  /* line 178, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-over {
-    background-color: #e57f71;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e57f71), color-stop(100%, #e06857));
-    background-image: -webkit-linear-gradient(top, #e57f71, #e06857);
-    background-image: -moz-linear-gradient(top, #e57f71, #e06857);
-    background-image: -o-linear-gradient(top, #e57f71, #e06857);
-    background-image: linear-gradient(top, #e57f71, #e06857); }
-  /* line 189, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-active {
-    -webkit-box-shadow: white 1px 0 inset;
-    -moz-box-shadow: white 1px 0 inset;
-    box-shadow: white 1px 0 inset;
-    background-color: #e8e8e8;
-    background-image: none; }
-    /* line 197, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-active .x-tab-inner {
-      color: #393939;
-      text-shadow: white 1px 1px; }
-  /* line 204, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-disabled {
-    background-color: #cf6253;
-    background-image: none; }
-    /* line 212, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-disabled .x-tab-inner {
-      color: #cccccc; }
-  /* line 219, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-plain .x-tab:first-child {
-    border-left: 1px solid #8a8a8a !important; }
-  /* line 228, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-strip-red-tab {
-    background-color: #e8e8e8;
-    border-style: solid;
-    border-left-color: #8a8a8a;
-    border-right-color: #8a8a8a; }
-  /* line 235, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-strip-red-tab-top {
-    border-top-color: #d94530; }
-  /* line 239, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-strip-red-tab-right {
-    border-right: none !important; }
-  /* line 242, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-strip-red-tab-left {
-    border-left: none !important; }
-  /* line 246, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-body-red-tab-bottom > .x-box-inner {
-    -webkit-box-shadow: #8a8a8a 0 1px inset;
-    -moz-box-shadow: #8a8a8a 0 1px inset;
-    box-shadow: #8a8a8a 0 1px inset; }
-  /* line 251, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-body-red-tab-right > .x-box-inner {
-    -webkit-box-shadow: #8a8a8a 1px 0 inset;
-    -moz-box-shadow: #8a8a8a 1px 0 inset;
-    box-shadow: #8a8a8a 1px 0 inset; }
-  /* line 256, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-body-red-tab-left > .x-box-inner {
-    -webkit-box-shadow: #8a8a8a -1px 0 inset;
-    -moz-box-shadow: #8a8a8a -1px 0 inset;
-    box-shadow: #8a8a8a -1px 0 inset; }
-  /* line 265, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-red-tab-right {
-    right: 0px !important;
-    left: auto !important;
-    z-index: 2; }
-  /* line 270, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right {
-    padding: 0px 15px 0px 8px;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    -webkit-transform-origin: 0px 0px 0px;
-    -moz-transform-origin: 0px 0px 0px;
-    -ms-transform-origin: 0px 0px 0px;
-    -o-transform-origin: 0px 0px 0px;
-    transform-origin: 0px 0px 0px;
-    border-right: 1px solid #d94530; }
-    /* line 275, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right .x-tab-inner {
-      line-height: 20px; }
-  /* line 279, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right-over {
-    background-color: #e57f71; }
-  /* line 282, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right-active {
-    background-color: #e8e8e8; }
-  /* line 285, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right-disabled {
-    background-color: #cf6253;
-    background-image: none; }
-    /* line 288, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-right-disabled .x-tab-inner {
-      color: #e0998f; }
-  /* line 297, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-bar-red-tab-left {
-    left: 0px !important;
-    right: auto !important;
-    z-index: 2; }
-  /* line 302, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left {
-    padding: 0px 15px 0px 8px;
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
-    -webkit-transform-origin: 100% 0px 0px;
-    -moz-transform-origin: 100% 0px 0px;
-    -ms-transform-origin: 100% 0px 0px;
-    -o-transform-origin: 100% 0px 0px;
-    transform-origin: 100% 0px 0px;
-    border-left: 1px solid #d94530 !important; }
-    /* line 307, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left .x-tab-inner {
-      line-height: 20px; }
-  /* line 311, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left-over {
-    background-color: #e57f71; }
-  /* line 314, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left-active {
-    background-color: #e8e8e8; }
-  /* line 317, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left-disabled {
-    background-color: #cf6253;
-    background-image: none; }
-    /* line 320, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-    .x-panel-red-tab > .x-tab-bar .x-tab-red-tab-left-disabled .x-tab-inner {
-      color: #e0998f; }
 
-/* line 280, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 267, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected .x-grid-cell, .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important;
   border-right-color: #e16f5f !important;
   background-color: #e57f71 !important; }
-/* line 286, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 273, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected + .x-grid-row .x-grid-cell, .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected + .x-grid-row .x-grid-rowwrap-div {
   border-top-color: #e16f5f !important; }
-/* line 290, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 277, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected .x-grid-cell-inner {
   color: white; }
-/* line 293, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
+/* line 280, ../../themes/stylesheets/basic/custom/ui/_panel.scss */
 .x-panel-body-red-tab > .x-tabpanel-child > .x-grid-body .x-grid-row-selected .x-grid-rowbody {
   color: white; }
 
@@ -1412,81 +1222,6 @@
 /* line 117, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
 .x-btn-red-button-large {
   padding: 2px; }
-
-/* line 130, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-small-icon .x-btn-icon-el {
-  width: 16px;
-  height: 16px; }
-
-/* line 136, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-medium-icon .x-btn-icon-el {
-  width: 24px;
-  height: 24px; }
-
-/* line 142, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-large-icon .x-btn-icon-el {
-  width: 32px;
-  height: 32px; }
-
-/* line 149, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-small-icon-text-left .x-btn-icon-el {
-  width: 16px;
-  right: auto; }
-
-/* line 155, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-medium-icon-text-left .x-btn-icon-el {
-  width: 24px;
-  right: auto; }
-
-/* line 161, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-large-icon-text-left .x-btn-icon-el {
-  width: 32px;
-  right: auto; }
-
-/* line 169, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-small-icon-text-right .x-btn-icon-el {
-  width: 16px;
-  left: auto; }
-
-/* line 175, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-medium-icon-text-right .x-btn-icon-el {
-  width: 24px;
-  left: auto; }
-
-/* line 181, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-large-icon-text-right .x-btn-icon-el {
-  width: 32px;
-  left: auto; }
-
-/* line 191, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-small-icon-text-top .x-btn-icon-el {
-  height: 16px;
-  bottom: auto; }
-
-/* line 197, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-medium-icon-text-top .x-btn-icon-el {
-  height: 24px;
-  bottom: auto; }
-
-/* line 203, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-large-icon-text-top .x-btn-icon-el {
-  height: 32px;
-  bottom: auto; }
-
-/* line 211, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-small-icon-text-bottom .x-btn-icon-el {
-  height: 16px;
-  top: auto; }
-
-/* line 217, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-medium-icon-text-bottom .x-btn-icon-el {
-  height: 24px;
-  top: auto; }
-
-/* line 223, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-large-icon-text-bottom .x-btn-icon-el {
-  height: 32px;
-  top: auto; }
 
 /* line 637, ../../themes/stylesheets/basic/default/widgets/_button.scss */
 .x-btn-red-button-toolbar-small {
@@ -2081,81 +1816,6 @@
 .x-btn-red-button-toolbar-large {
   padding: 2px; }
 
-/* line 130, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-small-icon .x-btn-icon-el {
-  width: 16px;
-  height: 16px; }
-
-/* line 136, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-medium-icon .x-btn-icon-el {
-  width: 24px;
-  height: 24px; }
-
-/* line 142, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-large-icon .x-btn-icon-el {
-  width: 32px;
-  height: 32px; }
-
-/* line 149, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-small-icon-text-left .x-btn-icon-el {
-  width: 16px;
-  right: auto; }
-
-/* line 155, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-medium-icon-text-left .x-btn-icon-el {
-  width: 24px;
-  right: auto; }
-
-/* line 161, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-large-icon-text-left .x-btn-icon-el {
-  width: 32px;
-  right: auto; }
-
-/* line 169, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-small-icon-text-right .x-btn-icon-el {
-  width: 16px;
-  left: auto; }
-
-/* line 175, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-medium-icon-text-right .x-btn-icon-el {
-  width: 24px;
-  left: auto; }
-
-/* line 181, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-large-icon-text-right .x-btn-icon-el {
-  width: 32px;
-  left: auto; }
-
-/* line 191, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-small-icon-text-top .x-btn-icon-el {
-  height: 16px;
-  bottom: auto; }
-
-/* line 197, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-medium-icon-text-top .x-btn-icon-el {
-  height: 24px;
-  bottom: auto; }
-
-/* line 203, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-large-icon-text-top .x-btn-icon-el {
-  height: 32px;
-  bottom: auto; }
-
-/* line 211, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-small-icon-text-bottom .x-btn-icon-el {
-  height: 16px;
-  top: auto; }
-
-/* line 217, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-medium-icon-text-bottom .x-btn-icon-el {
-  height: 24px;
-  top: auto; }
-
-/* line 223, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-red-button-toolbar-large-icon-text-bottom .x-btn-icon-el {
-  height: 32px;
-  top: auto; }
-
 /* line 161, ../../themes/stylesheets/basic/default/widgets/_window.scss */
 .x-window-red-window {
   border-color: #db503d;
@@ -2330,15 +1990,6 @@
 /* line 33, ../../themes/stylesheets/basic/custom/ui/_window.scss */
 .x-window-header-text-red-window {
   text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
-
-/* line 48, ../../themes/stylesheets/basic/custom/overrides/_window.scss */
-.x-window-header-text-container-red-window {
-  font-weight: 800;
-  line-height: 20px;
-  color: white; }
-  /* line 52, ../../themes/stylesheets/basic/custom/overrides/_window.scss */
-  .x-window-header-text-container-red-window .x-window-header-text {
-    text-shadow: rgba(0, 0, 0, 0.25) -1px -1px; }
 
 /* line 94, ../../themes/stylesheets/basic/default/widgets/_progress-bar.scss */
 .x-progress-red-progress {

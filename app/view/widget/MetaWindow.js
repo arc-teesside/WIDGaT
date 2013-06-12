@@ -17,6 +17,7 @@ Ext.define('WIDGaT.view.widget.MetaWindow' ,{
 			width: 500,
 			border: false,
 			layout:'fit',
+			ui: 'blue-window',
 			items: Ext.create('WIDGaT.view.usecase.Edit'),
 			bbar: [
 				'->', // greedy spacer so that the buttons are aligned to each side

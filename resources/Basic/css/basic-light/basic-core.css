@@ -396,24 +396,6 @@ tr.x-container:before {
  *
  * @member Global_CSS
  */
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-default {
-  line-height: 17px;
-  font-weight: 800;
-  color: #464646; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-default .x-panel-header-text {
-    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px; }
-
-/* line 42, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-.x-panel-header-text-container-default-framed {
-  line-height: 17px;
-  font-weight: 800;
-  color: #464646; }
-  /* line 46, ../../themes/stylesheets/basic/custom/overrides/_panel.scss */
-  .x-panel-header-text-container-default-framed .x-panel-header-text {
-    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px; }
-
 /* line 6, ../../themes/stylesheets/basic/default/widgets/_boundlist.scss */
 .x-boundlist {
   border-width: 1px;
@@ -1809,179 +1791,6 @@ tr.x-container:before {
 .x-btn .x-btn-inner, .x-btn button {
   overflow: visible; }
 
-/* line 264, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-button {
-  display: block;
-  position: relative; }
-
-/* line 270, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-icon-el {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center; }
-
-/* line 280, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-icon-text-left .x-btn-icon-el {
-  right: auto; }
-
-/* line 294, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-inner-center {
-  text-align: center; }
-
-/* line 130, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-small-icon .x-btn-icon-el {
-  width: 16px;
-  height: 16px; }
-
-/* line 136, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-medium-icon .x-btn-icon-el {
-  width: 24px;
-  height: 24px; }
-
-/* line 142, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-large-icon .x-btn-icon-el {
-  width: 32px;
-  height: 32px; }
-
-/* line 149, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-small-icon-text-left .x-btn-icon-el {
-  width: 16px;
-  right: auto; }
-
-/* line 155, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-medium-icon-text-left .x-btn-icon-el {
-  width: 24px;
-  right: auto; }
-
-/* line 161, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-large-icon-text-left .x-btn-icon-el {
-  width: 32px;
-  right: auto; }
-
-/* line 169, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-small-icon-text-right .x-btn-icon-el {
-  width: 16px;
-  left: auto; }
-
-/* line 175, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-medium-icon-text-right .x-btn-icon-el {
-  width: 24px;
-  left: auto; }
-
-/* line 181, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-large-icon-text-right .x-btn-icon-el {
-  width: 32px;
-  left: auto; }
-
-/* line 191, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-small-icon-text-top .x-btn-icon-el {
-  height: 16px;
-  bottom: auto; }
-
-/* line 197, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-medium-icon-text-top .x-btn-icon-el {
-  height: 24px;
-  bottom: auto; }
-
-/* line 203, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-large-icon-text-top .x-btn-icon-el {
-  height: 32px;
-  bottom: auto; }
-
-/* line 211, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-small-icon-text-bottom .x-btn-icon-el {
-  height: 16px;
-  top: auto; }
-
-/* line 217, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-medium-icon-text-bottom .x-btn-icon-el {
-  height: 24px;
-  top: auto; }
-
-/* line 223, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-large-icon-text-bottom .x-btn-icon-el {
-  height: 32px;
-  top: auto; }
-
-/* line 130, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-small-icon .x-btn-icon-el {
-  width: 16px;
-  height: 16px; }
-
-/* line 136, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-medium-icon .x-btn-icon-el {
-  width: 24px;
-  height: 24px; }
-
-/* line 142, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-large-icon .x-btn-icon-el {
-  width: 32px;
-  height: 32px; }
-
-/* line 149, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-small-icon-text-left .x-btn-icon-el {
-  width: 16px;
-  right: auto; }
-
-/* line 155, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-medium-icon-text-left .x-btn-icon-el {
-  width: 24px;
-  right: auto; }
-
-/* line 161, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-large-icon-text-left .x-btn-icon-el {
-  width: 32px;
-  right: auto; }
-
-/* line 169, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-small-icon-text-right .x-btn-icon-el {
-  width: 16px;
-  left: auto; }
-
-/* line 175, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-medium-icon-text-right .x-btn-icon-el {
-  width: 24px;
-  left: auto; }
-
-/* line 181, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-large-icon-text-right .x-btn-icon-el {
-  width: 32px;
-  left: auto; }
-
-/* line 191, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-small-icon-text-top .x-btn-icon-el {
-  height: 16px;
-  bottom: auto; }
-
-/* line 197, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-medium-icon-text-top .x-btn-icon-el {
-  height: 24px;
-  bottom: auto; }
-
-/* line 203, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-large-icon-text-top .x-btn-icon-el {
-  height: 32px;
-  bottom: auto; }
-
-/* line 211, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-small-icon-text-bottom .x-btn-icon-el {
-  height: 16px;
-  top: auto; }
-
-/* line 217, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-medium-icon-text-bottom .x-btn-icon-el {
-  height: 24px;
-  top: auto; }
-
-/* line 223, ../../themes/stylesheets/basic/custom/overrides/_button.scss */
-.x-btn-default-toolbar-large-icon-text-bottom .x-btn-icon-el {
-  height: 32px;
-  top: auto; }
-
 /* line 6, ../../themes/stylesheets/basic/default/widgets/_btn-group.scss */
 .x-btn-group {
   position: relative;
@@ -2409,42 +2218,6 @@ table.x-datepicker-inner .x-datepicker-selected a {
 .x-color-picker a {
   border-color: #4a4a4a !important; }
 
-/* line 38, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-.x-hide-clip {
-  position: absolute !important;
-  clip: rect(0 0 0 0); }
-
-/* line 43, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-.x-datepicker {
-  width: 177px; }
-
-/* line 46, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-.x-datepicker-inner .x-datepicker-column-header-inner {
-  text-align: center; }
-
-/* line 49, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-a.x-datepicker-next {
-  height: 16px;
-  background-image: url('../../themes/images/basic-light/shared/right-btn.gif'); }
-
-/* line 53, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-a.x-datepicker-prev {
-  height: 16px;
-  background-image: url('../../themes/images/basic-light/shared/left-btn.gif'); }
-
-/* line 59, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-.x-monthpicker-yearnav .x-monthpicker-yearnav-button-ct {
-  width: 44px;
-  height: 25px;
-  float: left; }
-/* line 64, ../../themes/stylesheets/basic/custom/overrides/_pickers.scss */
-.x-monthpicker-yearnav .x-monthpicker-yearnav-button {
-  height: 16px;
-  width: 16px;
-  display: block;
-  margin: 5px 0 0 15px;
-  background-image: url('../../themes/images/basic-light/tools/tool-sprites.png'); }
-
 /* line 6, ../../themes/stylesheets/basic/default/widgets/_colorpicker.scss */
 .x-color-picker {
   width: 144px;
@@ -2645,27 +2418,6 @@ a.x-datepicker-prev {
 /* line 200, ../../themes/stylesheets/basic/default/widgets/_menu.scss */
 .x-menu-date-item {
   border-color: #99BBE8; }
-
-/* line 16, ../../themes/stylesheets/basic/custom/overrides/_menu.scss */
-.x-menu-item-unchecked .x-menu-item-icon,
-.x-menu-item-unchecked .x-menu-item-icon-right {
-  background-image: url('../../themes/images/basic-light/menu/unchecked.gif'); }
-
-/* line 21, ../../themes/stylesheets/basic/custom/overrides/_menu.scss */
-.x-menu-item-checked .x-menu-item-icon, .x-menu-item-checked .x-menu-item-icon-right {
-  background-image: url('../../themes/images/basic-light/menu/checked.gif'); }
-
-/* line 26, ../../themes/stylesheets/basic/custom/overrides/_menu.scss */
-.x-menu-item-unchecked .x-menu-group-icon {
-  background-image: none; }
-
-/* line 31, ../../themes/stylesheets/basic/custom/overrides/_menu.scss */
-.x-menu-item-checked .x-menu-group-icon {
-  background-image: url('../../themes/images/basic-light/menu/group-checked.gif'); }
-
-/* line 35, ../../themes/stylesheets/basic/custom/overrides/_menu.scss */
-.x-menu-icon-separator {
-  height: 100%; }
 
 /* line 8, ../../themes/stylesheets/basic/default/widgets/_grid.scss */
 .x-panel .x-grid-body {
@@ -2951,7 +2703,7 @@ a.x-datepicker-prev {
   background-position: 0 0;
   background-repeat: no-repeat; }
 
-/* line 244, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
+/* line 231, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
 .x-grid-cell-selected {
   background-color: transparent !important; }
 
@@ -3447,9 +3199,9 @@ a.x-datepicker-prev {
 .x-grid-row .x-grid-cell,
 .x-grid-row .x-grid-rowwrap-div {
   border-bottom-color: transparent; }
-/* line 20, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-row:first-child .x-grid-cell,
-.x-grid-row:first-child .x-grid-rowwrap {
+/* line 28, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
+.x-grid-row:nth-child(2) .x-grid-cell,
+.x-grid-row:nth-child(2) .x-grid-rowwrap-div {
   border-top-color: transparent; }
 /* line 35, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
 .x-grid-row:last-child .x-grid-cell,
@@ -3559,50 +3311,6 @@ a.x-datepicker-prev {
 .x-grid-row-editor .x-form-trigger-wrap .x-form-spinner-up,
 .x-grid-row-editor .x-form-trigger-wrap .x-form-spinner-down {
   height: 10.5px !important; }
-
-/* line 174, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-column-header-inner {
-  line-height: normal; }
-
-/* line 179, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-row-selected .x-grid-td {
-  background-color: #d1d5db; }
-
-/* line 186, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-group-hd {
-  background-color: #e3e3e3;
-  border-width: 1px 0 0 0;
-  border-style: solid;
-  border-color: #a1a1a1;
-  -webkit-box-shadow: rgba(255, 255, 255, 0.7) 0 1px inset;
-  -moz-box-shadow: rgba(255, 255, 255, 0.7) 0 1px inset;
-  box-shadow: rgba(255, 255, 255, 0.7) 0 1px inset;
-  padding: 4px; }
-
-/* line 202, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-wrap-row:first-child .x-grid-group-hd {
-  border-top: none; }
-
-/* line 209, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-group-hd-container .x-grid-cell {
-  border-top-color: #8f8f8f !important; }
-
-/* line 218, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-row-editor .x-panel-body {
-  padding-top: 4px;
-  padding-bottom: 4px; }
-
-/* line 226, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-checkcolumn {
-  width: 15px;
-  height: 15px;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-image: url('../../themes/images/basic-light/form/checkbox.png'); }
-
-/* line 233, ../../themes/stylesheets/basic/custom/overrides/_grid.scss */
-.x-grid-checkcolumn-checked {
-  background-position: 0 -15px; }
 
 /* line 9, ../../themes/stylesheets/basic/default/widgets/form/_all.scss */
 .x-webkit *:focus {
@@ -4245,18 +3953,21 @@ textarea.x-form-invalid-field {
 
 /* line 56, ../../themes/stylesheets/basic/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifyleft,
+.x-btn-icon .x-edit-justifyleft,
 .x-menu-item img.x-edit-justifyleft {
   background-position: -112px 0;
   background-image: url('../../themes/images/basic-light/editor/tb-sprite.png'); }
 
 /* line 62, ../../themes/stylesheets/basic/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifycenter,
+.x-btn-icon .x-edit-justifycenter,
 .x-menu-item img.x-edit-justifycenter {
   background-position: -128px 0;
   background-image: url('../../themes/images/basic-light/editor/tb-sprite.png'); }
 
 /* line 68, ../../themes/stylesheets/basic/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifyright,
+.x-btn-icon .x-edit-justifyright,
 .x-menu-item img.x-edit-justifyright {
   background-position: -144px 0;
   background-image: url('../../themes/images/basic-light/editor/tb-sprite.png'); }
@@ -4430,19 +4141,6 @@ textarea.x-form-invalid-field {
 .x-fieldset-header .x-form-item,
 .x-fieldset-header .x-tool {
   margin: 2px 2px 0 0; }
-
-/* line 77, ../../themes/stylesheets/basic/custom/overrides/_form.scss */
-.x-box-target {
-  position: absolute;
-  width: 20000px;
-  top: 0;
-  left: 0;
-  height: 1px; }
-
-/* line 86, ../../themes/stylesheets/basic/custom/overrides/_form.scss */
-.x-trigger-cell {
-  background: none repeat scroll 0 0 white;
-  width: 17px; }
 
 /* line 7, ../../themes/stylesheets/basic/default/widgets/_panel.scss */
 .x-panel,
@@ -5425,11 +5123,6 @@ textarea.x-form-invalid-field {
   -moz-box-shadow: white 0 1px inset, rgba(255, 255, 255, 0.4) 1px 0 inset;
   box-shadow: white 0 1px inset, rgba(255, 255, 255, 0.4) 1px 0 inset; }
 
-/* line 7, ../../themes/stylesheets/basic/custom/overrides/_toolbar.scss */
-.x-toolbar .x-form-item-label {
-  padding: 0;
-  line-height: 22px; }
-
 /* line 6, ../../themes/stylesheets/basic/default/widgets/_window.scss */
 .x-window {
   outline: none;
@@ -5733,15 +5426,6 @@ textarea.x-form-invalid-field {
   -moz-box-shadow: none;
   box-shadow: none; }
 
-/* line 48, ../../themes/stylesheets/basic/custom/overrides/_window.scss */
-.x-window-header-text-container-default {
-  font-weight: 800;
-  line-height: 20px;
-  color: #393939; }
-  /* line 52, ../../themes/stylesheets/basic/custom/overrides/_window.scss */
-  .x-window-header-text-container-default .x-window-header-text {
-    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px; }
-
 /* line 2, ../../themes/stylesheets/basic/default/util/_messagebox.scss */
 .x-message-box .x-window-body {
   background-color: #e8e8e8;
@@ -5755,7 +5439,13 @@ textarea.x-form-invalid-field {
 .x-message-box-icon {
   width: 47px;
   height: 32px; }
-
+  .ext-mb-icon {
+  width: 32px;
+  height: 32px;
+  background: transparent no-repeat top left;
+  float:left;
+ }
+  
 /* line 19, ../../themes/stylesheets/basic/default/util/_messagebox.scss */
 .x-message-box-info,
 .x-message-box-warning,
@@ -5781,6 +5471,20 @@ textarea.x-form-invalid-field {
 
 /* line 39, ../../themes/stylesheets/basic/default/util/_messagebox.scss */
 .x-message-box-error {
+  background-image: url('../../themes/images/basic-light/shared/icon-error.gif'); }
+  
+  
+
+.x-mb-info {
+  background-image: url('../../themes/images/basic-light/shared/icon-info.gif'); }
+
+.x-mb-warning {
+  background-image: url('../../themes/images/basic-light/shared/icon-warning.gif'); }
+
+.ext-mb-question {
+  background-image: url('../../themes/images/basic-light/shared/icon-question.gif'); }
+  
+.x-mb-error {
   background-image: url('../../themes/images/basic-light/shared/icon-error.gif'); }
 
 /* line 73, ../../themes/stylesheets/basic/default/widgets/_tabbar.scss */
@@ -6238,96 +5942,96 @@ a.x-tab-close-btn:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   opacity: 0.3; }
 
-/* line 335, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 241, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bar-default-top {
   -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 2px inset, #646464 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 2px inset, #646464 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.2) 0 2px inset, #646464 0 1px inset; }
-  /* line 338, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+  /* line 244, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
   .x-tab-bar-default-top.x-tab-bar-default-plain {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
 
-/* line 343, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 249, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bar-default-bottom {
   -webkit-box-shadow: #838383 0 -1px inset, rgba(255, 255, 255, 0.8) 0 1px;
   -moz-box-shadow: #838383 0 -1px inset, rgba(255, 255, 255, 0.8) 0 1px;
   box-shadow: #838383 0 -1px inset, rgba(255, 255, 255, 0.8) 0 1px; }
-  /* line 346, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+  /* line 252, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
   .x-tab-bar-default-bottom.x-tab-bar-default-plain {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
 
-/* line 351, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 257, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bar-strip-default-bottom {
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset; }
 
-/* line 356, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 262, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab {
   border-left: none !important; }
-  /* line 359, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+  /* line 265, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
   .x-tab button {
     text-shadow: rgba(255, 255, 255, 0.25) 1px 1px; }
 
-/* line 364, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 270, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-top {
   -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #848484 0 -1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #848484 0 -1px inset;
   box-shadow: rgba(255, 255, 255, 0.2) 0 1px inset, #848484 0 -1px inset; }
 
-/* line 370, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 276, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bottom {
   -webkit-box-shadow: #848484 0 1px inset;
   -moz-box-shadow: #848484 0 1px inset;
   box-shadow: #848484 0 1px inset; }
 
-/* line 376, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 282, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-active.x-tab-top {
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 1px inset; }
-  /* line 378, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+  /* line 284, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
   .x-tab-active.x-tab-top button {
     text-shadow: rgba(255, 255, 255, 0.8) 1px 1px; }
 
-/* line 383, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 289, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-active.x-tab-bottom {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-  /* line 385, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+  /* line 291, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
   .x-tab-active.x-tab-bottom button {
     text-shadow: rgba(255, 255, 255, 0.8) 1px 1px; }
 
-/* line 390, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 296, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-top {
   border-bottom: none !important; }
 
-/* line 394, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 300, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bottom {
   border-top: none !important; }
 
-/* line 399, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 305, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-bar-default-plain .x-tab:first-child {
   border-left: 1px solid #8a8a8a !important; }
 
-/* line 404, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 310, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-nbr .x-tab-default-top {
   border-right-width: 1px !important; }
 
-/* line 411, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 317, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-top {
   background-color: #c7c7c7; }
 
-/* line 416, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 322, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-bottom {
   background-image: top, #c7c7c7, silver; }
 
-/* line 422, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 328, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-over.x-tab-top {
   background-image: none;
   background-color: #d4d4d4;
@@ -6336,7 +6040,7 @@ a.x-tab-close-btn:hover {
   background-image: -moz-linear-gradient(top, #d4d4d4, #d1d1d1);
   background-image: -o-linear-gradient(top, #d4d4d4, #d1d1d1);
   background-image: linear-gradient(top, #d4d4d4, #d1d1d1); }
-/* line 425, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 331, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-over.x-tab-bottom {
   background-image: none;
   background-color: #d4d4d4;
@@ -6346,7 +6050,7 @@ a.x-tab-close-btn:hover {
   background-image: -o-linear-gradient(top, #d4d4d4, #d1d1d1);
   background-image: linear-gradient(top, #d4d4d4, #d1d1d1); }
 
-/* line 431, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 337, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-active.x-tab-top {
   background-image: none;
   background-color: #e8e8e8;
@@ -6355,7 +6059,7 @@ a.x-tab-close-btn:hover {
   background-image: -moz-linear-gradient(top, #f0f0f0, #ebebeb);
   background-image: -o-linear-gradient(top, #f0f0f0, #ebebeb);
   background-image: linear-gradient(top, #f0f0f0, #ebebeb); }
-/* line 434, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 340, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-default-active.x-tab-bottom {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e8e8e8), color-stop(90%, #e6e6e6), color-stop(100%, #dcdcdc));
   background-image: -webkit-linear-gradient(top, #e8e8e8, #e6e6e6 90%, #dcdcdc);
@@ -6363,302 +6067,37 @@ a.x-tab-close-btn:hover {
   background-image: -o-linear-gradient(top, #e8e8e8, #e6e6e6 90%, #dcdcdc);
   background-image: linear-gradient(top, #e8e8e8, #e6e6e6 90%, #dcdcdc); }
 
-/* line 440, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 346, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-nlg .x-tab-bar {
   background-image: none !important; }
-/* line 443, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 349, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-nlg .x-tab {
   background-image: none !important; }
-/* line 448, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 354, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-nlg .x-tab-default-top-mc {
   background-image: none;
   background-color: #c7c7c7; }
 
-/* line 457, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 363, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tabpanel-child > .x-panel-body-default {
   -webkit-box-shadow: white 0 1px inset;
   -moz-box-shadow: white 0 1px inset;
   box-shadow: white 0 1px inset; }
 
-/* line 463, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 369, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-ie7 .x-tab-bar-top .x-tab-bar-strip {
   top: 19px; }
-/* line 467, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 373, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-ie7 .x-tab-bar-top .x-tab-bar-strip-default-plain {
   top: 19px; }
 
-/* line 472, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 378, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-nbr .x-tab-top {
   border-top-width: 1px !important; }
 
-/* line 477, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
+/* line 383, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
 .x-tab-disabled .x-tab-inner {
   text-shadow: none !important; }
-
-/* line 34, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-button {
-  position: relative; }
-
-/* line 38, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-icon-el {
-  width: 16px;
-  left: 0px;
-  right: auto;
-  top: -1px;
-  bottom: 0;
-  background-position: center;
-  position: absolute;
-  background-repeat: no-repeat; }
-
-/* line 52, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-right {
-  padding-left: 4px; }
-
-/* line 55, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-left {
-  padding-right: 4px; }
-
-/* line 59, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-body-vertical {
-  border-width: 1px; }
-  /* line 61, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-bar-body-vertical.x-tab-bar-body-right {
-    border-left-width: 0px; }
-  /* line 64, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-bar-body-vertical.x-tab-bar-body-left {
-    border-right-width: 0px; }
-
-/* line 70, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-strip {
-  position: absolute;
-  z-index: 1; }
-
-/* line 76, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-border-box .x-tab-top {
-  height: 21px; }
-/* line 79, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-border-box .x-tab-bottom {
-  height: 21px; }
-
-/* line 86, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-top .x-tab-bar-strip {
-  top: auto !important;
-  bottom: -1px;
-  width: 100%;
-  border-top-width: 1px solid red !important; }
-
-/* line 94, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-bottom .x-tab-bar-strip {
-  bottom: auto !important;
-  top: -1px;
-  width: 100%;
-  border-bottom: none;
-  border-top: 1px solid #8a8a8a; }
-
-/* line 103, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-vertical .x-tab-bar-strip {
-  height: 100%;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  border: 1px solid #8a8a8a; }
-/* line 110, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-vertical .x-tab-bar-strip-right {
-  width: 4px;
-  left: 0;
-  border-right: none; }
-/* line 115, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-vertical .x-tab-bar-strip-left {
-  width: 4px;
-  right: 0;
-  border-left: none; }
-
-/* line 124, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-plain {
-  background-color: transparent;
-  background-image: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none; }
-  /* line 128, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-bar-plain .x-tab-bar-body {
-    border-width: 0; }
-
-/* line 144, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-top {
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-color: #8a8a8a; }
-
-/* line 154, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default {
-  padding: 0 15px 0 8px;
-  -webkit-box-shadow: #8a8a8a 0 -1px inset;
-  -moz-box-shadow: #8a8a8a 0 -1px inset;
-  box-shadow: #8a8a8a 0 -1px inset; }
-  /* line 163, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default .x-tab-inner {
-    color: #333333;
-    font-weight: 800;
-    font-family: "Segoe UI", "Lucida Grande", tahoma, arial, verdana, sans-serif;
-    line-height: 20px;
-    text-shadow: rgba(255, 255, 255, 0.25) 1px 1px; }
-
-/* line 178, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-over {
-  background-color: #d4d4d4;
-  background-image: none; }
-  /* line 185, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-over .x-tab-inner {
-    color: #2d2d2d; }
-
-/* line 189, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-active {
-  -webkit-box-shadow: white 1px 0 inset;
-  -moz-box-shadow: white 1px 0 inset;
-  box-shadow: white 1px 0 inset;
-  background-color: #e8e8e8;
-  background-image: none; }
-  /* line 197, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-active .x-tab-inner {
-    color: #393939;
-    text-shadow: white 1px 1px; }
-
-/* line 204, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-disabled {
-  background-color: #b0b0b0;
-  background-image: none; }
-  /* line 212, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-disabled .x-tab-inner {
-    color: #535353; }
-
-/* line 219, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-plain .x-tab:first-child {
-  border-left: 1px solid #8a8a8a !important; }
-
-/* line 228, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-strip-default {
-  background-color: #e8e8e8;
-  border-style: solid;
-  border-left-color: #8a8a8a;
-  border-right-color: #8a8a8a; }
-
-/* line 235, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-strip-default-top {
-  border-top-color: #8a8a8a; }
-
-/* line 239, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-strip-default-right {
-  border-right: none !important; }
-
-/* line 242, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-strip-default-left {
-  border-left: none !important; }
-
-/* line 246, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-body-default-bottom > .x-box-inner {
-  -webkit-box-shadow: #8a8a8a 0 1px inset;
-  -moz-box-shadow: #8a8a8a 0 1px inset;
-  box-shadow: #8a8a8a 0 1px inset; }
-
-/* line 251, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-body-default-right > .x-box-inner {
-  -webkit-box-shadow: #8a8a8a 1px 0 inset;
-  -moz-box-shadow: #8a8a8a 1px 0 inset;
-  box-shadow: #8a8a8a 1px 0 inset; }
-
-/* line 256, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-body-default-left > .x-box-inner {
-  -webkit-box-shadow: #8a8a8a -1px 0 inset;
-  -moz-box-shadow: #8a8a8a -1px 0 inset;
-  box-shadow: #8a8a8a -1px 0 inset; }
-
-/* line 265, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-default-right {
-  right: 0px !important;
-  left: auto !important;
-  z-index: 2; }
-
-/* line 270, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-right {
-  padding: 0px 15px 0px 8px;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-  -webkit-transform-origin: 0px 0px 0px;
-  -moz-transform-origin: 0px 0px 0px;
-  -ms-transform-origin: 0px 0px 0px;
-  -o-transform-origin: 0px 0px 0px;
-  transform-origin: 0px 0px 0px;
-  border-right: 1px solid #8a8a8a; }
-  /* line 275, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-right .x-tab-inner {
-    line-height: 20px; }
-
-/* line 279, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-right-over {
-  background-color: #d4d4d4; }
-
-/* line 282, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-right-active {
-  background-color: #e8e8e8; }
-
-/* line 285, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-right-disabled {
-  background-color: #b0b0b0;
-  background-image: none; }
-  /* line 288, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-right-disabled .x-tab-inner {
-    color: #d6d6d6; }
-
-/* line 297, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-default-left {
-  left: 0px !important;
-  right: auto !important;
-  z-index: 2; }
-
-/* line 302, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-left {
-  padding: 0px 15px 0px 8px;
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  transform: rotate(270deg);
-  -webkit-transform-origin: 100% 0px 0px;
-  -moz-transform-origin: 100% 0px 0px;
-  -ms-transform-origin: 100% 0px 0px;
-  -o-transform-origin: 100% 0px 0px;
-  transform-origin: 100% 0px 0px;
-  border-left: 1px solid #8a8a8a !important; }
-  /* line 307, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-left .x-tab-inner {
-    line-height: 20px; }
-
-/* line 311, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-left-over {
-  background-color: #d4d4d4; }
-
-/* line 314, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-left-active {
-  background-color: #e8e8e8; }
-
-/* line 317, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-default-left-disabled {
-  background-color: #b0b0b0;
-  background-image: none; }
-  /* line 320, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-  .x-tab-default-left-disabled .x-tab-inner {
-    color: #d6d6d6; }
-
-/* line 506, ../../themes/stylesheets/basic/custom/overrides/_tabbar.scss */
-.x-tab-bar-right {
-  left: auto !important;
-  right: 0 !important; }
 
 /* line 9, ../../themes/stylesheets/basic/default/widgets/_tree.scss */
 .x-autowidth-table table.x-grid-table {
@@ -7024,12 +6463,6 @@ svg, vml {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-
-/* line 5, ../../themes/stylesheets/basic/custom/overrides/_mask.scss */
-.x-mask-msg > div {
-  padding: 0px;
-  background-image: none;
-  border: none; }
 
 /* line 3, ../../themes/stylesheets/basic/default/util/_dragdrop.scss */
 .x-dd-drag-proxy {
@@ -8193,64 +7626,3 @@ svg, vml {
   .x-html BDO[DIR="rtl"] {
     direction: rtl;
     unicode-bidi: bidi-override; }
-
-/* line 5, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drag-proxy,
-.x-dd-drag-current {
-  z-index: 1000000!important;
-  pointer-events: none; }
-
-/* line 13, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drag-repair .x-dd-drag-ghost {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-  opacity: 0.6; }
-/* line 17, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drag-repair .x-dd-drop-icon {
-  display: none; }
-
-/* line 22, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drag-ghost {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
-  opacity: 0.85;
-  padding: 5px;
-  padding-left: 20px;
-  white-space: nowrap;
-  color: #000;
-  font: normal 11px "Segoe UI", "Lucida Grande", tahoma, arial, verdana, sans-serif;
-  border: 1px solid;
-  border-color: #dddddd #bbbbbb #bbbbbb #dddddd;
-  background-color: #fff; }
-
-/* line 39, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drop-icon {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  display: block;
-  width: 16px;
-  height: 16px;
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1; }
-
-/* line 62, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-rtl .x-dd-drag-ghost {
-  padding-left: 5px;
-  padding-right: 20px; }
-/* line 66, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-rtl .x-dd-drop-icon {
-  left: auto;
-  right: 3px; }
-
-/* line 77, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drop-ok .x-dd-drop-icon {
-  background-image: none; }
-
-/* line 81, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drop-ok-add .x-dd-drop-icon {
-  background-image: none; }
-
-/* line 86, ../../themes/stylesheets/basic/custom/overrides/_dd.scss */
-.x-dd-drop-nodrop div.x-dd-drop-icon {
-  background-image: none; }

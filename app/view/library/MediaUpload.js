@@ -14,6 +14,7 @@ Ext.define('WIDGaT.view.library.MediaUpload' ,{
     initComponent: function() {
 		var me = this;
 		Ext.apply(this, {
+			ui: 'blue-window',
 			bbar: [
 				'->',
 				{

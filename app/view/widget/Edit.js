@@ -19,7 +19,8 @@ Ext.define('WIDGaT.view.widget.Edit' ,{
 			border: false,
 			fieldDefaults: {
 				msgTarget: 'side',
-				labelAlign: 'left'
+				labelAlign: 'left',
+				margin: '5 0 0 0'
 			},
 			defaultType: 'textfield',
 			items: [{

@@ -47,6 +47,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 				fieldLabel: 'Description',
 				name: 'description',
 				anchor: '100%',
+				margin: '5 0 0 0',
 				listeners: {
 					scope: this,
 					'render': function(cmp) {
@@ -62,18 +63,23 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 				}
 			}, {
 				xtype: 'displayfield',
-				fieldLabel: 'Use case',
 				submitValue: false,
-				value: '<a href="#" onclick="Ext.getCmp(\'usecaseButton\').fireEvent(\'click\');return false;">Fill in the Use case</a>'
+				html: 'Use case: <a href="#" onclick="Ext.getCmp(\'usecaseButton\').fireEvent(\'click\');return false;">Fill in the Use case</a>',
+				anchor: '100%',
+				margin: '5 0 0 0'
 			},{
 				xtype: 'fieldcontainer',
-				fieldLabel: 'Design status',
 				defaultType: 'radiofield',
+				margin: '5 0 0 0',
 				defaults: {
 					flex: 1
 				},
 				layout: 'hbox',
 				items: [{
+							xtype: 'displayfield',
+							fieldLabel: 'Design status',
+							submitValue: false
+						}, {
 							boxLabel: 'Work in Progress',
 							name: 'completed',
 							inputValue: false,
@@ -99,6 +105,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 			}, {
 				xtype: 'panel',
 				border: false,
+				margin: '5 0 0 0',
 				html: '<h1 >WIDGaT link to your Widget <img data-qtip="This link is your only way to get to your widget for further edition. It is strongly recommended that you bookmark or copy this link. When you have set your design status to \'Completed\', you can share this link to allow other people to adapt your widget. This will create a copy of your widget, Your widget as it is is no longer editable" class="qtip-target" style="vertical-align:middle" src="resources/images/qTip.png" role="presentation" /></h1><br />'
 				
 			}, {
@@ -160,6 +167,7 @@ Ext.define('WIDGaT.view.widget.Save' ,{
 			}, {
 				xtype: 'panel',
 				border: false,
+				margin: '5 0 0 0',
 				html: '<h1>Download</h1><br />'
 			}, {
 				xtype: 'container',

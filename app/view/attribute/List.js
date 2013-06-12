@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.attribute.List' ,{
 			region: 'center',
 			flex: 2,
 			source: {},
+			ui: 'blue-panel',
 			bodyCls: 'edit-panel',
 			bodyStyle: {
 				background: 'white url(resources/images/edit-bg.png) center bottom no-repeat'

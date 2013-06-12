@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 			id: 'library-panel',
 			autoScroll: true,
 			region: 'south',
+			ui: 'blue-panel',
 			split: true,
 			flex: 1,
 			autoExpandColumn : 'name',

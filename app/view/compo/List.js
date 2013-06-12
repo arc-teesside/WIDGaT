@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.compo.List' ,{
 		Ext.apply(this, {
 			id: 'compo-list',
 			disabled: true,
+			ui: 'blue-panel',
 			region: 'west',
 		    margins:'5 0 5 5',
 			split: true,

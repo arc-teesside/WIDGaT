@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.widget.SaveWindow' ,{
 			height: 425,
 		 	width: 500,
 			border: false,
+			ui: 'blue-window',
 			layout:'fit',
 			items: Ext.create('WIDGaT.view.widget.Save'),
 			bbar: [

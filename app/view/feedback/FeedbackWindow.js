@@ -16,6 +16,7 @@ Ext.define('WIDGaT.view.feedback.FeedbackWindow' ,{
 			height: 295,
 			width: 336,
 			border: false,
+			ui: 'blue-window',
 			layout:'fit',
 			items: Ext.create('WIDGaT.view.feedback.FeedbackForm'),
 			bbar: [

@@ -18,7 +18,8 @@ Ext.define('WIDGaT.view.usecase.Edit' ,{
 			bodyStyle:'padding:5px 5px 0',
 			fieldDefaults: {
 				msgTarget: 'side',
-				labelAlign: 'left'
+				labelAlign: 'left',
+				margin: '5 0 0 0'
 			},
 			defaultType: 'textfield',
 			border:false,

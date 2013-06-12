@@ -13,7 +13,8 @@ Ext.define('WIDGaT.view.widget.ExportWindow' ,{
     
     initComponent: function() {
 		Ext.apply(this, {
-			height: 291,
+			height: 302,
+			ui: 'blue-window',
 		 	width: 500,
 			border: false,
 			layout:'fit',

@@ -236,9 +236,34 @@ margin-top: 21px;
 .x-tool-preview{background-position:0 -375px}
 .x-tool-preview:hover{background-position:-15px -375px}
 
+.x-toolbar-blue-toolbar {
+	
+}
 
+.x-form-item-label-left {
+	float:left;
+}
+.x-message-box .x-container-default{
+	float:left;
+	width:89%;
+}
+.ext-mb-text {
+	float:left;
+}
+.x-form-item-body  {
+	float:left;
+}
+.x-form-trigger-wrap {
+	float:left;
+}
+.x-trigger-noedit {
+	float:left;
+}
 .x-form-file-wrap1 .x-form-text{
 	color:#777
+}
+.x-form-item {
+	margin: 0 0 5 0;
 }
 
 .x-form-file-wrap1 .x-form-file-btn1{overflow:hidden;float:left}

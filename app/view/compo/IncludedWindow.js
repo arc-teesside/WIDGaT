@@ -17,6 +17,7 @@ Ext.define('WIDGaT.view.compo.IncludedWindow' ,{
 			id: 'included-compo',
 			height: 300,
 			width: 200,
+			ui: 'blue-window',
 			border: false,
 			layout:'fit',
 			items: [

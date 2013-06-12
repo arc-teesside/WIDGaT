@@ -14,6 +14,7 @@ Ext.define('WIDGaT.view.guidance.List' ,{
 		Ext.apply(this, {
 			border: true,
 			id: 'gdList',
+			ui: 'blue-panel',
 			//store: Ext.create('Ext.data.TreeStore'),
 			rootVisible: false,
 			multiSelect: false,
