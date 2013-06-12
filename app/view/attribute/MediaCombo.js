@@ -23,8 +23,8 @@ Ext.define('WIDGaT.view.attribute.MediaCombo', {
 		
 		Ext.apply(me, {  
 			allowBlank: true,
-			emptyText: 'No sound available',
-			blankText: 'Select file',
+			blankText: 'No sound available',
+			emptyText: 'Select file',
 			editable: true,
 			queryMode: 'local',
 			store: tmpStore,

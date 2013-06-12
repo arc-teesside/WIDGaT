@@ -17,6 +17,7 @@ Ext.define('WIDGaT.controller.Compos', {
 	
     refs: [
         {ref: 'attributeList', selector: 'attrlist'},
+		{ref: 'attrEditForm', selector: 'attreditform'},
         {ref: 'guidanceList', selector: 'guidancelist'},
         {ref: 'compoDataView', selector: 'compoDataView'},
         {ref: 'compoList', selector: 'compolist'},
@@ -433,10 +434,50 @@ Ext.define('WIDGaT.controller.Compos', {
 		//the following will throw errors if WIDGaT.activeWidget==WIDGaT.newWidget   otherwise  as if you click on useacaseButton while in debug mode
 		if(WIDGaT.debug) console.log('Selected comp\'s attributes', WIDGaT.activeWidget.components().getById(cmp.id).attributes());
 		WIDGaT.selectedCompo = WIDGaT.activeWidget.components().getById(cmp.id);
-		this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(cmp.id), this.getAttributesStore());
-		this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
-		this.getAttributeList().down('#toolBin').setDisabled(false);
-
+		//this.getAttributeList().bind(WIDGaT.activeWidget.components().getById(cmp.id), this.getAttributesStore());
+		//this.getAttributeList().setTitle('Edit '+WIDGaT.selectedCompo.get('id'));
+		//this.getAttributeList().down('#toolBin').setDisabled(false);
+		
+		var me = this;
+		
+		WIDGaT.selectedCompo.attributes().each(function(record) {
+			if(WIDGaT.debug) console.log('selected compo attr record', record);
+			
+			switch(record.get('type')) {
+				case 'String':
+					me.getAttrEditForm().add({
+						xtype: 'textfield',
+						id: record.get('shortName'),
+						fieldLabel: record.get('name'),
+						name: record.get('shortName'),
+						anchor: '100%',
+						value: record.get('value'),
+						listeners: {
+							scope: this,
+							'render': function(cmp) {
+								cmp.tip = Ext.create('Ext.tip.ToolTip', {
+									target: cmp.el,
+									showDelay: 0,
+									trackMouse: true,
+									dismissDelay: 0,
+									hideDelay: 0,
+									html: '<b>Title</b><br />The title will also be the name of your widget. It will also be used in the template'
+								});	
+							}
+						}
+					});
+					break;
+				case 'Image':
+					me.getAttrEditForm().add(Ext.create("WIDGaT.view.attribute.MediaCombo", { mediaType: 'Image', id: record.get('shortName'), fieldLabel: record.get('name'), name: record.get('shortName'), anchor: '100%'}));
+					break;
+				default:
+					break;
+			}
+			
+		});
+		
+		me.getAttrEditForm().loadRecord(WIDGaT.selectedCompo.attributes());
+		
 		this.getThemeComboBox().bindStore(WIDGaT.activeWidget.components().getById(cmp.id).themes());
 		this.getThemeComboBox().setValue(WIDGaT.selectedCompo.get('stylesheet'));
 	},

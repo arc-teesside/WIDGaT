@@ -259,6 +259,9 @@ margin-top: 21px;
 .x-trigger-noedit {
 	float:left;
 }
+.x-form-text {
+	float:left;
+}
 .x-form-file-wrap1 .x-form-text{
 	color:#777
 }
