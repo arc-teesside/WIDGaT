@@ -90,6 +90,38 @@ Ext.define('WIDGaT.controller.Compos', {
 					var recordAction = record.get('widgat.model.compo_id') + '.' + record.get('shortName');
 					var valueAction = record.get('value');
 					
+					var compoA = record.get('widgat.model.compo_id');
+					var attrA = record.get('shortName');
+					
+					var jsVal = new Object();
+					jsVal.root = "components['"+compoA+"'].attributes['"+attrA+"']";
+					jsVal.value = valueAction;
+					
+					Ext.data.JsonP.request({
+						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+						params: {
+							'verb': 'modify',
+							'name': WIDGaT.activeWidget.get('id'),
+							'value': Ext.JSON.encode(jsVal),
+							'key': 'WIDGaT-918273645-911'
+						},
+						success: function(response) {
+							if(WIDGaT.debug) console.log(response);
+							//me.getActionWindow().close();
+							me.getWidgetView().setSrc();
+							
+							//NEED TO RECREATE STORE FOR GUIDANCE LIST BECAUSE THE ONBEFORERENDER DELETES RECORD
+							//me.getGuidanceList().onBeforeRender();
+							me.createGuidancePanel();
+							
+						},
+						failure: function(response) {
+							console.error(response);	
+						}
+					});
+					
+					
+					/*
 					var relatedPipe = WIDGaT.activeWidget.pipes().findRecord('from', recordAction)
 					
 					if(relatedPipe) {
@@ -160,7 +192,7 @@ Ext.define('WIDGaT.controller.Compos', {
 								console.error(response);	
 							}
 						});
-					}
+					}*/
 				}
 				else if(record.get('type').toLowerCase() != 'action' && record.get('input')) {
 										
