@@ -316,7 +316,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			var frmVals = saveFrm.getFieldValues();
 			console.log(frmVals.completed);
 			WIDGaT.activeWidget.set('name', frmVals.title);
-			WIDGaT.activeWidget.set('description', frmVals.description);
+			WIDGaT.activeWidget.set('description', frmVals.description.replace(/(\r\n|\n|\r)/gm," "));
 			
 			var tmpOb = new Object();
 			tmpOb.name = WIDGaT.activeWidget.get('name');
@@ -482,7 +482,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		var me = this;
 		
 		WIDGaT.activeWidget.set('name', btn.up('window').down('#title').getValue());
-		WIDGaT.activeWidget.set('description', btn.up('window').down('#description').getValue());
+		WIDGaT.activeWidget.set('description', btn.up('window').down('#description').getValue().replace(/(\r\n|\n|\r)/gm," "));
 		
 		WIDGaT.activeWidget.authors().first().set('name', btn.up('window').down('#name').getValue());
 		WIDGaT.activeWidget.authors().first().set('email', btn.up('window').down('#email').getValue());
@@ -570,8 +570,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		if(WIDGaT.activeWidget.usecases().getCount() == 0) {
 			var uC = Ext.create('WIDGaT.model.Usecase');
 			uC.set('keywords', Ext.getCmp('txt_keywords').getValue());
-			uC.set('persona', Ext.getCmp('persona').getValue());
-			uC.set('scenario', Ext.getCmp('scenario').getValue());
+			uC.set('persona', Ext.getCmp('persona').getValue().replace(/(\r\n|\n|\r)/gm," "));
+			uC.set('scenario', Ext.getCmp('scenario').getValue().replace(/(\r\n|\n|\r)/gm," "));
 			
 			WIDGaT.activeWidget.usecases().add(uC);	
 		} else {
@@ -635,7 +635,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		if(vals.title.length)
 			WIDGaT.newWidget.set('name', vals.title);
 		if(vals.description.length)
-			WIDGaT.newWidget.set('description', vals.description);
+			WIDGaT.newWidget.set('description', vals.description.replace(/(\r\n|\n|\r)/gm," "));
 		
 		if(vals.name.length || vals.email.length || vals.link.length || vals.organisation.length) {
 			var aut = Ext.create('WIDGaT.model.Author');
@@ -659,8 +659,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 		else
 			uC.set('keywords', Ext.getCmp('txt_keywords').getValue());
 		
-		uC.set('persona', Ext.getCmp('persona').getValue());
-		uC.set('scenario', Ext.getCmp('scenario').getValue());
+		uC.set('persona', Ext.getCmp('persona').getValue().replace(/(\r\n|\n|\r)/gm," "));
+		uC.set('scenario', Ext.getCmp('scenario').getValue().replace(/(\r\n|\n|\r)/gm," "));
 		
 		console.log('WIDGaT.selectedTemplate', WIDGaT.selectedTemplate);
 		console.log("keywords: ", Ext.getCmp('txt_keywords').getValue(), uC.get('keywords'));
