@@ -65,7 +65,13 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 								}
 								if ($file_type===3){
 									$file_source = imagecreatefrompng($file_folder.$file_nameTemp);
+									
+									
 									$file_thumb = imagecreatetruecolor($thumb_width, $thumb_height);
+									
+									imagealphablending( $file_thumb, false );
+									imagesavealpha( $file_thumb, true );
+									
 									imagecopyresampled($file_thumb, $file_source, 0, 0, 0, 0, $thumb_width, $thumb_height, $file_width, $file_height);
 									imagepng($file_thumb, $file_folder.$file_name);
 									chmod($file_folder.$file_name, 0777);
