@@ -16,7 +16,8 @@ Ext.define('WIDGaT.model.Widget', {
 			'description',
 			'icon',
 			'licence',
-			'template'
+			'template',
+			'inc'
     ],
     
     hasMany: [
@@ -40,6 +41,7 @@ Ext.define('WIDGaT.model.Widget', {
 		tmpMod.icon = this.get('icon');
 		tmpMod.licence = this.get('licence');
 		tmpMod.template = this.get('template');
+		tmpMod.inc = this.get('inc');
 		
 		//Authors
 		if(this.authors().getCount() > 0) {

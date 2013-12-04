@@ -412,7 +412,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 			var frmVals = saveFrm.getFieldValues();
 			console.log(frmVals.completed);
 			WIDGaT.activeWidget.set('name', frmVals.title);
-			WIDGaT.activeWidget.set('description', frmVals.description);
+			WIDGaT.activeWidget.set('description', frmVals.description.replace(/(\r\n|\n|\r)/gm," "));
 			
 			var tmpOb = new Object();
 			tmpOb.name = WIDGaT.activeWidget.get('name');
@@ -576,8 +576,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			WIDGaT.activeWidget.usecases().add(uC);	
 		} else {
 			WIDGaT.activeWidget.usecases().first().set('keywords', Ext.getCmp('txt_keywords').getValue());
-			WIDGaT.activeWidget.usecases().first().set('persona', Ext.getCmp('persona').getValue());
-			WIDGaT.activeWidget.usecases().first().set('scenario', Ext.getCmp('scenario').getValue());
+			WIDGaT.activeWidget.usecases().first().set('persona', Ext.getCmp('persona').getValue().replace(/(\r\n|\n|\r)/gm," "));
+			WIDGaT.activeWidget.usecases().first().set('scenario', Ext.getCmp('scenario').getValue().replace(/(\r\n|\n|\r)/gm," "));
 		}
 		
 		console.log('After save meta, activeWidget:', WIDGaT.activeWidget);
@@ -636,6 +636,8 @@ Ext.define('WIDGaT.controller.Widgets', {
 			WIDGaT.newWidget.set('name', vals.title);
 		if(vals.description.length)
 			WIDGaT.newWidget.set('description', vals.description.replace(/(\r\n|\n|\r)/gm," "));
+
+		WIDGaT.newWidget.set('inc', 1);
 		
 		if(vals.name.length || vals.email.length || vals.link.length || vals.organisation.length) {
 			var aut = Ext.create('WIDGaT.model.Author');
@@ -715,6 +717,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 					me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + WIDGaT.activeWidget.get('id') + '/');
 				if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 				//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
+				me.getLibraryList().loadMedia();
 				me.activeTool();
 			},
 			failure: function(response) {
@@ -943,11 +946,24 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		newCmp.set('placeHolder', placeHolder.id);
 
-		var newID = 1;
+		/*var newID = 1;
 		WIDGaT.activeWidget.components().each(function(record) {
 			if(record.get('className') == newCmp.get('className'))
 				newID++;
-		});
+		});*/
+
+		console.log('INC', WIDGaT.activeWidget.get('inc'));
+
+		var newID = 0
+		if(WIDGaT.activeWidget.get('inc')) {
+			newID = WIDGaT.activeWidget.get('inc');
+			newID++;
+		} else {
+			newID = WIDGaT.activeWidget.components().count() + 1;
+		}
+
+		WIDGaT.activeWidget.set('inc', newID);
+
 		newCmp.set('id', newCmp.get('className') + newID.toString());
 		
 		Ext.each(cmpObj.authors, function(author) {
@@ -1006,37 +1022,52 @@ Ext.define('WIDGaT.controller.Widgets', {
 			params: tmpOR,
 			success: function(response, opts) {
 				if(WIDGaT.debug) console.log('Compo added successfully. response:',response);
+
 				Ext.data.JsonP.request({
 					url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
 					params: {
-						'verb': 'refresh',
+						'verb': 'modify',
 						'name': WIDGaT.activeWidget.get('id'),
-						'key': 'WIDGaT-918273645-911'
-					},
+						'key': 'WIDGaT-918273645-911',
+						'value': '{ "inc": '+WIDGaT.activeWidget.get('inc')+'}'
+					},	
 					success: function(response) {
-						//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
-						var tmpStore = Ext.create('WIDGaT.store.Widgets');
-						tmpStore.loadRawData(response);
-						WIDGaT.activeWidget = tmpStore.first();
-						me.getWidgetsStore().loadRawData(response);
-						//WIDGaT.activeWidget = me.getWidgetsStore().first();
-						if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
-						if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
-						
-						//populating ActionStore
-						me.updateGlobalStores();
-						
-						if (me.getIncludedCompoGrid()) {
-							me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
-						}
-						
-						if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
-						if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
+						Ext.data.JsonP.request({
+							url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+							params: {
+								'verb': 'refresh',
+								'name': WIDGaT.activeWidget.get('id'),
+								'key': 'WIDGaT-918273645-911'
+							},
+							success: function(response) {
+								//me.getWidgetView().setSrc('http://arc.tees.ac.uk/WIDEST/Widget/Output/' + response.id + '/');
+								var tmpStore = Ext.create('WIDGaT.store.Widgets');
+								tmpStore.loadRawData(response);
+								WIDGaT.activeWidget = tmpStore.first();
+								me.getWidgetsStore().loadRawData(response);
+								//WIDGaT.activeWidget = me.getWidgetsStore().first();
+								if(WIDGaT.debug) console.log("Widget successfuly refreshed with id:", WIDGaT.activeWidget.internalId);
+								if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
+								
+								//populating ActionStore
+								me.updateGlobalStores();
+								
+								if (me.getIncludedCompoGrid()) {
+									me.getIncludedCompoGrid().getView().bindStore(WIDGaT.activeWidget.components());
+								}
+								
+								if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
+								if(WIDGaT.debug) console.log('WIDGaT.outputStore', WIDGaT.outputStore);
+							},
+							failure: function(response) {
+								if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
+							}
+						});
 					},
 					failure: function(response) {
-						if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
+						if(WIDGaT.debug) console.log('An error occured while modifying inc. response:', response);
 					}
-				});
+				})
 				me.getWidgetView().setSrc();
 				if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 			},

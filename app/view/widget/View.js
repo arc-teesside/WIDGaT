@@ -15,7 +15,7 @@ Ext.define('WIDGaT.view.widget.View', {
 			frameName : 'MIFportal',
 			id: 'iFrameWidgetView',
 			eventsFollowFrameLinks : true,
-			src : 'temp/TimerTemplate/index.html',
+			src : 'temp/blank.html',
 			listeners : {          //These listeners clear themselves on destruction
 				datasetchanged : {
 					element : 'frameElement',
