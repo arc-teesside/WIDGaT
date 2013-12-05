@@ -4,7 +4,7 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 	if($_FILES['formFile']['tmp_name'] != "") {
 		$file_temp = $_FILES['formFile']['tmp_name'];
 		$file_name = $_FILES['formFile']['name'];
-		$file_ext = substr($file_name,strrpos( $file_name, '.')+1);
+		$file_ext = strtolower(substr($file_name,strrpos( $file_name, '.')+1));
 		$file_size_max = 2000000;
 		
 		$widgetID = $_POST['widgetID'];

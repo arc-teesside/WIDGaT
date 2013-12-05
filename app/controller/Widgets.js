@@ -952,8 +952,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 				newID++;
 		});*/
 
-		console.log('INC', WIDGaT.activeWidget.get('inc'));
-
+		
 		var newID = 0
 		if(WIDGaT.activeWidget.get('inc')) {
 			newID = WIDGaT.activeWidget.get('inc');
