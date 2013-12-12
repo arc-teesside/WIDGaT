@@ -96,7 +96,7 @@ if(!empty($_FILES['formFile']) && isset($_FILES['formFile']) && $_FILES['formFil
 					echo '{"success":false, "error":'.json_encode("No file to upload").'}';
 				}
 			
-			} elseif ($file_ext == 'wav' || $file_ext == 'mp3') {
+			} elseif ($file_ext == 'wav' || $file_ext == 'mp3' || $file_ext == 'ogg') {
 				if (!empty($file_temp) && is_uploaded_file($file_temp)) {
 					if (filesize($file_temp)<$file_size_max) {
 						if (move_uploaded_file($file_temp, $file_folder.$file_name)) {
