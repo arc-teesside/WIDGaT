@@ -38,7 +38,6 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 						tooltip: 'Delete',
 						handler: function(grid, rowIndex, colIndex) {
 							var rec = grid.getStore().getAt(rowIndex);
-							alert("Terminate " + rec.get('name'));
 
 							Ext.Ajax.request({
 								url: 'file-remove.php',
