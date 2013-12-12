@@ -48,7 +48,7 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 									console.log('add img cmp');
 									
 									
-								} else if(recExt == "wav" || recExt == "mp3") {
+								} else if(recExt == "wav" || recExt == "mp3" || recExt == "ogg") {
 									console.log('add sound cmp');
 									
 									
@@ -101,7 +101,7 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 					var fileExt = file.substr(file.lastIndexOf('.')+1).toLowerCase();
 					if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
 						tmpOL.type = "Image";
-					else if(fileExt == "wav" || fileExt == "mp3")
+					else if(fileExt == "wav" || fileExt == "mp3" || fileExt == "ogg")
 						tmpOL.type = "Sound";
 					else
 						tmpOL.type = "Other";
