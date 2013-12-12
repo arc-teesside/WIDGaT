@@ -32,34 +32,29 @@ Ext.define('WIDGaT.view.library.LibraryGrid' ,{
 				{ header: 'Type',  dataIndex: 'type' },
 				{
 					xtype:'actioncolumn',
-					width:50,
+					width:20,
 					items: [{
-						icon: 'resources/images/add.png',
-						tooltip: 'Insert',
-						handler: function(grid, rowIndex, colIndex) {
-							var rec = grid.getStore().getAt(rowIndex);
-							var recName = rec.get('name');
-							
-							var recExt = recName.substr(recName.lastIndexOf('.')+1);
-							recExt.toLowerCase();
-							
-							
-								if(recExt == "png" || recExt == "jpeg" || recExt == "jpg" || recExt == "gif") {
-									console.log('add img cmp');
-									
-									
-								} else if(recExt == "wav" || recExt == "mp3" || recExt == "ogg") {
-									console.log('add sound cmp');
-									
-									
-								}
-						}
-					}, {
 						icon: 'resources/images/delete.png',
 						tooltip: 'Delete',
 						handler: function(grid, rowIndex, colIndex) {
 							var rec = grid.getStore().getAt(rowIndex);
 							alert("Terminate " + rec.get('name'));
+
+							Ext.Ajax.request({
+								url: 'file-remove.php',
+								params: {
+									'widgetID': WIDGaT.activeWidget.get('id'),
+									'fileName': rec.get('name')
+								},
+								success: function(response) {
+									if(WIDGaT.debug) console.log(response);
+									
+									Ext.getCmp('library-panel').loadMedia();
+								},
+								failure: function(response) {
+									console.error(response);	
+								}
+							});
 						}
 					}]
 				}
