@@ -301,7 +301,7 @@ Ext.define('WIDGaT.controller.Compos', {
 				
 					var indexOfParentComp = WIDGaT.activeWidget.components().indexOfId(record.get('widgat.model.compo_id'));
 										
-					var root = "components["+indexOfParentComp+"].attributes['"+record.get('shortName')+"']";
+					var root = "components['"+record.get('widgat.model.compo_id')+"'].attributes['"+record.get('shortName')+"']";
 
 					var tmpO = record.json4Serv();
 					tmpO.root = root;
