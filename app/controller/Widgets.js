@@ -156,70 +156,46 @@ Ext.define('WIDGaT.controller.Widgets', {
 					tmpStore.loadRawData(response);
 					WIDGaT.activeWidget = tmpStore.first();
 					me.getWidgetsStore().loadRawData(response);
+
 					//WIDGaT.activeWidget = me.getWidgetsStore().first();
 					if(WIDGaT.debug) console.log("Widget successfuly loaded with id:", WIDGaT.activeWidget.internalId);
 					if(WIDGaT.debug) console.log('WIDGaT.activeWidget: ', WIDGaT.activeWidget);
 					Ext.getCmp('urlDisplay').setText('<a data-qtip="This link allows you to directly open your widget in WIDGaT. It is strongly recommended to save it somewhere sure" href="http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/" target="_blank" >http://arc.tees.ac.uk/WIDGaT/Tool/?w=' + response.id + '/</a>');
 					Ext.getCmp('welcomeWindow').close();
 					
-					//populating ActionStore
-					/*WIDGaT.actionStore = Ext.create('WIDGaT.store.Actions');
-					WIDGaT.outputStore = Ext.create('WIDGaT.store.Attributes');
 					
-					WIDGaT.activeWidget.components().each(function(record) {
-						record.actions().each(function(action) { 
-							WIDGaT.actionStore.add(action);
-						});
-						
-						record.attributes().each(function(attr) {
-							if(attr.get('output'))
-								WIDGaT.outputStore.add(attr);
-						});
-					});
-					
-					
-					Ext.data.JsonP.request({
-						url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
-						params: {
-							'verb': 'media',
-							'name': WIDGaT.activeWidget.get('id'),
-							'key': 'WIDGaT-918273645-911'
-						},
-						success: function(response) {
-							var arLibrary = new Array();
-							Ext.each(response.files, function(file, index) {
-								var tmpOL = new Object();
-								tmpOL.url = "http://arc.tees.ac.uk/WIDEST/Widget/Output/"+WIDGaT.activeWidget.get('id')+'/media/'+file;
-								tmpOL.name = file;
-								
-								var fileExt = file.substr(file.lastIndexOf('.')+1).toLowerCase();
-								if(fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif")
-									tmpOL.type = "Image";
-								else if(fileExt == "wav" || fileExt == "mp3")
-									tmpOL.type = "Sound";
-								else
-									tmpOL.type = "Other";
-								
-								arLibrary.push(tmpOL);
-							});
-							var mediaStore =  Ext.create('Ext.data.Store', {
-								fields: ['url', 'name', 'type'],
-								data : arLibrary
-							});
-							WIDGaT.mediaStore = mediaStore;
-							console.log('mediaStore:', arLibrary);
-						}
-					});*/
 					me.updateGlobalStores();
 					
 					if(WIDGaT.debug) console.log('WIDGaT.actionStore', WIDGaT.actionStore);
 					//Ext.ComponentManager.get('cbActions').bindStore(WIDGaT.actionStore);
 					me.getViewWindow().setTitle(WIDGaT.activeWidget.get('name'));
-					
-					//Load library
-					me.getLibraryList().loadMedia();
-					
-					me.activeTool();
+
+					if(!WIDGaT.activeWidget.get('completed')) {
+						
+						//Load library
+						me.getLibraryList().loadMedia();
+						
+						me.activeTool();
+					} else {
+
+						Ext.MessageBox.confirm('Completed widget', 'This widget is no longer editable. Would you like to adapt it and make it your own ?', function (btn) {
+							if(btn=='yes') {
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'duplicate',
+										'name': reqStr.w,
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										console.log('duplicate', response.id);
+										window.location = 'http://arc.tees.ac.uk/WIDGaT/Tool/?w='+response.id;
+									}
+								});
+							}
+						});
+
+					}
 				},
 				failure: function(response) {
 					if(WIDGaT.debug) console.log('An error occured while creating widget. response:', response);		
@@ -314,7 +290,7 @@ Ext.define('WIDGaT.controller.Widgets', {
 		
 		if(!saveFrm.hasInvalidField()) {
 			var frmVals = saveFrm.getFieldValues();
-			console.log(frmVals.completed);
+			console.log("completed: ",frmVals.completed);
 			WIDGaT.activeWidget.set('name', frmVals.title);
 			WIDGaT.activeWidget.set('description', frmVals.description.replace(/(\r\n|\n|\r)/gm," "));
 			
@@ -358,21 +334,43 @@ Ext.define('WIDGaT.controller.Widgets', {
 									}
 								});
 							} else {
-								Ext.MessageBox.confirm('Confirm',
-								'Congratulations! You have completed your widget. You are now able to export and share it to several different website. Do you wish to do so ?',
-								function(btn) {
-									if(btn=='yes') {
-										//send completed to server
-										Ext.getCmp('exportButton').fireEvent('click');
-										_btn.up('window').close();
-										//Ext.create('WIDGaT.view.widget.ExportWindow').show();
+								WIDGaT.activeWidget.set('completed', frmVals.completed);
+
+								Ext.data.JsonP.request({
+									url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+									params: {
+										'verb': 'modify',
+										'name': WIDGaT.activeWidget.get('id'),
+										'value': '{ "completed": true }',
+										'key': 'WIDGaT-918273645-911'
+									},
+									success: function(response) {
+										me.disableTool();
+										Ext.MessageBox.confirm('Confirm',
+										'Congratulations! You have completed your widget. You are now able to export and share it to several different website. Do you wish to do so ?',
+										function(btn) {
+											if(btn=='yes') {
+												//send completed to server
+												Ext.getCmp('exportButton').fireEvent('click');
+												_btn.up('window').close();
+												//Ext.create('WIDGaT.view.widget.ExportWindow').show();
+											}
+										});
+									},
+									failure: function(response) {
+										Ext.MessageBox.prompt('Error', 'An error occured while saving the widget, please try again.');
 									}
 								});
+
+								
 							}
 						}
 					}
 				});
-			} else { _btn.up('window').close(); }
+			} else { 
+				WIDGaT.activeWidget.set('completed', false);
+				_btn.up('window').close(); 
+			}
 		}
 		if(WIDGaT.debug) console.log('After save widget, activeWidget:', WIDGaT.activeWidget);
     },

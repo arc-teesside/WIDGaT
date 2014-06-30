@@ -17,6 +17,7 @@ Ext.define('WIDGaT.model.Widget', {
 			'icon',
 			'licence',
 			'template',
+			{ name: 'completed', type: 'boolean', defaultValue: false },
 			'inc'
     ],
     
@@ -41,6 +42,7 @@ Ext.define('WIDGaT.model.Widget', {
 		tmpMod.icon = this.get('icon');
 		tmpMod.licence = this.get('licence');
 		tmpMod.template = this.get('template');
+		tmpMod.completed = this.get('completed');
 		tmpMod.inc = this.get('inc');
 		
 		//Authors
