@@ -189,7 +189,24 @@ Ext.define('WIDGaT.controller.Widgets', {
 									},
 									success: function(response) {
 										console.log('duplicate', response.id);
-										window.location = 'http://arc.tees.ac.uk/WIDGaT/Tool/?w='+response.id;
+										
+										var newId = response.id;
+										
+										Ext.data.JsonP.request({
+											url: 'http://arc.tees.ac.uk/widest/web/json.aspx',
+											params: {
+												'verb': 'modify',
+												'name': newId,
+												'value': '{ "completed": false }',
+												'key': 'WIDGaT-918273645-911'
+											},
+											success: function(response) {
+												
+												window.location = 'http://arc.tees.ac.uk/WIDGaT/Tool/?w='+newId;
+											}
+										});
+										
+					
 									}
 								});
 							}
